@@ -62,7 +62,6 @@ Crianças do Ensino Fundamental I (aproximadamente 6 a 10 anos) em fase de desen
 | RNF05 | 📈 Escalabilidade | O sistema deve suportar no mínimo 50 requisições simultâneas de execução e salvamento de estado sem perda de desempenho. |
 | RNF06 | 🌐 Portabilidade | O sistema deve ser compatível com os principais navegadores (Chrome, Firefox, Edge, Opera). |
 | RNF07 | 🛡️ Privacidade | O sistema deve coletar e armazenar apenas os dados pessoais estritamente necessários à autenticação (nome, email e identificador do provedor), em conformidade com a LGPD. |
-| RNF08 | 🔄 Recuperação | O sistema deve preservar o estado do código e da posição do personagem em caso de queda de conexão, permitindo a retomada da sessão sem perda do trabalho do usuário. |
 
 
 ## 🏗️ Arquitetura
@@ -78,39 +77,36 @@ Crianças do Ensino Fundamental I (aproximadamente 6 a 10 anos) em fase de desen
 | 🟨 JavaScript | Linguagem utilizada na implementação da lógica e da interatividade do projeto, incluindo a movimentação do personagem pelo teclado, as regras do labirinto e a integração com os serviços de autenticação. |
 | 📄 HTML | Linguagem de marcação utilizada para estruturar a página, servindo como base para o elemento `<canvas>` e para os demais componentes da interface. |
 | 🎯 CSS | Linguagem utilizada para a estilização da página e dos componentes da interface, definindo aspectos como posicionamento, dimensões, fontes e apresentação visual. |
+| ⚛️ React | Biblioteca para estruturar a interface em componentes e gerenciar o estado das telas. |
 | 🔑 Firebase Authentication | Serviço de autenticação utilizado para gerenciar o cadastro e o login dos usuários por conta Google, evitando a necessidade de implementar manualmente um servidor de autenticação. |
 | 🗄️ Cloud Firestore | Banco de dados NoSQL utilizado em conjunto com o Firebase Authentication para armazenar informações associadas aos usuários, como o progresso no jogo e o histórico de ações realizadas. |
 
 ## 📦 Como executar o projeto
 
-> ⏳ Pendente. 
+> ⏳ Aguardando. 
 
 ## 🧪 Estratégia de Testes
 
-- **Ferramenta:** Playwright
-- **Meta de cobertura:** mínimo de 70% do código (RNF02)
-- Disponível em: 
+Serão realizados testes manuais durante o desenvolvimento e testes automatizados com Playwright para verificar os principais fluxos da aplicação, como autenticação, movimentação, regras das fases e persistência do progresso. Os casos de teste, o plano de execução estão em desenvolvimento.
 
-### 📨 Como executar a suíte de testes
+### Como executar a suíte de testes
 
-> ⏳ Pendente. 
+> ⏳ Aguardando.
 
 ## 🗓️ Cronograma de Implementação
 
-| Período | Atividade |
+| Período (2026) | Atividades |
 |---|---|
-| 21/09 à 27/09 | |
-| 28/09 à 04/10 | |
-| 05/10 à 11/10 | |
-| 12/10 à 18/10 | |
-| 19/10 à 25/10 | |
-| 26/10 à 01/11 | |
-| 02/11 à 08/11 | |
-| 09/11 à 15/11 | |
-| 16/11 à 22/11 | |
-| 23/11 à 30/11 | |
-
+| 28/09 a 04/10 | - Configuração do React, organização dos componentes, rotas e layout base; integração inicial com p5.js e Firebase.<br> - Planejamento dos testes: plano e casos de teste. |
+| 05/10 a 11/10 | - Implementação de login, cadastro, sessão, logout e exclusão da conta com Firebase Authentication.<br> - Tela principal com cinco fases e indicação das fases bloqueadas e desbloqueadas. |
+| 12/10 a 18/10 | - Implementação da conclusão, do desbloqueio, do reinício e da persistência do progresso no Firestore.<br> - Integração e testes de login, cadastro, logout e exclusão de conta. |
+| 19/10 a 28/10 | - Seleção do personagem e associação ao jogador.<br> - Mapas, personagem, controles e movimentação com p5.js/Canvas. |
+| 29/10 a 08/11 | - Colisões, restrições, posição inicial, chegada ao destino e regras dos cinco mapas.<br> - Integração dos componentes de personagem com a persistência.<br> - Testes automatizados das telas principal e de personagem. |
+| 09/11 a 15/11 | - Testes automatizados da tela de jogo.<br> - Pausa, reinício, saída, configurações, tema, tela cheia e instruções. |
+| 16/11 a 22/11 | - Testes das configurações, da pausa e das regras de negócio.<br> - Correção dos problemas encontrados e publicação da plataforma na web. |
+| 23/11 a 30/11 | - Revisão e entrega final da plataforma. |
 
 ## 👥 Equipe
 
 Josiane Mariane Batista, Maria Clara Nascimento de Jesus e Pamela Berti Braz.
+
