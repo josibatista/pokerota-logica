@@ -14,7 +14,7 @@
 
 ## 📖 Sobre o projeto
 
-**PokéRota Lógica** é um jogo educativo desenvolvido em **JavaScript/p5.js**, com temática inspirada no universo Pokémon, no qual o usuário controla um personagem em um mapa, avançando por fases de dificuldade crescente. A proposta é oferecer uma ferramenta lúdica de ensino de lógica, permitindo que a criança visualize, em tempo real, a ação sendo executada no cenário conforme o comando que ela mesma emitiu. O progresso é salvo por usuário autenticado via conta Google.
+**PokéRota Lógica** é um jogo educativo em desenvolvimento para crianças do Ensino Fundamental I, com temática inspirada no universo Pokémon. Em mapas de dificuldade crescente, o usuário escolhe comandos para movimentar um personagem até o destino e observa o resultado de cada decisão. O projeto busca trabalhar sequências de comandos, planejamento de rotas e noções de lógica de forma visual e interativa. O progresso nas fases será associado à conta Google do jogador.
 
 > ⚠️ **Nota sobre propriedade intelectual:** Utilizou-se a temática inspirada no universo Pokémon, dando os devidos créditos à Nintendo, Game Freak e The Pokémon Company, detentoras dos direitos sobre a marca. Não há qualquer objetivo de obtenção de benefícios comerciais, monetários ou similares com este projeto, visto que se trata de trabalho acadêmico destinado à avaliação da disciplina de Oficina de Integração do curso de Engenharia de Software da UTFPR-CP.
 
@@ -56,17 +56,21 @@ Serão realizados testes manuais durante o desenvolvimento e testes automatizado
 
 > ⏳ Aguardando.
 
+## 📋 Organização do desenvolvimento
+
+O projeto seguirá uma metodologia ágil de desenvolvimento com o framework **Kanban**. As atividades e seu andamento podem ser consultados no [quadro do Trello](https://trello.com/invite/b/6aab1fd703672fb13252768a/ATTI43945ab325f7dfb3f6d6d008de6c03001E358F51/pokerota-logica).
+
 ## 🗓️ Cronograma de Implementação
 
 | Período (2026) | Atividades |
 |---|---|
-| 28/09 a 04/10 | - Configuração do React, organização dos componentes, rotas e layout base; integração inicial com p5.js e Firebase.<br> - Planejamento dos testes: plano e casos de teste. |
-| 05/10 a 11/10 | - Implementação de login, cadastro, sessão, logout e exclusão da conta com Firebase Authentication.<br> - Tela principal com cinco fases e indicação das fases bloqueadas e desbloqueadas. |
-| 12/10 a 18/10 | - Implementação da conclusão, do desbloqueio, do reinício e da persistência do progresso no Firestore.<br> - Integração e testes de login, cadastro, logout e exclusão de conta. |
-| 19/10 a 28/10 | - Seleção do personagem e associação ao jogador.<br> - Mapas, personagem, controles e movimentação com p5.js/Canvas. |
-| 29/10 a 08/11 | - Colisões, restrições, posição inicial, chegada ao destino e regras dos cinco mapas.<br> - Integração dos componentes de personagem com a persistência.<br> - Testes automatizados das telas principal e de personagem. |
-| 09/11 a 15/11 | - Testes automatizados da tela de jogo.<br> - Pausa, reinício, saída, configurações, tema, tela cheia e instruções. |
-| 16/11 a 22/11 | - Testes das configurações, da pausa e das regras de negócio.<br> - Correção dos problemas encontrados e publicação da plataforma na web. |
+| 28/09 a 04/10 | - Configuração do React, organização dos componentes, rotas, layout base e integração inicial com p5.js e Firebase.<br> - Planejamento de testes: Criação do plano de testes e conjunto dos casos de testes necessários para cobertura do sistema. |
+| 05/10 a 11/10 | - Implementação de login, cadastro, sessão, logout e exclusão da conta com Firebase Authentication.<br> - Implementação da tela principal, apresentação das cinco fases e controle de fases bloqueadas e desbloqueadas.|
+| 12/10 a 18/10 | - Implementação e Integração da conclusão, desbloqueio, reinício e persistência do progresso no Firestore. <br> - Integração e testes das funcionalidades de login, cadastro e logout e exclusão de conta. |
+| 19/10 a 28/10 | - Implementação da seleção do personagem e associação ao jogador. <br> - Implementação dos mapas, personagem, controles e movimentação com p5.js/Canvas.
+| 29/10 a 08/11 | - Implementação de colisões, restrições, posição inicial, chegada ao destino e regras dos cinco mapas. <br> -Integração do front-end e back-end de personagem. <br> - Implementação e execução dos testes automatizados das funções das telas principal e de personagem. |
+| 09/11 a 15/11 | - Implementação e execução dos testes automatizados das funções da tela de jogo. <br> - Implementação de pausa, reinício, saída, configurações, tema, tela cheia e instruções. 
+| 16/11 a 22/11 | - Testes das configurações, funcionalidades de pausa e regras de negócio. <br> - Correção dos problemas identificados e realização do deploy da plataforma em ambiente web. |
 | 23/11 a 30/11 | - Revisão e entrega final da plataforma. |
 
 ## 👥 Equipe
