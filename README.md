@@ -14,7 +14,7 @@
 
 ## 📖 Sobre o projeto
 
-**PokéRota Lógica** é um jogo educativo desenvolvido em **JavaScript/p5.js**, com temática inspirada no universo Pokémon, no qual o usuário controla um personagem em um mapa, avançando por fases de dificuldade crescente. A proposta é oferecer uma ferramenta lúdica de ensino de lógica, permitindo que a criança visualize, em tempo real, a ação sendo executada no cenário conforme o comando que ela mesma emitiu. O progresso é salvo por usuário autenticado via conta Google.
+**PokéRota Lógica** é um jogo educativo em desenvolvimento para crianças do Ensino Fundamental I, com temática inspirada no universo Pokémon. Em mapas de dificuldade crescente, o usuário escolhe comandos para movimentar um personagem até o destino e observa o resultado de cada decisão. O projeto busca trabalhar sequências de comandos, planejamento de rotas e noções de lógica de forma visual e interativa. O progresso nas fases será associado à conta Google do jogador.
 
 > ⚠️ **Nota sobre propriedade intelectual:** Utilizou-se a temática inspirada no universo Pokémon, dando os devidos créditos à Nintendo, Game Freak e The Pokémon Company, detentoras dos direitos sobre a marca. Não há qualquer objetivo de obtenção de benefícios comerciais, monetários ou similares com este projeto, visto que se trata de trabalho acadêmico destinado à avaliação da disciplina de Oficina de Integração do curso de Engenharia de Software da UTFPR-CP.
 
@@ -23,51 +23,24 @@
 Crianças do Ensino Fundamental I (aproximadamente 6 a 10 anos) em fase de desenvolvimento do pensamento lógico. O jogo busca estimular a compreensão de sequências de comandos e suas consequências, auxiliando o usuário a associar uma ação executada (movimentação do personagem) à resposta correspondente do sistema — fortalecendo noções básicas de causa e efeito e planejamento de rotas.
 
 
-## 🧩 Requisitos Funcionais
+## 🧩 Requisitos
 
-| ID | Descrição | Prioridade |
-|---|---|---|
-| RF01 | O sistema deve permitir o cadastro e login de usuários por meio de uma conta Google. | Alta |
-| RF02 | O sistema deve permitir a exclusão da conta do usuário mediante confirmação em duas etapas. | Alta |
-| RF03 | O sistema deve apresentar um menu superior incluindo configurações e instruções de jogo. | Média |
-| RF04 | O sistema deve permitir que o usuário encerre sua sessão, realizando o logout da conta. | Alta |
-| RF05 | O sistema deve fornecer uma área de configurações com opções de acessibilidade, logout e exclusão de conta. | Média |
-| RF06 | O sistema deve permitir que o usuário ative e desative o modo de tela cheia após autenticado. | Baixa |
-| RF07 | O sistema deve permitir que usuário não autenticado faça um teste prévio da plataforma. | Baixa |
-| RF08 | O sistema deve apresentar um personagem em uma área de movimentação. | Alta |
-| RF09 | O sistema deve fornecer um mapa para receber o personagem na área de movimentação. | Alta |
-| RF10 | O sistema deve fornecer opção de seleção do personagem que percorrerá o percurso do mapa quando iniciar a fase. | Baixa |
-| RF11 | O sistema deve disponibilizar botões na interface para os comandos frente, trás, direita e esquerda. | Alta |
-| RF12 | O sistema deve permitir a movimentação do personagem nas direções frente, trás, direita e esquerda, por meio dos botões na tela ou pelas setas do teclado. | Alta |
-| RF13 | O sistema deve atualizar visualmente a posição do personagem após a execução de um comando de movimentação. | Alta |
-| RF14 | O sistema deve apresentar instruções de como utilizar os botões/setas para movimentar o personagem. | Média |
-| RF15 | O sistema deve impedir movimentações que não sejam permitidas pelas regras definidas para o cenário. | Alta |
-| RF16 | O sistema deve permitir reiniciar a posição do personagem, na mesma fase, para a configuração inicial. | Baixa |
-| RF17 | O sistema deve exibir na tela principal cinco mapas distintos, representando cada fase de dificuldade do jogo. | Baixa |
-| RF18 | O sistema deve desbloquear o mapa (fase) seguinte somente após a conclusão da fase anterior. | Baixa |
-| RF19 | O sistema deve permitir ao usuário selecionar qualquer fase já concluída. | Baixa |
-| RF20 | O sistema deve armazenar o progresso do usuário nas fases. | Alta |
-| RF21 | O sistema deve apresentar o progresso do usuário na tela. | Alta |
-| RF22 | O sistema deve fornecer uma opção para sair do jogo e retornar à tela principal. | Média |
-
-
-## ⚙️ Requisitos Não Funcionais
-
-| ID | Tipo | Descrição |
-|---|---|---|
-| RNF01 | 🔐 Segurança | O sistema deve realizar autenticação via protocolo OAuth 2.0 com o Google, sem armazenar senhas de usuários no banco de dados.  |
-| RNF02 | 🧪 Testabilidade | O sistema deve possuir suíte de testes automatizados, visando atingir uma cobertura de no mínimo 70% de código, medida pela ferramenta de teste Playwright. |
-| RNF03 | ⚡ Desempenho | O sistema deve possuir um tempo de resposta inferior a 200ms ao executar a movimentação do personagem com navegador em versão suportada. |
-| RNF04 | ♿ Usabilidade/Acessibilidade | O sistema deve utilizar uma interface com fontes legíveis, alto contraste e elementos visuais complementares (como ícones, símbolos ou textos). |
-| RNF05 | 📈 Escalabilidade | O sistema deve suportar no mínimo 50 requisições simultâneas de execução e salvamento de estado sem perda de desempenho. |
-| RNF06 | 🌐 Portabilidade | O sistema deve ser compatível com os principais navegadores (Chrome, Firefox, Edge, Opera). |
-| RNF07 | 🛡️ Privacidade | O sistema deve coletar e armazenar apenas os dados pessoais estritamente necessários à autenticação (nome, email e identificador do provedor), em conformidade com a LGPD. |
-| RNF08 | 🔄 Recuperação | O sistema deve preservar o estado do código e da posição do personagem em caso de queda de conexão, permitindo a retomada da sessão sem perda do trabalho do usuário. |
-
+Os requisitos funcionais e não funcionais estão descritos em [docs/requisitos.md](docs/requisitos.md).
 
 ## 🏗️ Arquitetura
 
-> ⏳ Pendente.
+O sistema utiliza a arquitetura *cliente-servidor*, com o Firebase atuando como Backend as a Service (BaaS), responsável pela autenticação dos usuários e pelo armazenamento dos dados no Cloud Firestore. Internamente, o cliente é organizado segundo o padrão MVC (Model-View-Controller), separando a interface, o controle das interações e a lógica do jogo. Essa estrutura facilita a organização, a manutenção e a evolução do sistema, enquanto os serviços realizam a comunicação entre a aplicação e o Firebase.
+
+### Diagrama de arquitetura
+O diagrama apresenta a organização proposta em *MVC*: a View reúne a interface em React, HTML e CSS e a representação do jogo com p5.js/Canvas; o Controller coordena as ações do usuário; e o Model concentra os dados, o estado e as regras do jogo. Serviços fazem a integração com Firebase Authentication e Cloud Firestore.
+
+![Diagrama de Arquitetura](docs/diagrama-arquitetura.png)
+
+### 📐 Diagrama de classes
+
+O diagrama modela, com *programação orientada a objetos (POO)*, as entidades e responsabilidades previstas para o jogo, como Jogo, Fase, Jogador, Mapa, Usuário e Configuração, além das classes ligadas à autenticação e ao armazenamento do progresso.
+
+![Diagrama de classes](docs/diagrama-classes.png)
 
 ## 🛠️ Tecnologias de desenvolvimento
 
@@ -78,39 +51,71 @@ Crianças do Ensino Fundamental I (aproximadamente 6 a 10 anos) em fase de desen
 | 🟨 JavaScript | Linguagem utilizada na implementação da lógica e da interatividade do projeto, incluindo a movimentação do personagem pelo teclado, as regras do labirinto e a integração com os serviços de autenticação. |
 | 📄 HTML | Linguagem de marcação utilizada para estruturar a página, servindo como base para o elemento `<canvas>` e para os demais componentes da interface. |
 | 🎯 CSS | Linguagem utilizada para a estilização da página e dos componentes da interface, definindo aspectos como posicionamento, dimensões, fontes e apresentação visual. |
+| ⚛️ React | Biblioteca para estruturar a interface em componentes e gerenciar o estado das telas. |
 | 🔑 Firebase Authentication | Serviço de autenticação utilizado para gerenciar o cadastro e o login dos usuários por conta Google, evitando a necessidade de implementar manualmente um servidor de autenticação. |
 | 🗄️ Cloud Firestore | Banco de dados NoSQL utilizado em conjunto com o Firebase Authentication para armazenar informações associadas aos usuários, como o progresso no jogo e o histórico de ações realizadas. |
 
-## 📦 Como executar o projeto
+## 📦 Configuração do ambiente e execução
 
-> ⏳ Pendente. 
+### Pré-requisitos
+
+- Node.js e npm instalados.
+- Acesso às configurações do aplicativo web no projeto Firebase da equipe.
+
+### Arquivos de configuração
+
+- `package.json`: registra as dependências e os comandos de execução do projeto.
+- `package-lock.json`: fixa as versões das dependências instaladas pelo npm.
+- `vite.config.js`: configura o Vite utilizado com React.
+- `.gitignore`: impede o versionamento de dependências instaladas e configurações locais.
+- `.env.example`: apresenta os nomes das variáveis necessárias para conectar a aplicação ao Firebase.
+
+### Executar localmente
+
+1. Clone o repositório e abra a pasta do projeto.
+2. Instale as dependências:
+
+   ```bash
+   npm install
+   ```
+
+3. Crie um arquivo `.env` na raiz do projeto com base no `.env.example` e preencha os valores obtidos nas configurações do aplicativo web no Firebase.
+4. Inicie a aplicação:
+
+   ```bash
+   npm run dev
+   ```
+
+5. Abra no navegador o endereço exibido no terminal.
+
+O arquivo `.env` contém as configurações locais de cada integrante e não deve ser versionado.
 
 ## 🧪 Estratégia de Testes
 
-- **Ferramenta:** Playwright
-- **Meta de cobertura:** mínimo de 70% do código (RNF02)
-- Disponível em: 
+Serão realizados testes manuais durante o desenvolvimento e testes automatizados com Playwright para verificar os principais fluxos da aplicação, como autenticação, movimentação, regras das fases e persistência do progresso. Os casos de teste, o plano de execução estão em desenvolvimento.
 
-### 📨 Como executar a suíte de testes
+### Como executar a suíte de testes
 
-> ⏳ Pendente. 
+> ⏳ Aguardando.
+
+## 📋 Organização do desenvolvimento
+
+O projeto seguirá uma metodologia ágil de desenvolvimento com o framework **Kanban**. As atividades e seu andamento podem ser consultados no [quadro do Trello](https://trello.com/invite/b/6aab1fd703672fb13252768a/ATTI43945ab325f7dfb3f6d6d008de6c03001E358F51/pokerota-logica).
 
 ## 🗓️ Cronograma de Implementação
 
-| Período | Atividade |
+| Período (2026) | Atividades |
 |---|---|
-| 21/09 à 27/09 | |
-| 28/09 à 04/10 | |
-| 05/10 à 11/10 | |
-| 12/10 à 18/10 | |
-| 19/10 à 25/10 | |
-| 26/10 à 01/11 | |
-| 02/11 à 08/11 | |
-| 09/11 à 15/11 | |
-| 16/11 à 22/11 | |
-| 23/11 à 30/11 | |
-
+| 28/09 a 04/10 | - Configuração do React, organização dos componentes, rotas, layout base e integração inicial com p5.js e Firebase.<br> - Planejamento de testes: Criação do plano de testes e conjunto dos casos de testes necessários para cobertura do sistema. |
+| 05/10 a 11/10 | - Implementação de login, cadastro, sessão, logout e exclusão da conta com Firebase Authentication.<br> - Implementação da tela principal, apresentação das cinco fases e controle de fases bloqueadas e desbloqueadas.|
+| 12/10 a 18/10 | - Implementação e Integração da conclusão, desbloqueio, reinício e persistência do progresso no Firestore. <br> - Integração e testes das funcionalidades de login, cadastro e logout e exclusão de conta. |
+| 19/10 a 28/10 | - Implementação da seleção do personagem e associação ao jogador. <br> - Implementação dos mapas, personagem, controles e movimentação com p5.js/Canvas.
+| 29/10 a 08/11 | - Implementação de colisões, restrições, posição inicial, chegada ao destino e regras dos cinco mapas. <br> -Integração do front-end e back-end de personagem. <br> - Implementação e execução dos testes automatizados das funções das telas principal e de personagem. |
+| 09/11 a 15/11 | - Implementação e execução dos testes automatizados das funções da tela de jogo. <br> - Implementação de pausa, reinício, saída, configurações, tema, tela cheia e instruções. 
+| 16/11 a 22/11 | - Testes das configurações, funcionalidades de pausa e regras de negócio. <br> - Correção dos problemas identificados e realização do deploy da plataforma em ambiente web. |
+| 23/11 a 30/11 | - Revisão e entrega final da plataforma. |
 
 ## 👥 Equipe
 
 Josiane Mariane Batista, Maria Clara Nascimento de Jesus e Pamela Berti Braz.
+
