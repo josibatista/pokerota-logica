@@ -29,8 +29,12 @@ Os requisitos funcionais e não funcionais estão descritos em [docs/requisitos.
 
 ## 🏗️ Arquitetura
 
-> ⏳ Pendente.
+O sistema utiliza a arquitetura *cliente-servidor*, com o Firebase atuando como Backend as a Service (BaaS), responsável pela autenticação dos usuários e pelo armazenamento dos dados no Cloud Firestore. Internamente, o cliente é organizado segundo o padrão MVC (Model-View-Controller), separando a interface, o controle das interações e a lógica do jogo. Essa estrutura facilita a organização, a manutenção e a evolução do sistema, enquanto os serviços realizam a comunicação entre a aplicação e o Firebase.
 
+### Diagrama de arquitetura
+O diagrama apresenta a organização proposta em *MVC*: a View reúne a interface em React, HTML e CSS e a representação do jogo com p5.js/Canvas; o Controller coordena as ações do usuário; e o Model concentra os dados, o estado e as regras do jogo. Serviços fazem a integração com Firebase Authentication e Cloud Firestore.
+
+![Diagrama de Arquitetura](docs/diagrama-arquitetura.png)
 
 ### 📐 Diagrama de classes
 
