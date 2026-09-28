@@ -31,6 +31,13 @@ Os requisitos funcionais e não funcionais estão descritos em [docs/requisitos.
 
 > ⏳ Pendente.
 
+
+### 📐 Diagrama de classes
+
+O diagrama modela, com *programação orientada a objetos (POO)*, as entidades e responsabilidades previstas para o jogo, como Jogo, Fase, Jogador, Mapa, Usuário e Configuração, além das classes ligadas à autenticação e ao armazenamento do progresso.
+
+![Diagrama de classes](docs/diagrama-classes.png)
+
 ## 🛠️ Tecnologias de desenvolvimento
 
 | Tecnologia | Aplicação |
