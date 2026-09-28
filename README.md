@@ -55,9 +55,40 @@ O diagrama modela, com *programação orientada a objetos (POO)*, as entidades e
 | 🔑 Firebase Authentication | Serviço de autenticação utilizado para gerenciar o cadastro e o login dos usuários por conta Google, evitando a necessidade de implementar manualmente um servidor de autenticação. |
 | 🗄️ Cloud Firestore | Banco de dados NoSQL utilizado em conjunto com o Firebase Authentication para armazenar informações associadas aos usuários, como o progresso no jogo e o histórico de ações realizadas. |
 
-## 📦 Como executar o projeto
+## 📦 Configuração do ambiente e execução
 
-> ⏳ Aguardando. 
+### Pré-requisitos
+
+- Node.js e npm instalados.
+- Acesso às configurações do aplicativo web no projeto Firebase da equipe.
+
+### Arquivos de configuração
+
+- `package.json`: registra as dependências e os comandos de execução do projeto.
+- `package-lock.json`: fixa as versões das dependências instaladas pelo npm.
+- `vite.config.js`: configura o Vite utilizado com React.
+- `.gitignore`: impede o versionamento de dependências instaladas e configurações locais.
+- `.env.example`: apresenta os nomes das variáveis necessárias para conectar a aplicação ao Firebase.
+
+### Executar localmente
+
+1. Clone o repositório e abra a pasta do projeto.
+2. Instale as dependências:
+
+   ```bash
+   npm install
+   ```
+
+3. Crie um arquivo `.env` na raiz do projeto com base no `.env.example` e preencha os valores obtidos nas configurações do aplicativo web no Firebase.
+4. Inicie a aplicação:
+
+   ```bash
+   npm run dev
+   ```
+
+5. Abra no navegador o endereço exibido no terminal.
+
+O arquivo `.env` contém as configurações locais de cada integrante e não deve ser versionado.
 
 ## 🧪 Estratégia de Testes
 
