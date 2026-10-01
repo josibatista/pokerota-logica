@@ -1,5 +1,12 @@
+import GameCanvas from '../components/GameCanvas';
+
 function Jogo() {
-    return <h1>Jogo</h1>;
+    return (
+        <div>
+            <h1>Jogo</h1>
+            <GameCanvas />
+        </div>
+    );
 }
 
 export default Jogo;
