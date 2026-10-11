@@ -12,14 +12,26 @@ import mapa5 from '../assets/mapas/nivel5-mini.png';
 function SelecaoNivel() {
     const [faseSelecionada, setFaseSelecionada] = useState(1);
 
-    // Desbloqueio temporário para testar a tela.
+    // Estados temporários para testar a seleção das fases.
     const fases = [
-        { numero: 1, imagem: mapa1, desbloqueada: true },
-        { numero: 2, imagem: mapa2, desbloqueada: false },
-        { numero: 3, imagem: mapa3, desbloqueada: false },
-        { numero: 4, imagem: mapa4, desbloqueada: false },
-        { numero: 5, imagem: mapa5, desbloqueada: false },
+        { numero: 1, imagem: mapa1, estado: 'concluida' },
+        { numero: 2, imagem: mapa2, estado: 'concluida' },
+        { numero: 3, imagem: mapa3, estado: 'disponivel' },
+        { numero: 4, imagem: mapa4, estado: 'bloqueada' },
+        { numero: 5, imagem: mapa5, estado: 'bloqueada' },
     ];
+
+    function selecionarFase(numero) {
+        const fase = fases.find(
+            (fase) => fase.numero === numero
+        );
+
+        if (!fase || fase.estado === 'bloqueada') {
+            return;
+        }
+
+        setFaseSelecionada(numero);
+    }
 
     return (
         <main className="selecao-nivel">
@@ -33,12 +45,12 @@ function SelecaoNivel() {
                             key={fase.numero}
                             numero={fase.numero}
                             imagem={fase.imagem}
-                            desbloqueada={fase.desbloqueada}
+                            estado={fase.estado}
                             selecionada={
                                 faseSelecionada === fase.numero
                             }
                             onSelecionar={() =>
-                                setFaseSelecionada(fase.numero)
+                                selecionarFase(fase.numero)
                             }
                         />
                     ))}
