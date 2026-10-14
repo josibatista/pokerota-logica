@@ -1,0 +1,44 @@
+# Plano de testes — PokéRota Lógica
+
+**Versão:** 1.0
+
+## 1. Objetivo
+Planejar a validação funcional do jogo educativo PokéRota Lógica, com casos BDD e automação incremental com Playwright.
+
+## 2. Escopo
+**Nesta etapa:** RF01–RF23, abrangendo autenticação, interface, movimentação, fases e persistência. Os **33 casos de teste funcionais** estão distribuídos em cinco conjuntos, disponíveis em [`casos-funcionais/`](casos-funcionais/).
+
+**Passos futuros:** RNF01–RNF07 ficam fora da execução atual. Em etapa posterior, planejar segurança, cobertura de código, desempenho, acessibilidade, escalabilidade, compatibilidade e privacidade, com critérios e ferramentas próprios.
+
+## 3. Estratégia
+- **Níveis:** sistema/E2E e integração de fluxos relevantes.
+- **Técnicas:** BDD (Dado/Quando/Então), cenários positivos/negativos, transição de estados e limites de movimentação.
+- **Execução:** manual durante desenvolvimento; automação Playwright quando o módulo correspondente estiver implementado.
+- **Ambiente:** Vite local e Firebase de testes/emuladores quando configurados; dados isolados, sem contas pessoais ou credenciais versionadas.
+- **Ferramenta:** Playwright Test (Chromium inicial).
+- **Prioridade:** seguir a prioridade declarada no documento de [requisitos](../requisitos.md).
+
+## 4. Critérios de entrada e saída
+**Entrada:** funcionalidade disponível, ambiente funcionando e dados preparados.  
+**Saída:** casos planejados para a entrega executados, resultados/evidências registrados, defeitos relevantes relatados e regressão realizada. 
+
+## 5. Priorização e riscos
+**Alta:** RF01, RF02, RF04, RF08, RF09, RF11, RF12, RF13, RF15, RF20, RF21.  
+**Média:** RF03, RF05, RF14, RF22, RF23.  
+**Baixa:** RF06, RF07, RF10, RF16, RF17, RF18, RF19.  
+
+**Riscos:** dependência de autenticação Google/Firebase, dados de progresso persistentes, mudanças na interface e dificuldade de inspecionar diretamente elementos desenhados em Canvas.  
+
+## 6. Cronograma de testes
+
+| Período | Atividade | Conjuntos de casos de teste |
+|---|---|---|
+| 12/10–18/10 | Testar/automatizar autenticação. | `autenticacao.md` |
+| 29/10–08/11 | Testar/automatizar tela principal e personagem. | `interface.md`, `movimentacao.md`, `fases.md` |
+| 09/11–15/11 | Testar/automatizar tela de jogo, movimentação, colisões e iniciar testes de persistência. | `movimentacao.md`, `fases.md`, `progresso.md` |
+| 16/11–22/11 | Testar/automatizar configurações, pausa e regras; complementar testes de persistência e executar regressão. | `interface.md`, `movimentacao.md`, `fases.md`, `progresso.md` |
+| 23/11–30/11 | Execução geral, regressão e documentação final. | Todos os conjuntos: `autenticacao.md`, `interface.md`, `movimentacao.md`, `fases.md` e `progresso.md` |
+
+## 7. Artefatos
+**Total:** 33 casos de teste funcionais, distribuídos em cinco conjuntos.  
+Casos BDD: `casos-funcionais/*.md`; rastreabilidade: `matriz-rastreabilidade.md`; configuração: `playwright.config.js`. Registrar por execução: ID, data, ambiente, resultado (passou/falhou/bloqueado/não executado), evidência e defeito associado.

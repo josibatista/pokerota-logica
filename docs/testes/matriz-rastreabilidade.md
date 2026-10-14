@@ -1,0 +1,27 @@
+# Matriz de rastreabilidade — requisitos funcionais e casos de teste
+
+| Requisito | Casos de teste |
+|---|---|
+| RF01 | CT-AUT-001, CT-AUT-002, CT-AUT-006 |
+| RF02 | CT-AUT-003, CT-AUT-004, CT-AUT-006 |
+| RF03 | CT-INT-001, CT-INT-002 |
+| RF04 | CT-AUT-005 |
+| RF05 | CT-INT-003, CT-INT-004 |
+| RF06 | CT-INT-005 |
+| RF07 | CT-INT-006 |
+| RF08 | CT-MOV-001 |
+| RF09 | CT-MOV-001 |
+| RF10 | CT-MOV-002 |
+| RF11 | CT-MOV-003 |
+| RF12 | CT-MOV-004, CT-MOV-005, CT-MOV-006 |
+| RF13 | CT-MOV-004, CT-MOV-005 |
+| RF14 | CT-INT-007 |
+| RF15 | CT-MOV-007, CT-MOV-008 |
+| RF16 | CT-FAS-006 |
+| RF17 | CT-FAS-001 |
+| RF18 | CT-FAS-002, CT-FAS-003 |
+| RF19 | CT-FAS-004 |
+| RF20 | CT-PRO-001, CT-PRO-002, CT-PRO-003, CT-PRO-005 |
+| RF21 | CT-PRO-004, CT-PRO-005 |
+| RF22 | CT-FAS-005 |
+| RF23 | CT-FAS-007 |

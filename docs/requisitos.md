@@ -26,6 +26,7 @@
 | RF20 | O sistema deve armazenar o progresso do usuário nas fases. | Alta |
 | RF21 | O sistema deve apresentar o progresso do usuário na tela. | Alta |
 | RF22 | O sistema deve fornecer uma opção para sair do jogo e retornar à tela principal. | Média |
+| RF23 | O sistema deve permitir que o usuário pause e retome a fase em andamento, impedindo a movimentação do personagem durante a pausa e preservando seu estado para a retomada. | Média |
 
 
 ## ⚙️ Requisitos Não Funcionais
