@@ -10,7 +10,7 @@ function Icone({ children }) {
 
 function BotaoCabecalho({ rotulo, onClick, children }) {
     return (
-        <button type="button" className="cabecalhoBotao" aria-label={rotulo} onClick={onClick}>
+        <button type="button" className="cabecalhoBotao" aria-label={rotulo} onClick={onClick} disabled={typeof onClick !== 'function'}>
             {children}
         </button>
     );
