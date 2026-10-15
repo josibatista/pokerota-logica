@@ -1,8 +1,5 @@
 import { useEffect, useState } from 'react';
-import {
-    loginComGoogle,
-    inscreverEstadoAutenticacao,
-} from '../controller/authController';
+import {loginComGoogle,inscreverEstadoAutenticacao,logout,} from '../controller/authController';
 import Estrutura from './components/layouts/Estrutura';
 import AppRoutes from './routes/AppRoutes';
 import './App.css';
@@ -32,9 +29,24 @@ function App() {
         setUsuario(resultado.usuario);
         return resultado.usuario;
     }
+    
+    async function encerrarSessao() {
+        const resultado = await logout();
+
+        if (!resultado.sucesso) {
+            const erro = new Error(resultado.mensagem);
+            erro.code = resultado.codigo;
+            throw erro;
+        }
+
+        setUsuario(null);
+    }
 
     return (
-        <Estrutura>
+        <Estrutura
+            usuario={usuario}
+            onEncerrarSessao={encerrarSessao}
+        >
             <AppRoutes
                 usuario={usuario}
                 carregandoSessao={carregandoSessao}
