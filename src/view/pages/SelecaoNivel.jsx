@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './SelecaoNivel.css';
 import CartaoFase from '../components/CartaoFase';
-import { carregarProgresso } from '../../controller/progressoController';
+import { carregarProgresso, salvarProgresso } from '../../controller/progressoController';
 
 import mapa1 from '../assets/mapas/nivel1-mini.png';
 import mapa2 from '../assets/mapas/nivel2-mini.png';
@@ -79,11 +79,14 @@ function SelecaoNivel() {
             return;
         }
 
-        setFaseSelecionada(numero);
+        if (faseSelecionada === numero) {
+            navegar('/jogo', {
+                state: { fase: numero },
+            });
+            return;
+        }
 
-        navegar('/jogo', {
-            state: { fase: numero },
-        });
+        setFaseSelecionada(numero);
     }
 
     if (carregando) {
