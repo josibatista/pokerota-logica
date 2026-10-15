@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app';
-import { getAuth } from 'firebase/auth';
+import { getAuth, connectAuthEmulator } from 'firebase/auth';
 
 const firebaseConfig = {
     apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -10,8 +10,25 @@ const firebaseConfig = {
     appId: import.meta.env.VITE_FIREBASE_APP_ID
 };
 
-const app = initializeApp(firebaseConfig);
+const usarEmulador =
+    import.meta.env.DEV &&
+    import.meta.env.MODE === 'test';
+
+const app = initializeApp(
+    usarEmulador
+        ? {
+            apiKey: 'fake-api-key',
+            authDomain: 'demo-pokerota.firebaseapp.com',
+            projectId: 'demo-pokerota',
+        }
+        : firebaseConfig
+);
+
 const auth = getAuth(app);
+
+if (usarEmulador) {
+    connectAuthEmulator(auth, 'http://127.0.0.1:9099');
+}
 
 export { auth };
 export default app;
