@@ -51,7 +51,7 @@ function Home({ usuario = null, carregandoSessao = false, onEntrarComGoogle }) {
                         type="button"
                         className="home__botao home__botao--experimentar"
                         disabled={ocupado}
-                        onClick={() => navigate('/jogo')}
+                        onClick={() => navigate('/jogo', { state: { visitante: true } })}
                     >
                         Experimente
                     </button>
