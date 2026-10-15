@@ -7,7 +7,6 @@ import './estrutura.css';
 // A aparência do menu é definida aqui; as ações de conta vêm da integração.
 const telas = {
     '/': { configuracoes: true },
-    '/login': { voltar: '/', configuracoes: true },
     '/niveis': { saudacao: true, sair: true, instrucoes: true, configuracoes: true },
     '/personagem': { voltar: '/niveis', instrucoes: true, configuracoes: true },
     '/jogo': { movimento: true, instrucoes: true, configuracoes: true },
