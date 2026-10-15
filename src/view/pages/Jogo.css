@@ -1,0 +1,46 @@
+
+.jogo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 24px;
+}
+
+.jogo h1 {
+    margin: 0 0 24px;
+    text-align: center;
+}
+
+.jogo__canvas-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 840px;
+    min-height: 520px;
+    box-sizing: border-box;
+    padding: 10px;
+    margin: 0 auto 24px;
+    overflow: auto;
+}
+
+.jogo__canvas-container canvas {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+.jogo__acoes {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.jogo__mensagem {
+    text-align: center;
+    margin-top: 16px;
+}

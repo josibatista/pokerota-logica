@@ -1,13 +1,17 @@
+
 import { useEffect, useRef } from 'react';
 import p5 from 'p5';
 
-function GameCanvas() {
+function GameCanvas({ reinicio }) {
     const canvasRef = useRef(null);
 
     useEffect(() => {
         const sketch = (p) => {
             p.setup = () => {
                 p.createCanvas(800, 500);
+            };
+
+            p.draw = () => {
                 p.background(240);
             };
         };
@@ -17,9 +21,9 @@ function GameCanvas() {
         return () => {
             instance.remove();
         };
-    }, []);
+    }, [reinicio]);
 
-    return <div ref={canvasRef}></div>;
+    return <div className="jogo__canvas-container" ref={canvasRef} />;
 }
 
 export default GameCanvas;
