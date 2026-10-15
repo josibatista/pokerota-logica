@@ -20,6 +20,7 @@ function Home({ usuario = null, carregandoSessao = false, onEntrarComGoogle }) {
             await onEntrarComGoogle();
             navigate('/niveis', { replace: true });
         } catch (erro) {
+            const codigo = erro?.code;
             if (codigo === 'auth/popup-closed-by-user' || codigo === 'auth/cancelled-popup-request') {
                 setMensagem('Você cancelou a entrada. Pode tentar de novo quando quiser.');
             } else if (codigo === 'auth/popup-blocked') {
