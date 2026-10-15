@@ -92,11 +92,16 @@ O arquivo `.env` contém as configurações locais de cada integrante e não dev
 
 ## 🧪 Estratégia de Testes
 
-Serão realizados testes manuais durante o desenvolvimento e testes automatizados com Playwright para verificar os principais fluxos da aplicação, como autenticação, movimentação, regras das fases e persistência do progresso. Os casos de teste, o plano de execução estão em desenvolvimento.
+Os testes são realizados manualmente durante o desenvolvimento e automatizados com Playwright conforme a implementação de cada funcionalidade.
 
-### Como executar a suíte de testes
+A automação de autenticação utiliza o Firebase Authentication Emulator, com contas fictícias no projeto local `demo-pokerota`. Ela verifica login, cancelamento, persistência da sessão, exclusão da conta, logout e novo cadastro após exclusão, além do bloqueio das rotas privadas.
 
-> ⏳ Aguardando.
+O login com o serviço real do Google é verificado manualmente.
+
+- [Plano e instruções de execução](docs/testes/plano-de-testes.md)
+- [Casos funcionais](docs/testes/casos-funcionais/)
+- [Matriz de rastreabilidade](docs/testes/matriz-rastreabilidade.md)
+
 
 ## 📋 Organização do desenvolvimento
 
@@ -114,6 +119,13 @@ O projeto seguirá uma metodologia ágil de desenvolvimento com o framework **Ka
 | 09/11 a 15/11 | - Implementação e execução dos testes automatizados das funções da tela de jogo. <br> - Implementação de pausa, reinício, saída, configurações, tema, tela cheia e instruções. 
 | 16/11 a 22/11 | - Testes das configurações, funcionalidades de pausa e regras de negócio. <br> - Correção dos problemas identificados e realização do deploy da plataforma em ambiente web. |
 | 23/11 a 30/11 | - Revisão e entrega final da plataforma. |
+
+## 🤖 Declaração de uso de inteligência artificial
+
+O ChatGPT, da OpenAI, foi utilizado como ferramenta de apoio na elaboração, organização e refatoração de documentos, configurações, códigos e testes automatizados.
+
+Os conteúdos gerados foram revisados, adaptados e validados pelo time. As decisões técnicas, a avaliação dos resultados e a responsabilidade pelo conteúdo incorporado ao projeto são integralmente das autoras.
+
 
 ## 👥 Equipe
 
