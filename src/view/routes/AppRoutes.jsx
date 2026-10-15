@@ -21,6 +21,8 @@ function AppRoutes({
     usuario,
     carregandoSessao,
     onEntrarComGoogle,
+    onEncerrarSessao,
+    onExcluirConta,
 }) {
     return (
         <Routes>
@@ -34,7 +36,17 @@ function AppRoutes({
                     />
                 }
             />
-            <Route path="/configuracoes" element={<Configuracoes />} />
+            <Route
+                path="/configuracoes"
+                element={
+                    <Configuracoes
+                        usuario={usuario}
+                        carregandoSessao={carregandoSessao}
+                        onEncerrarSessao={onEncerrarSessao}
+                        onExcluirConta={onExcluirConta}
+                    />
+                }
+            />
             <Route
                 path="/niveis"
                 element={

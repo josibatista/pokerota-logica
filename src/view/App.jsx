@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import {loginComGoogle,inscreverEstadoAutenticacao,logout,} from '../controller/authController';
+import {loginComGoogle, inscreverEstadoAutenticacao, logout, excluirConta as excluirContaController} from '../controller/authController';
 import Estrutura from './components/layouts/Estrutura';
 import AppRoutes from './routes/AppRoutes';
 import './App.css';
@@ -42,6 +42,18 @@ function App() {
         setUsuario(null);
     }
 
+    async function excluirMinhaConta(confirmacoes) {
+        const resultado = await excluirContaController(confirmacoes);
+
+        if (!resultado.sucesso) {
+            const erro = new Error(resultado.mensagem);
+            erro.code = resultado.codigo;
+            throw erro;
+        }
+
+        setUsuario(null);
+    }
+
     return (
         <Estrutura
             usuario={usuario}
@@ -51,6 +63,8 @@ function App() {
                 usuario={usuario}
                 carregandoSessao={carregandoSessao}
                 onEntrarComGoogle={entrarComGoogle}
+                onEncerrarSessao={encerrarSessao}
+                onExcluirConta={excluirMinhaConta}
             />
         </Estrutura>
     );

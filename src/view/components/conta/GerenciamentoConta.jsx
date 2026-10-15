@@ -48,7 +48,10 @@ function GerenciamentoConta({ usuario = null, carregandoSessao = false, onEncerr
         setErroExclusao('');
         setAcao('excluir');
         try {
-            await onExcluirConta();
+            await onExcluirConta({
+                primeiraConfirmacao: true,
+                segundaConfirmacao: true,
+            });
             setConfirmacaoAberta(false);
             navigate('/', { replace: true });
         } catch (erro) {
