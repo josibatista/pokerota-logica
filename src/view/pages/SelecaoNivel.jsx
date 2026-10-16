@@ -1,9 +1,9 @@
-
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './SelecaoNivel.css';
 import CartaoFase from '../components/CartaoFase';
-import { carregarProgresso, salvarProgresso } from '../../controller/progressoController';
+import { carregarProgresso } from '../../controller/progressoController';
+import Progresso from '../../model/progresso.js';
 
 import mapa1 from '../assets/mapas/nivel1-mini.png';
 import mapa2 from '../assets/mapas/nivel2-mini.png';
@@ -19,22 +19,9 @@ const mapas = [
     { numero: 5, imagem: mapa5 },
 ];
 
-function obterEstadoFase(numero, ultimoNivelConcluido) {
-    if (numero <= ultimoNivelConcluido) {
-        return 'concluida';
-    }
-
-    if (numero === ultimoNivelConcluido + 1) {
-        return 'disponivel';
-    }
-
-    return 'bloqueada';
-}
-
 function SelecaoNivel() {
     const [faseSelecionada, setFaseSelecionada] = useState(1);
-    const [ultimoNivelConcluido, setUltimoNivelConcluido] =
-        useState(null);
+    const [progresso, setProgresso] = useState(null);
     const [carregando, setCarregando] = useState(true);
     const [erro, setErro] = useState('');
     const navegar = useNavigate();
@@ -55,8 +42,8 @@ function SelecaoNivel() {
                 return;
             }
 
-            setUltimoNivelConcluido(
-                resultado.progresso.ultimoNivelConcluido
+            setProgresso(
+                new Progresso(resultado.progresso)
             );
             setErro('');
             setCarregando(false);
@@ -70,10 +57,7 @@ function SelecaoNivel() {
     }, []);
 
     function selecionarFase(numero) {
-        const estado = obterEstadoFase(
-            numero,
-            ultimoNivelConcluido
-        );
+        const estado = progresso.obterEstadoFase(numero);
 
         if (estado === 'bloqueada') {
             return;
@@ -123,10 +107,7 @@ function SelecaoNivel() {
 
     const fases = mapas.map((mapa) => ({
         ...mapa,
-        estado: obterEstadoFase(
-            mapa.numero,
-            ultimoNivelConcluido
-        ),
+        estado: progresso.obterEstadoFase(mapa.numero),
     }));
 
     return (
@@ -136,7 +117,7 @@ function SelecaoNivel() {
                 aria-label="Seleção de fases"
             >
                 <p>
-                    Fases concluídas: {ultimoNivelConcluido} de 5
+                    Fases concluídas: {progresso.ultimoNivelConcluido} de 5
                 </p>
 
                 <div className="selecao-nivel__mapas">

@@ -1,10 +1,9 @@
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { obterUsuarioAtual } from './authService';
+import Progresso from '../model/progresso.js';
 import { db } from './firebase';
 
 const COLECAO_PROGRESSO = 'progresso';
-const NIVEL_INICIAL = 0;
-const NIVEL_MAXIMO = 5;
 
 const mensagensPorCodigo = {
     'progresso/usuario-nao-autenticado': 'Nenhum usuário autenticado.',
@@ -76,25 +75,6 @@ async function executarOperacao(operacao, tipo) {
     }
 }
 
-function validarUltimoNivelConcluido(valor) {
-    if (!Number.isInteger(valor) || valor < NIVEL_INICIAL || valor > NIVEL_MAXIMO) {
-        throw criarErro('progresso/dados-invalidos', mensagensPorCodigo['progresso/dados-invalidos']);
-    }
-}
-
-function lerUltimoNivelConcluido(dados) {
-    const valor = dados?.ultimoNivelConcluido;
-
-    if (!Number.isInteger(valor) || valor < NIVEL_INICIAL || valor > NIVEL_MAXIMO) {
-        throw criarErro(
-            'progresso/dados-armazenados-invalidos',
-            mensagensPorCodigo['progresso/dados-armazenados-invalidos']
-        );
-    }
-
-    return valor;
-}
-
 async function obterUidAutenticado() {
     const usuario = await obterUsuarioAtual();
 
@@ -118,21 +98,15 @@ export function carregarProgresso() {
         const snapshot = await getDoc(referenciaProgresso(uid));
 
         if (!snapshot.exists()) {
-            return {
-                ultimoNivelConcluido: NIVEL_INICIAL,
-                documentoExistente: false
-            };
+            return Progresso.criarInicial();
         }
 
-        return {
-            ultimoNivelConcluido: lerUltimoNivelConcluido(snapshot.data()),
-            documentoExistente: true
-        };
+        return Progresso.converterDados(snapshot.data());
     }, 'leitura');
 }
 
 export function salvarProgresso(valor) {
-    validarUltimoNivelConcluido(valor);
+    Progresso.validarNivel(valor);
 
     return executarOperacao(async () => {
         const uid = await obterUidAutenticado();
@@ -143,9 +117,8 @@ export function salvarProgresso(valor) {
             { merge: true }
         );
 
-        return {
-            ultimoNivelConcluido: valor,
-            documentoExistente: true
-        };
+        return new Progresso({
+            ultimoNivelConcluido: valor
+        });
     }, 'gravacao');
 }
