@@ -28,6 +28,7 @@ function Estrutura({
     const navigate = useNavigate();
     const caminho = location.pathname.replace(/\/+$/, '') || '/';
     const tela = telas[caminho] || {};
+    const visitante = location.state?.visitante === true;
     const temaClasse = tema === 'escuro' ? 'temaEscuro' : 'temaClaro';
     const nome = usuario?.nome?.trim();
     const saudacao = tela.saudacao ? (nome ? `Olá, ${nome}!` : 'Olá!') : undefined;
@@ -38,6 +39,8 @@ function Estrutura({
     function voltar() {
         if (tela.retornar) {
             navigate(retornoConfiguracoes);
+        } else if (caminho === '/jogo') {
+            navigate(visitante ? '/' : '/niveis');
         } else if (tela.movimento) {
             navigate(usuario ? '/niveis' : '/');
         } else {
