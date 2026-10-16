@@ -7,7 +7,8 @@ function Jogo() {
     const location = useLocation();
     const navegar = useNavigate();
 
-    const fase = location.state?.fase;
+    const visitante = location.state?.visitante === true;
+    const fase = location.state?.fase ?? (visitante ? 1 : null);
 
     if (!fase) {
         return (
