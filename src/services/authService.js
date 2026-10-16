@@ -9,6 +9,7 @@ import {
     signOut
 } from 'firebase/auth';
 import { auth } from './firebase';
+import Usuario from '../model/usuario.js';
 
 const provedorGoogle = new GoogleAuthProvider();
 
@@ -54,22 +55,6 @@ function exigirUsuarioAutenticado() {
     return auth.currentUser;
 }
 
-function mapearUsuario(user) {
-    if (!user) {
-        return null;
-    }
-
-    const provedores = Array.isArray(user.providerData) ? user.providerData : [];
-    const dadosGoogle = provedores.find((item) => item.providerId === 'google.com');
-
-    return {
-        uid: user.uid,
-        nome: user.displayName || null,
-        email: user.email || null,
-        provedor: dadosGoogle?.providerId || provedores[0]?.providerId || null
-    };
-}
-
 let persistenciaPromise = null;
 
 export function configurarPersistenciaSessao() {
@@ -98,13 +83,13 @@ async function executarOperacao(operacao) {
 }
 
 export function obterUsuarioAtual() {
-    return executarOperacao(() => mapearUsuario(auth.currentUser));
+    return executarOperacao(() => Usuario.converterUsuario(auth.currentUser));
 }
 
 export function entrarComGoogle() {
     return executarOperacao(async () => {
         const resultado = await signInWithPopup(auth, provedorGoogle);
-        const usuario = mapearUsuario(resultado.user);
+        const usuario = Usuario.converterUsuario(resultado.user);
 
         if (!usuario) {
             throw criarErro('auth/user-not-authenticated', mensagensPorCodigo['auth/user-not-authenticated']);
@@ -127,7 +112,7 @@ export function observarAutenticacao(ouvinte) {
         (user) => {
             ouvinte({
                 autenticado: user !== null,
-                usuario: mapearUsuario(user),
+                usuario: Usuario.converterUsuario(user),
                 erro: null
             });
         },
@@ -156,7 +141,7 @@ export function reautenticarComGoogle() {
     return executarOperacao(async () => {
         const usuario = exigirUsuarioAutenticado();
         const resultado = await reauthenticateWithPopup(usuario, provedorGoogle);
-        return mapearUsuario(resultado.user);
+        return Usuario.converterUsuario(resultado.user);
     });
 }
 
