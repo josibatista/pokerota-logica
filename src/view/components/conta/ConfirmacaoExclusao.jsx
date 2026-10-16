@@ -28,8 +28,8 @@ function ConfirmacaoExclusao({ aberta, etapa, ocupada, mensagem, onCancelar, onA
             </h2>
             <p id="exclusao-descricao" className="confirmacao-exclusao__descricao">
                 {etapa === 1
-                    ? 'Você quer apagar sua conta do PokéRota? Se não quiser, escolha Cancelar.'
-                    : 'Sua conta do PokéRota será apagada. Depois, não dá para voltar atrás. Sua conta Google continuará existindo.'}
+                    ? 'Você deseja apagar sua conta do PokéRota? Se foi um engano, escolha Cancelar.'
+                    : 'Sua conta do PokéRota será apagada. Depois, não poderá recuperar seu progresso nos mapas.'}
             </p>
             <p className="confirmacao-exclusao__etapa">Confirmação {etapa} de 2</p>
             <p className="confirmacao-exclusao__mensagem" role="status" aria-live="polite">{mensagem}</p>

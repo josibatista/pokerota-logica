@@ -30,3 +30,7 @@ dist-ssr
 playwright-report/
 test-results/
 playwright/.auth/
+
+# Logs dos emuladores Firebase
+firebase-debug.log*
+*-debug.log*
