@@ -27,7 +27,7 @@ function Jogo() {
     return (
         <main className="jogo">
             <h1>Fase {fase}</h1>
-            <GameCanvas />
+            <GameCanvas fase={fase} />  
         </main>
     );
 }
