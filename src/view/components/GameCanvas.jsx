@@ -21,7 +21,7 @@ const mapas = {
     hallDaFama: mapaHallDaFama,
 };
 
-function GameCanvas({ fase }) {
+function GameCanvas({ fase, onConcluir }) {
     const canvasRef = useRef(null);
     const [reinicio, setReinicio] = useState(0);
 
@@ -63,6 +63,9 @@ function GameCanvas({ fase }) {
             let deslocamentoX = 0;
             let deslocamentoY = 0;
 
+            //impede que a mesma fase seja concluída mais de uma vez
+            let faseConcluida = false;
+
             //carrega as imagens necessárias para iniciar a fase
             async function carregarImagens() {
                 try {
@@ -92,7 +95,7 @@ function GameCanvas({ fase }) {
             //atualiza a posição do personagem conforme as setas pressionadas
             function moverPersonagem() {
                 //impede a movimentação após a vitória ou durante a troca de mapa.
-                if (mapaFinal || transicaoEmAndamento) return;
+                if (mapaFinal || transicaoEmAndamento || faseConcluida) return;
 
                 //atualiza as coordenadas de acordo com as setas pressionadas.
                 if (p.keyIsDown(p.LEFT_ARROW)) personagemX -= velocidade;
@@ -231,6 +234,12 @@ function GameCanvas({ fase }) {
                         //reinicia a câmera para o novo mapa
                         cameraX = 0;
                         cameraY = 0;
+
+                        //conclui a fase 5 ao chegar ao Hall da Fama
+                        if (!faseConcluida) {
+                            faseConcluida = true;
+                            onConcluir?.(fase);
+                        }
                     },
                     (erro) => {
                         console.error(
@@ -287,6 +296,29 @@ function GameCanvas({ fase }) {
                 }
             }
 
+            //conclui a fase quando o personagem se aproxima da Poképarada
+            function verificarPokeparada() {
+                if (
+                    faseConcluida ||
+                    fase === 5 ||
+                    !configuracao.pokeparada
+                ) {
+                    return;
+                }
+
+                const distanciaX = personagemX - configuracao.pokeparada.x;
+                const distanciaY = personagemY - configuracao.pokeparada.y;
+
+                //considera a fase concluída quando o personagem chega perto do objeto
+                if (
+                    Math.abs(distanciaX) < 40 &&
+                    Math.abs(distanciaY) < 40
+                ) {
+                    faseConcluida = true;
+                    onConcluir?.(fase);
+                }
+            }
+
             //inicializa o canvas e carrega os recursos necessários para a fase
             p.setup = () => {
                 p.createCanvas(larguraCanvas, alturaCanvas);
@@ -312,6 +344,10 @@ function GameCanvas({ fase }) {
                 const alturaMapa = mapa.height * escalaMapa;
 
                 limitarPosicaoPersonagem(larguraMapa, alturaMapa);
+
+                //verifica se o personagem chegou à Poképarada
+                verificarPokeparada();
+
                 atualizarCamera(larguraMapa, alturaMapa);
 
                 //desenha os elementos na ordem necessária para manter o personagem visível
@@ -326,7 +362,7 @@ function GameCanvas({ fase }) {
         const instance = new p5(sketch, canvasRef.current);
 
         return () => instance.remove();
-    }, [reinicio, fase]);
+    }, [reinicio, fase, onConcluir]);
 
     return (
         <div className="jogo__canvas-container">
