@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { RotateCcw } from 'lucide-react';
 import p5 from 'p5';
+import configuracoesPersonagens from '../../model/configuracoesPersonagens';
 import configuracoesMapas from '../../model/configuracoesMapas';
-import pikachuImagem from '../assets/personagens/pikachu.png';
 import pokeparadaImagem from '../assets/objetos/pokeparada.png';
 import mapaNivel1 from '../assets/mapas/nivel1.png';
 import mapaNivel2 from '../assets/mapas/nivel2.png';
@@ -21,7 +21,7 @@ const mapas = {
     hallDaFama: mapaHallDaFama,
 };
 
-function GameCanvas({ fase, onConcluir }) {
+function GameCanvas({ fase, onConcluir, personagemSelecionado = 'pikachu' }) {
     const canvasRef = useRef(null);
     const [reinicio, setReinicio] = useState(0);
 
@@ -34,21 +34,36 @@ function GameCanvas({ fase, onConcluir }) {
             return;
         }
 
+        const configuracaoPersonagem = configuracoesPersonagens[personagemSelecionado];
+
+        if (!configuracaoPersonagem) {
+            console.error(`Personagem não encontrado ${personagemSelecionado}.`);
+            return;
+        }
+
         const sketch = (p) => {
             //define as dimensões da área de jogo e as características do personagem
             const larguraCanvas = 800;
             const alturaCanvas = 500;
             const escalaMapa = configuracao.escala;
-            const tamanhoPersonagem = 32;
-            const velocidade = 3;
+            const tamanhoPersonagem = 64;
+            const velocidade = 2;
 
             //inicializa a posição do personagem conforme a fase selecionada
             let personagemX = configuracao.personagemInicial.x;
             let personagemY = configuracao.personagemInicial.y;
 
+            //controla a direção e o quadro atual da animação
+            let direcaoPersonagem = 'baixo';
+            let indiceQuadro = 0;
+            let ultimoQuadroAnimacao = 0;
+
+            //controla a velocidade da animação
+            const intervaloAnimacao = 150;
+
             //armazena as imagens carregadas e o estado de carregmento
             let mapa = null;
-            let pikachu = null;
+            let personagem = null;
             let pokeparada = null;
             let erroImagens = false;
 
@@ -77,9 +92,9 @@ function GameCanvas({ fase, onConcluir }) {
                         );
                     }
 
-                    [mapa, pikachu] = await Promise.all([
+                    [mapa, personagem] = await Promise.all([
                         p.loadImage(arquivoMapa),
-                        p.loadImage(pikachuImagem),
+                        p.loadImage(configuracaoPersonagem.imagem),
                     ]);
 
                     //a Poképarada só precisa ser carregada nas fases que a possuem
@@ -94,14 +109,47 @@ function GameCanvas({ fase, onConcluir }) {
 
             //atualiza a posição do personagem conforme as setas pressionadas
             function moverPersonagem() {
-                //impede a movimentação após a vitória ou durante a troca de mapa.
                 if (mapaFinal || transicaoEmAndamento || faseConcluida) return;
 
-                //atualiza as coordenadas de acordo com as setas pressionadas.
-                if (p.keyIsDown(p.LEFT_ARROW)) personagemX -= velocidade;
-                if (p.keyIsDown(p.RIGHT_ARROW)) personagemX += velocidade;
-                if (p.keyIsDown(p.UP_ARROW)) personagemY -= velocidade;
-                if (p.keyIsDown(p.DOWN_ARROW)) personagemY += velocidade;
+                let dx = 0;
+                let dy = 0;
+
+                //detecta as direções pressionadas
+                if (p.keyIsDown(p.LEFT_ARROW))  dx -= 1;
+                if (p.keyIsDown(p.RIGHT_ARROW)) dx += 1;
+                if (p.keyIsDown(p.UP_ARROW))    dy -= 1;
+                if (p.keyIsDown(p.DOWN_ARROW))  dy += 1;
+
+                //se nenhuma tecla estiver sendo pressionada, reseta para o quadro parado
+                if (dx === 0 && dy === 0) {
+                    indiceQuadro = 0;
+                    return;
+                }
+
+                //define a direção prioritária para qual o sprite deve olhar
+                if (dy > 0) direcaoPersonagem = 'baixo';
+                else if (dy < 0) direcaoPersonagem = 'cima';
+                else if (dx < 0) direcaoPersonagem = 'esquerda';
+                else if (dx > 0) direcaoPersonagem = 'direita';
+
+                //normaliza a velocidade na diagonal para não andar mais rápido 
+                let velX = dx * velocidade;
+                let velY = dy * velocidade;
+
+                if (dx !== 0 && dy !== 0) {
+                    velX *= 0.7071; 
+                    velY *= 0.7071;
+                }
+
+                personagemX += velX;
+                personagemY += velY;
+
+                //controla o tempo da animação dos quadros do sprite
+                const tempoAtual = p.millis();
+                if (tempoAtual - ultimoQuadroAnimacao >= intervaloAnimacao) {
+                    indiceQuadro = (indiceQuadro + 1) % configuracaoPersonagem.quadrosPorDirecao;
+                    ultimoQuadroAnimacao = tempoAtual;
+                }
             }
 
             //impede que o personagem ultrpasse os limites do mapa
@@ -179,19 +227,60 @@ function GameCanvas({ fase, onConcluir }) {
 
             //desenha o personagem considerando a posição e o deslocamento da câmera
             function desenharPersonagem() {
-                p.image(
-                    pikachu,
-                    personagemX -
-                        cameraX +
-                        deslocamentoX -
-                        tamanhoPersonagem / 2,
-                    personagemY -
-                        cameraY +
-                        deslocamentoY -
-                        tamanhoPersonagem / 2,
-                    tamanhoPersonagem,
-                    tamanhoPersonagem
-                );
+                const {
+                    larguraSprite,
+                    alturaSprite,
+                    direcoes,
+                } = configuracaoPersonagem;
+
+                const destinoX =
+                    personagemX - cameraX + deslocamentoX - tamanhoPersonagem / 2;
+
+                const destinoY =
+                    personagemY - cameraY + deslocamentoY - tamanhoPersonagem / 2;
+
+                const linha = direcoes[direcaoPersonagem];
+                //alterna entre 0 e 1 (passo esquerdo/direito)
+                const coluna = indiceQuadro; 
+
+                const origemX = coluna * larguraSprite;
+                const origemY = linha * alturaSprite;
+
+                p.push(); //salva os estilos/transformações do canvas
+
+                if (direcaoPersonagem === 'direita') {
+                    //espelha horizontalmente para criar a direção Direita a partir da Esquerda
+                    p.translate(destinoX + tamanhoPersonagem, destinoY);
+                    p.scale(-1, 1);
+
+                    p.image(
+                        personagem,
+                        0,
+                        0,
+                        tamanhoPersonagem,
+                        tamanhoPersonagem,
+                        origemX,
+                        origemY,
+                        larguraSprite,
+                        alturaSprite
+                    );
+                } else {
+                    //desenho normal para Cima, Baixo e Esquerda
+                    p.image(
+                        personagem,
+                        destinoX,
+                        destinoY,
+                        tamanhoPersonagem,
+                        tamanhoPersonagem,
+                        origemX,
+                        origemY,
+                        larguraSprite,
+                        alturaSprite
+                    );
+                }
+
+                //restaura as transformações para não afetar os outros desenhos
+                p.pop(); 
             }
 
             //verifica se o personagem alcançou a porta da fase 5
@@ -330,7 +419,7 @@ function GameCanvas({ fase, onConcluir }) {
                 p.background(0);
 
                 //aguarda o carregamento das imagens antes de desenhar o jogo
-                if (erroImagens || !mapa || !pikachu) {
+                if (erroImagens || !mapa || !personagem) {
                     desenharEstadoCarregamento();
                     return;
                 }
@@ -362,7 +451,7 @@ function GameCanvas({ fase, onConcluir }) {
         const instance = new p5(sketch, canvasRef.current);
 
         return () => instance.remove();
-    }, [reinicio, fase, onConcluir]);
+    }, [reinicio, fase, onConcluir, personagemSelecionado]);
 
     return (
         <div className="jogo__canvas-container">
