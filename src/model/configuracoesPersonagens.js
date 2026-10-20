@@ -18,17 +18,57 @@ const configuracoesPersonagens = {
         },
         quadrosPorDirecao: 2,
     },
+
     bulbasauro: {
         imagem: bulbasauro,
+        larguraSprite: 32,
+        alturaSprite: 32,
+        direcoes: {
+            cima: 0,
+            baixo: 1,
+            esquerda: 2,
+            direita: 2,
+        },
+        quadrosPorDirecao: 2,
     },
+
     charmander: {
         imagem: charmander,
+        larguraSprite: 32,
+        alturaSprite: 32,
+        direcoes: {
+            cima: 0,
+            baixo: 1,
+            esquerda: 2,
+            direita: 2,
+        },
+        quadrosPorDirecao: 2,
     },
+
     squirtle: {
         imagem: squirtle,
+        larguraSprite: 32,
+        alturaSprite: 32,
+        direcoes: {
+            cima: 0,
+            baixo: 1,
+            esquerda: 2,
+            direita: 2,
+        },
+        quadrosPorDirecao: 2,
     },
+
     eevee: {
         imagem: eevee,
+        larguraSprite: 32,
+        alturaSprite: 32,
+        direcoes: {
+            cima: 0,
+            baixo: 1,
+            esquerda: 2,
+            direita: 2,
+        },
+        quadrosPorDirecao: 2,
     },
 };
 
