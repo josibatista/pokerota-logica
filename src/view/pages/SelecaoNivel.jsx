@@ -64,7 +64,7 @@ function SelecaoNivel() {
         }
 
         if (faseSelecionada === numero) {
-            navegar('/jogo', {
+            navegar('/personagem', {
                 state: { fase: numero },
             });
             return;

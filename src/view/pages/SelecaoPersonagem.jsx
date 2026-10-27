@@ -1,4 +1,6 @@
-
+import { useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import CartaoPersonagem from '../components/CartaoPersonagem';
 import './SelecaoPersonagem.css';
 
 import bulbasaur from '../assets/personagens/bulbasaur.png';
@@ -16,6 +18,24 @@ const personagens = [
 ];
 
 function SelecaoPersonagem() {
+    const [personagemSelecionado, setPersonagemSelecionado] = useState(null);
+
+    const location = useLocation();
+    const navegar = useNavigate();
+
+    const fase = location.state?.fase;
+
+    function confirmarPersonagem() {
+        if (!personagemSelecionado || !fase) return;
+
+        navegar('/jogo', {
+            state: {
+                fase,
+                personagemId: personagemSelecionado,
+            },
+        });
+    }
+
     return (
         <main className="selecao-personagem">
             <section
@@ -32,25 +52,16 @@ function SelecaoPersonagem() {
 
                 <div className="selecao-personagem__lista">
                     {personagens.map((personagem) => (
-                        <div
-                            className="selecao-personagem__cartao"
+                        <CartaoPersonagem
                             key={personagem.id}
-                        >
-                            <div className="selecao-personagem__imagem">
-                                <img
-                                    src={personagem.imagem}
-                                    alt={personagem.nome}
-                                />
-                            </div>
-
-                            <span className="selecao-personagem__nome">
-                                {personagem.nome}
-                            </span>
-                        </div>
+                            personagem={personagem}
+                            selecionado={personagemSelecionado === personagem.id}
+                            onSelecionar={setPersonagemSelecionado}
+                        />
                     ))}
                 </div>
 
-                <button type="button" className="selecao-personagem__confirmar" disabled>
+                <button type="button" className="selecao-personagem__confirmar" disabled={!personagemSelecionado || !fase}  onClick={confirmarPersonagem}>
                     Selecionar
                 </button>
             </section>

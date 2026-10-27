@@ -9,6 +9,7 @@ function Jogo() {
 
     const visitante = location.state?.visitante === true;
     const fase = location.state?.fase ?? (visitante ? 1 : null);
+    const personagemId = location.state?.personagemId ?? null;
 
     if (!fase) {
         return (

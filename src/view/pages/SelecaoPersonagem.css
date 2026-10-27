@@ -30,12 +30,30 @@
     grid-template-columns: repeat(5, minmax(0, 1fr));
     gap: 20px;
 }
+
 .selecao-personagem__cartao {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 10px;
     min-width: 0;
+    padding: 0;
+    border: none;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+}
+
+.selecao-personagem__cartao--selecionado .selecao-personagem__imagem {
+    border: 3px solid #2883bf;
+    box-shadow: 0 0 0 2px rgb(40 131 191 / 15%);
+}
+
+.selecao-personagem__cartao:focus-visible {
+    outline: 3px solid #2883bf;
+    outline-offset: 4px;
+    border-radius: 10px;
 }
 
 .selecao-personagem__imagem {
