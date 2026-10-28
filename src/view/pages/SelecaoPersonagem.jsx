@@ -1,5 +1,7 @@
+
 import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { usePersonagem } from '../context/PersonagemContext';
 import CartaoPersonagem from '../components/CartaoPersonagem';
 import './SelecaoPersonagem.css';
 
@@ -18,21 +20,20 @@ const personagens = [
 ];
 
 function SelecaoPersonagem() {
-    const [personagemSelecionado, setPersonagemSelecionado] = useState(null);
+    const { personagemSelecionado, setPersonagemSelecionado } = usePersonagem();
+    const [escolha, setEscolha] = useState(personagemSelecionado);
 
     const location = useLocation();
     const navegar = useNavigate();
-
     const fase = location.state?.fase;
 
     function confirmarPersonagem() {
-        if (!personagemSelecionado || !fase) return;
+        if (!escolha || !fase) return;
+
+        setPersonagemSelecionado(escolha);
 
         navegar('/jogo', {
-            state: {
-                fase,
-                personagemId: personagemSelecionado,
-            },
+            state: { fase },
         });
     }
 
@@ -55,13 +56,18 @@ function SelecaoPersonagem() {
                         <CartaoPersonagem
                             key={personagem.id}
                             personagem={personagem}
-                            selecionado={personagemSelecionado === personagem.id}
-                            onSelecionar={setPersonagemSelecionado}
+                            selecionado={escolha === personagem.id}
+                            onSelecionar={setEscolha}
                         />
                     ))}
                 </div>
 
-                <button type="button" className="selecao-personagem__confirmar" disabled={!personagemSelecionado || !fase}  onClick={confirmarPersonagem}>
+                <button
+                    type="button"
+                    className="selecao-personagem__confirmar"
+                    disabled={!escolha || !fase}
+                    onClick={confirmarPersonagem}
+                >
                     Selecionar
                 </button>
             </section>
