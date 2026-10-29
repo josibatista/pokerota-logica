@@ -60,8 +60,69 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-shrink: 0;
     flex-wrap: wrap;
+    width: 100%;
+    margin-top: 8px;
     gap: 12px;
+}
+
+.botoes-direcionais {
+    display: grid;
+    grid-template-columns: repeat(3, 44px);
+    grid-template-areas:
+        ". cima ."
+        "esquerda baixo direita";
+    gap: 6px;
+    touch-action: none;
+    user-select: none;
+}
+
+.botoes-direcionais__botao {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: 2px solid var(--pokerotaBorda, #2346a0);
+    border-radius: 999px;
+    background: var(--pokerotaSuperficie, #fffdf8);
+    color: var(--pokerotaIcone, #1e3a8a);
+    cursor: pointer;
+    touch-action: none;
+}
+
+.botoes-direcionais__botao--cima {
+    grid-area: cima;
+}
+
+.botoes-direcionais__botao--esquerda {
+    grid-area: esquerda;
+}
+
+.botoes-direcionais__botao--baixo {
+    grid-area: baixo;
+}
+
+.botoes-direcionais__botao--direita {
+    grid-area: direita;
+}
+
+.botoes-direcionais__botao:hover,
+.botoes-direcionais__botao--ativo {
+    filter: brightness(0.95);
+}
+
+.botoes-direcionais__botao:focus-visible {
+    outline: 3px solid #ffcb05;
+    outline-offset: 3px;
+}
+
+.botoes-direcionais__icone {
+    width: 20px;
+    height: 20px;
+    display: block;
 }
 
 .jogo__mensagem {

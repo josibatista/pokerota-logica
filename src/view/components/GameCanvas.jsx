@@ -1,6 +1,7 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { RotateCcw } from 'lucide-react';
 import p5 from 'p5';
+import { atualizarMovimentacao, definirPosicao } from '../../controller/movimentacaoController';
 import configuracoesPersonagens from '../../model/configuracoesPersonagens';
 import configuracoesMapas from '../../model/configuracoesMapas';
 import pokeparadaImagem from '../assets/objetos/pokeparada.png';
@@ -21,11 +22,21 @@ const mapas = {
     hallDaFama: mapaHallDaFama,
 };
 
-function GameCanvas({ fase, onConcluir, personagemSelecionado = 'pikachu' }) {
+function GameCanvas({
+    fase,
+    onConcluir,
+    personagemSelecionado = 'pikachu',
+    estado = null,
+    reinicio = 0,
+    onReiniciarEstado,
+}) {
     const canvasRef = useRef(null);
-    const [reinicio, setReinicio] = useState(0);
 
     useEffect(() => {
+        if (!estado) {
+            return undefined;
+        }
+
         const configuracao = configuracoesMapas[fase];
 
         //interrompe a inicialização caso a fase não tenha configuração
@@ -47,14 +58,8 @@ function GameCanvas({ fase, onConcluir, personagemSelecionado = 'pikachu' }) {
             const alturaCanvas = 500;
             const escalaMapa = configuracao.escala;
             const tamanhoPersonagem = 64;
-            const velocidade = 2;
 
-            //inicializa a posição do personagem conforme a fase selecionada
-            let personagemX = configuracao.personagemInicial.x;
-            let personagemY = configuracao.personagemInicial.y;
-
-            //controla a direção e o quadro atual da animação
-            let direcaoPersonagem = 'baixo';
+            //controla o quadro atual da animação; a direção vem do estado lógico
             let indiceQuadro = 0;
             let ultimoQuadroAnimacao = 0;
 
@@ -107,42 +112,18 @@ function GameCanvas({ fase, onConcluir, personagemSelecionado = 'pikachu' }) {
                 }
             }
 
-            //atualiza a posição do personagem conforme as setas pressionadas
-            function moverPersonagem() {
-                if (mapaFinal || transicaoEmAndamento || faseConcluida) return;
-
-                let dx = 0;
-                let dy = 0;
-
-                //detecta as direções pressionadas
-                if (p.keyIsDown(p.LEFT_ARROW))  dx -= 1;
-                if (p.keyIsDown(p.RIGHT_ARROW)) dx += 1;
-                if (p.keyIsDown(p.UP_ARROW))    dy -= 1;
-                if (p.keyIsDown(p.DOWN_ARROW))  dy += 1;
-
-                //se nenhuma tecla estiver sendo pressionada, reseta para o quadro parado
-                if (dx === 0 && dy === 0) {
-                    indiceQuadro = 0;
+            //avança um quadro da posição lógica e a animação correspondente
+            function aplicarMovimento() {
+                if (mapaFinal || transicaoEmAndamento || faseConcluida) {
                     return;
                 }
 
-                //define a direção prioritária para qual o sprite deve olhar
-                if (dy > 0) direcaoPersonagem = 'baixo';
-                else if (dy < 0) direcaoPersonagem = 'cima';
-                else if (dx < 0) direcaoPersonagem = 'esquerda';
-                else if (dx > 0) direcaoPersonagem = 'direita';
+                const resultado = atualizarMovimentacao(estado);
 
-                //normaliza a velocidade na diagonal para não andar mais rápido 
-                let velX = dx * velocidade;
-                let velY = dy * velocidade;
-
-                if (dx !== 0 && dy !== 0) {
-                    velX *= 0.7071; 
-                    velY *= 0.7071;
+                if (!resultado.sucesso || !estado.estaEmMovimento()) {
+                    indiceQuadro = 0;
+                    return;
                 }
-
-                personagemX += velX;
-                personagemY += velY;
 
                 //controla o tempo da animação dos quadros do sprite
                 const tempoAtual = p.millis();
@@ -152,32 +133,36 @@ function GameCanvas({ fase, onConcluir, personagemSelecionado = 'pikachu' }) {
                 }
             }
 
-            //impede que o personagem ultrpasse os limites do mapa
+            //impede que o personagem ultrapasse os limites do mapa e devolve essa posição ao estado
             function limitarPosicaoPersonagem(larguraMapa, alturaMapa) {
-                personagemX = p.constrain(
-                    personagemX,
+                const x = p.constrain(
+                    estado.x,
                     tamanhoPersonagem / 2,
                     larguraMapa - tamanhoPersonagem / 2
                 );
 
-                personagemY = p.constrain(
-                    personagemY,
+                const y = p.constrain(
+                    estado.y,
                     tamanhoPersonagem / 2,
                     alturaMapa - tamanhoPersonagem / 2
                 );
+
+                if (x !== estado.x || y !== estado.y) {
+                    definirPosicao(estado, x, y);
+                }
             }
 
             //mantém a câmera acompanhando o personagem dentro dos limites
             function atualizarCamera(larguraMapa, alturaMapa) {
                 //mantém a câmera centralizada no personagem, respeitando os limites
                 cameraX = p.constrain(
-                    personagemX - larguraCanvas / 2,
+                    estado.x - larguraCanvas / 2,
                     0,
                     Math.max(0, larguraMapa - larguraCanvas)
                 );
 
                 cameraY = p.constrain(
-                    personagemY - alturaCanvas / 2,
+                    estado.y - alturaCanvas / 2,
                     0,
                     Math.max(0, alturaMapa - alturaCanvas)
                 );
@@ -234,12 +219,12 @@ function GameCanvas({ fase, onConcluir, personagemSelecionado = 'pikachu' }) {
                 } = configuracaoPersonagem;
 
                 const destinoX =
-                    personagemX - cameraX + deslocamentoX - tamanhoPersonagem / 2;
+                    estado.x - cameraX + deslocamentoX - tamanhoPersonagem / 2;
 
                 const destinoY =
-                    personagemY - cameraY + deslocamentoY - tamanhoPersonagem / 2;
+                    estado.y - cameraY + deslocamentoY - tamanhoPersonagem / 2;
 
-                const linha = direcoes[direcaoPersonagem];
+                const linha = direcoes[estado.direcao];
                 //alterna entre 0 e 1 (passo esquerdo/direito)
                 const coluna = indiceQuadro; 
 
@@ -248,7 +233,7 @@ function GameCanvas({ fase, onConcluir, personagemSelecionado = 'pikachu' }) {
 
                 p.push(); //salva os estilos/transformações do canvas
 
-                if (direcaoPersonagem === 'direita') {
+                if (estado.direcao === 'direita') {
                     //espelha horizontalmente para criar a direção Direita a partir da Esquerda
                     p.translate(destinoX + tamanhoPersonagem, destinoY);
                     p.scale(-1, 1);
@@ -289,8 +274,8 @@ function GameCanvas({ fase, onConcluir, personagemSelecionado = 'pikachu' }) {
                     fase !== 5 ||
                     mapaFinal ||
                     transicaoEmAndamento ||
-                    Math.abs(personagemX - configuracao.porta.x) >= 20 ||
-                    Math.abs(personagemY - configuracao.porta.y) >= 20
+                    Math.abs(estado.x - configuracao.porta.x) >= 20 ||
+                    Math.abs(estado.y - configuracao.porta.y) >= 20
                 ) {
                     return;
                 }
@@ -313,8 +298,11 @@ function GameCanvas({ fase, onConcluir, personagemSelecionado = 'pikachu' }) {
                     (imagemCarregada) => {
                         mapa = imagemCarregada;
 
-                        personagemX = proximoMapa.personagemInicial.x;
-                        personagemY = proximoMapa.personagemInicial.y;
+                        definirPosicao(
+                            estado,
+                            proximoMapa.personagemInicial.x,
+                            proximoMapa.personagemInicial.y
+                        );
 
                         mapaFinal = true;
                         mensagemVitoria = true;
@@ -357,7 +345,7 @@ function GameCanvas({ fase, onConcluir, personagemSelecionado = 'pikachu' }) {
                     );
                 } else {
                     p.text(
-                        `X: ${Math.round(personagemX)} | Y: ${Math.round(personagemY)}`,
+                        `X: ${Math.round(estado.x)} | Y: ${Math.round(estado.y)}`,
                         10,
                         10
                     );
@@ -395,8 +383,8 @@ function GameCanvas({ fase, onConcluir, personagemSelecionado = 'pikachu' }) {
                     return;
                 }
 
-                const distanciaX = personagemX - configuracao.pokeparada.x;
-                const distanciaY = personagemY - configuracao.pokeparada.y;
+                const distanciaX = estado.x - configuracao.pokeparada.x;
+                const distanciaY = estado.y - configuracao.pokeparada.y;
 
                 //considera a fase concluída quando o personagem chega perto do objeto
                 if (
@@ -426,7 +414,7 @@ function GameCanvas({ fase, onConcluir, personagemSelecionado = 'pikachu' }) {
 
                 //verifica a transição antes de atualizar o movimento do personagem
                 verificarTransicao();
-                moverPersonagem();
+                aplicarMovimento();
 
                 //recalcula as dimensões porque o mapa pode mudar após a transição
                 const larguraMapa = mapa.width * escalaMapa;
@@ -451,7 +439,7 @@ function GameCanvas({ fase, onConcluir, personagemSelecionado = 'pikachu' }) {
         const instance = new p5(sketch, canvasRef.current);
 
         return () => instance.remove();
-    }, [reinicio, fase, onConcluir, personagemSelecionado]);
+    }, [reinicio, fase, onConcluir, personagemSelecionado, estado]);
 
     return (
         <div className="jogo__canvas-container">
@@ -460,7 +448,7 @@ function GameCanvas({ fase, onConcluir, personagemSelecionado = 'pikachu' }) {
             <button
                 type="button"
                 className="jogo__reiniciar"
-                onClick={() => setReinicio((valor) => valor + 1)}
+                onClick={() => onReiniciarEstado?.()}
                 aria-label="Reiniciar fase"
                 title="Reiniciar fase"
             >
