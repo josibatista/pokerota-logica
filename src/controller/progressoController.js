@@ -1,6 +1,7 @@
 import {
     carregarProgresso as consultarProgresso,
-    salvarProgresso as persistirProgresso
+    salvarProgresso as persistirProgresso,
+    excluirProgresso as removerProgresso
 } from '../services/progressoService';
 
 function resultadoSucesso(progresso, mensagem = null) {
@@ -34,6 +35,15 @@ export async function salvarProgresso(valor) {
     try {
         const progresso = await persistirProgresso(valor);
         return resultadoSucesso(progresso, 'Progresso salvo.');
+    } catch (error) {
+        return resultadoFalha(error);
+    }
+}
+
+export async function excluirProgresso() {
+    try {
+        await removerProgresso();
+        return resultadoSucesso(null, 'Progresso excluído.');
     } catch (error) {
         return resultadoFalha(error);
     }

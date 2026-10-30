@@ -1,0 +1,145 @@
+.finalizacao-fase {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 0;
+    gap: 20px;
+    box-sizing: border-box;
+}
+
+.finalizacao-fase__mensagem {
+    margin: 0;
+    color: var(--pokerotaTitulo, #1e3a8a);
+    font: inherit;
+    font-size: 1.5rem;
+    font-weight: 800;
+    line-height: 1.3;
+    text-align: center;
+}
+
+.finalizacao-fase__mensagem::after {
+    content: '';
+    display: block;
+    width: 48px;
+    height: 3px;
+    margin: 12px auto 0;
+    border-radius: 999px;
+    background: #ffcb05;
+}
+
+.finalizacao-fase__cena {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: min(280px, 92%);
+    flex-shrink: 1;
+    min-height: 0;
+    padding: 16px 36px;
+    box-sizing: border-box;
+    pointer-events: none;
+}
+
+.finalizacao-fase__estrela {
+    position: absolute;
+    display: block;
+    pointer-events: none;
+}
+
+.finalizacao-fase__estrela--1 {
+    top: 2%;
+    left: 6%;
+    width: 16px;
+    height: 16px;
+}
+
+.finalizacao-fase__estrela--2 {
+    top: 10%;
+    right: 8%;
+    width: 11px;
+    height: 11px;
+}
+
+.finalizacao-fase__estrela--3 {
+    top: 46%;
+    left: 0;
+    width: 13px;
+    height: 13px;
+}
+
+.finalizacao-fase__estrela--4 {
+    top: 40%;
+    right: 0;
+    width: 18px;
+    height: 18px;
+}
+
+.finalizacao-fase__estrela--5 {
+    bottom: 8%;
+    left: 12%;
+    width: 10px;
+    height: 10px;
+}
+
+.finalizacao-fase__estrela--6 {
+    bottom: 14%;
+    right: 10%;
+    width: 14px;
+    height: 14px;
+}
+
+.finalizacao-fase__personagem {
+    display: block;
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: min(210px, 36vh);
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+@media (max-width: 600px) {
+    .finalizacao-fase__mensagem {
+        font-size: 1.25rem;
+    }
+
+    .finalizacao-fase__personagem {
+        max-height: min(170px, 32vh);
+    }
+}
+
+.finalizacao-fase__acoes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+}
+
+.finalizacao-fase__botao {
+    min-height: 48px;
+    padding: 12px 20px;
+    border: 2px solid var(--pokerotaBorda, #2346a0);
+    border-radius: 10px;
+    background: var(--pokerotaSuperficie, #fffdf8);
+    color: var(--pokerotaIcone, #1e3a8a);
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.finalizacao-fase__botao:hover:not(:disabled) {
+    filter: brightness(0.95);
+}
+
+.finalizacao-fase__botao:focus-visible {
+    outline: 3px solid #ffcb05;
+    outline-offset: 3px;
+}
+
+.finalizacao-fase__botao:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+}

@@ -1,7 +1,7 @@
-import { doc, getDoc, setDoc } from 'firebase/firestore';
+import { deleteDoc, doc, getDoc, setDoc } from 'firebase/firestore';
 import { obterUsuarioAtual } from './authService';
 import Progresso from '../model/progresso.js';
-import { db } from './firebase';
+import { db, usarEmulador } from './firebase';
 
 const COLECAO_PROGRESSO = 'progresso';
 
@@ -12,7 +12,8 @@ const mensagensPorCodigo = {
     'progresso/permissao-negada': 'O Firestore recusou a leitura ou a gravação deste progresso.',
     'progresso/indisponivel': 'Não foi possível conectar ao Firestore. Verifique sua conexão.',
     'progresso/falha-leitura': 'Não foi possível consultar o progresso.',
-    'progresso/falha-gravacao': 'Não foi possível gravar o progresso.'
+    'progresso/falha-gravacao': 'Não foi possível gravar o progresso.',
+    'progresso/falha-exclusao': 'Não foi possível excluir o progresso.'
 };
 
 function criarErro(codigo, mensagem) {
@@ -53,7 +54,11 @@ function interpretarErro(error, tipo) {
         return criarErro('progresso/indisponivel', mensagensPorCodigo['progresso/indisponivel']);
     }
 
-    const codigoOperacao = tipo === 'gravacao' ? 'progresso/falha-gravacao' : 'progresso/falha-leitura';
+    const codigoOperacao = tipo === 'gravacao'
+        ? 'progresso/falha-gravacao'
+        : tipo === 'exclusao'
+            ? 'progresso/falha-exclusao'
+            : 'progresso/falha-leitura';
     return criarErro(codigoOperacao, mensagensPorCodigo[codigoOperacao]);
 }
 
@@ -121,4 +126,19 @@ export function salvarProgresso(valor) {
             ultimoNivelConcluido: valor
         });
     }, 'gravacao');
+}
+
+export function excluirProgresso() {
+    return executarOperacao(async () => {
+        // O modo de teste usa só o emulador de Authentication e o projeto
+        // demo-pokerota. Nesse ambiente não há documento de progresso.
+        // Fora dele, a exclusão do documento é obrigatória.
+        if (usarEmulador) {
+            return;
+        }
+
+        const uid = await obterUidAutenticado();
+        // deleteDoc conclui mesmo quando o documento ainda não existe.
+        await deleteDoc(referenciaProgresso(uid));
+    }, 'exclusao');
 }

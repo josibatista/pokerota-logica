@@ -69,6 +69,12 @@ const configuracoesMapas = {
                 x: 185,
                 y: 245,
             },
+            // Ponto em frente à máquina de registro, já na escala 2.1 do mapa.
+            // O valor pode ser calibrado pelo texto X/Y exibido no canvas.
+            objetivo: {
+                x: 185,
+                y: 160,
+            },
         },
     },
 };

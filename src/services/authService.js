@@ -12,6 +12,7 @@ import { auth } from './firebase';
 import Usuario from '../model/usuario.js';
 
 const provedorGoogle = new GoogleAuthProvider();
+const JANELA_LOGIN_RECENTE_MS = 4 * 60 * 1000;
 
 const mensagensPorCodigo = {
     'auth/popup-closed-by-user': 'O login foi cancelado.',
@@ -134,6 +135,19 @@ export function sair() {
     return executarOperacao(async () => {
         exigirUsuarioAutenticado();
         await signOut(auth);
+    });
+}
+
+export function possuiLoginRecente() {
+    return executarOperacao(() => {
+        const usuario = exigirUsuarioAutenticado();
+        const ultimoLogin = Date.parse(usuario.metadata?.lastSignInTime ?? '');
+
+        if (!Number.isFinite(ultimoLogin)) {
+            return false;
+        }
+
+        return Date.now() - ultimoLogin < JANELA_LOGIN_RECENTE_MS;
     });
 }
 

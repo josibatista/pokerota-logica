@@ -3,9 +3,11 @@ import {
     excluirContaAtual,
     obterUsuarioAtual,
     observarAutenticacao,
+    possuiLoginRecente,
     reautenticarComGoogle,
     sair
 } from '../services/authService';
+import { excluirProgresso } from './progressoController';
 
 function resultadoSucesso(usuario = null, mensagem = null) {
     return {
@@ -71,6 +73,34 @@ export async function reautenticar() {
     }
 }
 
+function resultadoParcial(error) {
+    const detalhe = error?.message || 'Não foi possível excluir a conta de autenticação.';
+
+    return {
+        sucesso: false,
+        usuario: null,
+        mensagem: `O progresso foi excluído, mas a conta não pôde ser apagada. ${detalhe}`,
+        codigo: 'conta/exclusao-parcial'
+    };
+}
+
+async function renovarSessaoDaMesmaConta(uid) {
+    const renovada = await reautenticar();
+
+    if (!renovada.sucesso) {
+        return renovada;
+    }
+
+    if (!renovada.usuario?.uid || renovada.usuario.uid !== uid) {
+        return resultadoFalha({
+            code: 'auth/user-mismatch',
+            message: 'A conta usada na confirmação não corresponde à sessão atual.'
+        });
+    }
+
+    return null;
+}
+
 export async function excluirConta({ primeiraConfirmacao, segundaConfirmacao } = {}) {
     const confirmacaoInvalida = confirmarExclusao(primeiraConfirmacao, segundaConfirmacao);
 
@@ -78,35 +108,66 @@ export async function excluirConta({ primeiraConfirmacao, segundaConfirmacao } =
         return confirmacaoInvalida;
     }
 
+    let uid = null;
+    let progressoExcluido = false;
+
     try {
-        if (!(await obterUsuarioAtual())) {
+        const usuario = await obterUsuarioAtual();
+
+        if (!usuario?.uid) {
             return resultadoFalha({
                 code: 'auth/user-not-authenticated',
                 message: 'Nenhum usuário autenticado.'
             });
         }
 
+        uid = usuario.uid;
+
+        // A reautenticação acontece antes de apagar dados. deleteUser remove
+        // a sessão e, sem ela, o Firestore recusaria a exclusão do progresso.
+        if (!(await possuiLoginRecente())) {
+            const falhaRenovacao = await renovarSessaoDaMesmaConta(uid);
+
+            if (falhaRenovacao) {
+                return falhaRenovacao;
+            }
+        }
+
+        const exclusaoProgresso = await excluirProgresso();
+
+        if (!exclusaoProgresso.sucesso) {
+            return resultadoFalha({
+                code: exclusaoProgresso.codigo || 'progresso/falha-exclusao',
+                message: `A conta não foi excluída porque o progresso não pôde ser apagado. ${exclusaoProgresso.mensagem}`
+            });
+        }
+
+        progressoExcluido = true;
         await excluirContaAtual();
-        return resultadoSucesso(null, 'A conta de autenticação foi excluída.');
+
+        return resultadoSucesso(null, 'A conta e o progresso associado foram excluídos.');
     } catch (error) {
-        if (error?.code !== 'auth/requires-recent-login') {
+        if (!progressoExcluido) {
             return resultadoFalha(error);
         }
-    }
 
-    try {
-        await reautenticarComGoogle();
-
-        if (!(await obterUsuarioAtual())) {
-            return resultadoFalha({
-                code: 'auth/user-not-authenticated',
-                message: 'Nenhum usuário autenticado.'
-            });
+        if (error?.code !== 'auth/requires-recent-login') {
+            return resultadoParcial(error);
         }
 
-        await excluirContaAtual();
-        return resultadoSucesso(null, 'A conta de autenticação foi excluída.');
-    } catch (error) {
-        return resultadoFalha(error);
+        try {
+            const falhaRenovacao = await renovarSessaoDaMesmaConta(uid);
+
+            if (falhaRenovacao) {
+                return resultadoParcial({
+                    message: falhaRenovacao.mensagem
+                });
+            }
+
+            await excluirContaAtual();
+            return resultadoSucesso(null, 'A conta e o progresso associado foram excluídos.');
+        } catch (erroFinal) {
+            return resultadoParcial(erroFinal);
+        }
     }
 }

@@ -31,6 +31,7 @@ function GameCanvas({
     onReiniciarEstado,
 }) {
     const canvasRef = useRef(null);
+    const avisoHallRef = useRef(null);
 
     useEffect(() => {
         if (!estado) {
@@ -51,6 +52,11 @@ function GameCanvas({
             console.error(`Personagem não encontrado ${personagemSelecionado}.`);
             return;
         }
+
+        // O p5 2 cria o canvas somente depois do primeiro await. O cleanup
+        // do efeito pode ocorrer antes disso e, no StrictMode, o setup
+        // atrasado ainda insere um segundo canvas.
+        let ativo = true;
 
         const sketch = (p) => {
             //define as dimensões da área de jogo e as características do personagem
@@ -114,7 +120,7 @@ function GameCanvas({
 
             //avança um quadro da posição lógica e a animação correspondente
             function aplicarMovimento() {
-                if (mapaFinal || transicaoEmAndamento || faseConcluida) {
+                if (transicaoEmAndamento || faseConcluida) {
                     return;
                 }
 
@@ -312,10 +318,8 @@ function GameCanvas({
                         cameraX = 0;
                         cameraY = 0;
 
-                        //conclui a fase 5 ao chegar ao Hall da Fama
-                        if (!faseConcluida) {
-                            faseConcluida = true;
-                            onConcluir?.(fase);
+                        if (avisoHallRef.current) {
+                            avisoHallRef.current.hidden = false;
                         }
                     },
                     (erro) => {
@@ -328,28 +332,21 @@ function GameCanvas({
                 );
             }
 
-            //exibe as coordenadas do personagem ou a mensagem de vitória
+            //exibe as coordenadas do personagem; o aviso do Hall fica no HTML
             function desenharInformacoes() {
+                if (mensagemVitoria) {
+                    return;
+                }
+
                 p.fill(255);
                 p.noStroke();
                 p.textSize(14);
                 p.textAlign(p.LEFT, p.TOP);
-
-                if (mensagemVitoria) {
-                    p.textAlign(p.CENTER, p.TOP);
-                    p.textSize(22);
-                    p.text(
-                        'Parabéns! Você chegou ao Hall da Fama!',
-                        larguraCanvas / 2,
-                        20
-                    );
-                } else {
-                    p.text(
-                        `X: ${Math.round(estado.x)} | Y: ${Math.round(estado.y)}`,
-                        10,
-                        10
-                    );
-                }
+                p.text(
+                    `X: ${Math.round(estado.x)} | Y: ${Math.round(estado.y)}`,
+                    10,
+                    10
+                );
             }
 
             //exibe mensagens enquanto as imagens são carregadas ou em caso de erro
@@ -396,15 +393,41 @@ function GameCanvas({
                 }
             }
 
+            //conclui a fase 5 quando o personagem chega à máquina de registro
+            function verificarObjetivoHall() {
+                const objetivo = configuracao.hallDaFama?.objetivo;
+
+                if (fase !== 5 || !mapaFinal || faseConcluida || !objetivo) {
+                    return;
+                }
+
+                if (
+                    Math.abs(estado.x - objetivo.x) < 30 &&
+                    Math.abs(estado.y - objetivo.y) < 30
+                ) {
+                    faseConcluida = true;
+                    onConcluir?.(fase);
+                }
+            }
+
             //inicializa o canvas e carrega os recursos necessários para a fase
             p.setup = () => {
+                if (!ativo) {
+                    return;
+                }
+
                 p.createCanvas(larguraCanvas, alturaCanvas);
                 carregarImagens();
             };
 
             //executa a atualização e a renderização do jogo a cada quadro
             p.draw = () => {
-                p.background(0);
+                if (!ativo) {
+                    return;
+                }
+
+                //laterais do Hall usam o azul-escuro do projeto; as outras fases ficam pretas
+                p.background(...(mapaFinal ? [27, 36, 48] : [0]));
 
                 //aguarda o carregamento das imagens antes de desenhar o jogo
                 if (erroImagens || !mapa || !personagem) {
@@ -422,8 +445,9 @@ function GameCanvas({
 
                 limitarPosicaoPersonagem(larguraMapa, alturaMapa);
 
-                //verifica se o personagem chegou à Poképarada
+                //verifica se o personagem chegou à Poképarada ou à máquina de registro
                 verificarPokeparada();
+                verificarObjetivoHall();
 
                 atualizarCamera(larguraMapa, alturaMapa);
 
@@ -437,23 +461,81 @@ function GameCanvas({
 
         //cria a instância do p5.js e remove-a ao trocar de fase ou reiniciar.
         const instance = new p5(sketch, canvasRef.current);
+        const avisoHall = avisoHallRef.current;
 
-        return () => instance.remove();
+        return () => {
+            ativo = false;
+            // Interrompe o setup assíncrono que ainda não criou o canvas.
+            // O p5 cria o indicador no presetup e só o remove no postsetup;
+            // essa interrupção pula o postsetup e a bolinha permaneceria.
+            instance.hitCriticalError = true;
+            if (instance._loadingIndicator) {
+                instance._loadingIndicator.remove();
+                instance._loadingIndicator = null;
+            }
+            if (avisoHall) {
+                avisoHall.hidden = true;
+            }
+            instance.remove();
+        };
     }, [reinicio, fase, onConcluir, personagemSelecionado, estado]);
 
     return (
         <div className="jogo__canvas-container">
             <div className="jogo__canvas-area" ref={canvasRef} />
-
-            <button
-                type="button"
-                className="jogo__reiniciar"
-                onClick={() => onReiniciarEstado?.()}
-                aria-label="Reiniciar fase"
-                title="Reiniciar fase"
-            >
-                <RotateCcw size={24} strokeWidth={3} />
-            </button>
+            <div className="jogo__palco">
+                <div
+                    className="jogo__aviso-hall"
+                    ref={avisoHallRef}
+                    role="status"
+                    aria-live="polite"
+                    hidden
+                >
+                    <div className="jogo__aviso-hall-cartao jogo__aviso-hall-cartao--esquerda">
+                        <svg
+                            className="jogo__aviso-hall-icone"
+                            viewBox="0 0 24 24"
+                            aria-hidden="true"
+                            focusable="false"
+                        >
+                            <path
+                                fill="#ffcb05"
+                                stroke="#c99a00"
+                                strokeWidth="0.8"
+                                d="M12 1.8 14.7 9h7.5l-6.1 4.4 2.3 7.2L12 16.2 5.6 20.6 7.9 13.4 1.8 9h7.5z"
+                            />
+                        </svg>
+                        <p className="jogo__aviso-hall-titulo">Parabéns! Você chegou ao Hall da Fama!</p>
+                        <span className="jogo__aviso-hall-barra" aria-hidden="true" />
+                    </div>
+                    <div className="jogo__aviso-hall-cartao jogo__aviso-hall-cartao--direita">
+                        <svg
+                            className="jogo__aviso-hall-icone"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="#1e3a8a"
+                            strokeWidth="2.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            aria-hidden="true"
+                            focusable="false"
+                        >
+                            <path d="M12 19V5" />
+                            <path d="m5 12 7-7 7 7" />
+                        </svg>
+                        <p className="jogo__aviso-hall-texto">Vá até a máquina de registro para finalizar</p>
+                    </div>
+                </div>
+                <button
+                    type="button"
+                    className="jogo__reiniciar"
+                    onClick={() => onReiniciarEstado?.()}
+                    aria-label="Reiniciar fase"
+                    title="Reiniciar fase"
+                >
+                    <RotateCcw size={24} strokeWidth={3} />
+                </button>
+            </div>
         </div>
     );
 }

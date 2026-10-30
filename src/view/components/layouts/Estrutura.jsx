@@ -3,6 +3,7 @@ import { useState } from 'react';
 import Cabecalho from './Cabecalho';
 import Logo from './Logo';
 import Painel from './Painel';
+import { obterFaseDaRota } from '../../faseDaRota';
 import './estrutura.css';
 
 // A aparência do menu é definida aqui; as ações de conta vêm da integração.
@@ -31,7 +32,10 @@ function Estrutura({
     const visitante = location.state?.visitante === true;
     const temaClasse = tema === 'escuro' ? 'temaEscuro' : 'temaClaro';
     const nome = usuario?.nome?.trim();
-    const saudacao = tela.saudacao ? (nome ? `Olá, ${nome}!` : 'Olá!') : undefined;
+    const faseCarregada = caminho === '/jogo' ? obterFaseDaRota(location) : null;
+    const saudacao = tela.saudacao
+        ? (nome ? `Olá, ${nome}!` : 'Olá!')
+        : (faseCarregada ? `Fase ${faseCarregada}` : undefined);
     const origem = location.state?.origem;
     const retornoConfiguracoes = typeof origem === 'string' && origem.startsWith('/')
         && origem !== '/configuracoes' ? origem : '/';
