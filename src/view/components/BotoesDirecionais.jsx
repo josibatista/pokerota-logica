@@ -1,3 +1,4 @@
+import './BotoesDirecionais.css';
 import { useEffect, useState } from 'react';
 
 const DIRECOES = [
@@ -11,7 +12,7 @@ function Seta({ rotacao }) {
     return (
         <svg
             viewBox="0 0 24 24"
-            className="botoes-direcionais__icone"
+            className="icone-controle botoes-direcionais__icone"
             aria-hidden="true"
             focusable="false"
             style={{ transform: `rotate(${rotacao}deg)` }}
@@ -128,7 +129,7 @@ function BotoesDirecionais({ onPressionar, onSoltar }) {
                 <button
                     key={direcao.comando}
                     type="button"
-                    className={`botoes-direcionais__botao botoes-direcionais__botao--${direcao.comando}${
+                    className={`botao botao--icone botoes-direcionais__botao botoes-direcionais__botao--${direcao.comando}${
                         ativos.has(direcao.comando) ? ' botoes-direcionais__botao--ativo' : ''
                     }`}
                     aria-label={direcao.rotulo}

@@ -1,19 +1,5 @@
 
-.selecao-personagem {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    padding: 16px;
-    box-sizing: border-box;
-}
-
-.selecao-personagem__janela {
-    width: min(100%, 950px);
-    padding: 24px;
-    box-sizing: border-box;
-    text-align: center;
-}
+.selecao-personagem__janela { text-align: center; }
 
 .selecao-personagem__janela h1 {
     margin: 0 0 12px;
@@ -32,63 +18,26 @@
 }
 
 .selecao-personagem__cartao {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     gap: 10px;
-    min-width: 0;
-    padding: 0;
-    border: none;
-    background: transparent;
-    color: inherit;
-    font: inherit;
-    cursor: pointer;
+    color: var(--pokerotaTexto);
 }
 
 .selecao-personagem__cartao--selecionado .selecao-personagem__imagem {
-    border: 3px solid #2883bf;
     box-shadow: 0 0 0 2px rgb(40 131 191 / 15%);
 }
 
-.selecao-personagem__cartao:focus-visible {
-    outline: 3px solid #2883bf;
-    outline-offset: 4px;
-    border-radius: 10px;
-}
-
-.selecao-personagem__imagem {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    aspect-ratio: 1;
-    border: 2px solid #777777;
-    border-radius: 10px;
-    background-color: #f0fbfc;
-    box-sizing: border-box;
-}
-
-.selecao-personagem__imagem span {
-    font-size: 3rem;
-    font-weight: 600;
-    color: #777777;
-}
+.selecao-personagem__imagem { aspect-ratio: 1; }
 
 .selecao-personagem__nome {
     font-weight: 600;
 }
 
 @media (max-width: 600px) {
-    .selecao-personagem__janela {
-        padding: 16px;
-    }
-
     .selecao-personagem__lista {
         grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 20px 12px;
     }
 }
-
 
 .selecao-personagem__imagem img {
     display: block;
@@ -99,35 +48,7 @@
 }
 
 .selecao-personagem__confirmar {
+    --botao-foco: var(--pokerotaDestaque);
+    --botao-opacidade-desabilitado: 0.5;
     margin-top: 32px;
-    min-height: 48px;
-    max-width: 100%;
-    padding: 12px 20px;
-    border: 2px solid #800c0c;
-    border-radius: 10px;
-    background-color: #c62828;
-    color: #ffffff;
-    font: inherit;
-    font-weight: 600;
-    cursor: pointer;
-    overflow-wrap: anywhere;
-    transition:
-        background-color 0.2s ease,
-        border-color 0.2s ease,
-        box-shadow 0.2s ease;
-}
-
-.selecao-personagem__confirmar:hover:not(:disabled) {
-    background-color: #a61e1e;
-    border-color: #650909;
-}
-
-.selecao-personagem__confirmar:focus-visible {
-    outline: 3px solid #2883bf;
-    outline-offset: 3px;
-}
-
-.selecao-personagem__confirmar:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
 }

@@ -19,7 +19,7 @@ function Estrela({ classe }) {
             focusable="false"
         >
             <path
-                fill="#ffcb05"
+                fill="var(--pokerotaAmarelo)"
                 d="M12 1.8 14.7 9h7.5l-6.1 4.4 2.3 7.2L12 16.2 5.6 20.6 7.9 13.4 1.8 9h7.5z"
             />
         </svg>
@@ -57,11 +57,11 @@ function FinalizacaoFase({
                 Parabéns, você concluiu a fase {fase}!
             </p>
             <RetratoPersonagem personagemSelecionado={personagemSelecionado} />
-            <div className="finalizacao-fase__acoes">
+            <div className="acoes finalizacao-fase__acoes">
                 {visitante ? (
                     <button
                         type="button"
-                        className="finalizacao-fase__botao"
+                        className="botao botao--painel finalizacao-fase__botao"
                         onClick={onVoltarLogin}
                     >
                         Voltar ao login
@@ -70,7 +70,7 @@ function FinalizacaoFase({
                     <>
                         <button
                             type="button"
-                            className="finalizacao-fase__botao"
+                            className="botao botao--painel finalizacao-fase__botao"
                             onClick={onVoltar}
                         >
                             Voltar aos mapas
@@ -78,7 +78,7 @@ function FinalizacaoFase({
                         {mostrarProxima && (
                             <button
                                 type="button"
-                                className="finalizacao-fase__botao"
+                                className="botao botao--painel finalizacao-fase__botao"
                                 disabled={!proximaDisponivel}
                                 onClick={onProxima}
                             >

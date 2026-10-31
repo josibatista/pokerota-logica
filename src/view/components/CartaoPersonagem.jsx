@@ -3,13 +3,13 @@ function CartaoPersonagem({ personagem, selecionado, onSelecionar }) {
     return (
         <button
             type="button"
-            className={`selecao-personagem__cartao ${
+            className={`cartao-selecao selecao-personagem__cartao ${
                 selecionado ? 'selecao-personagem__cartao--selecionado' : ''
             }`}
             onClick={() => onSelecionar(personagem.id)}
             aria-pressed={selecionado}
         >
-            <div className="selecao-personagem__imagem">
+            <div className="cartao-selecao__imagem selecao-personagem__imagem">
                 <img
                     src={personagem.imagem}
                     alt=""

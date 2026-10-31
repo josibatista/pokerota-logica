@@ -38,12 +38,12 @@ function SelecaoPersonagem() {
     }
 
     return (
-        <main className="selecao-personagem">
+        <main className="selecao selecao-personagem">
             <section
-                className="selecao-personagem__janela"
+                className="selecao__janela selecao-personagem__janela"
                 aria-labelledby="titulo-personagens"
             >
-                <h1 id="titulo-personagens">
+                <h1 className="titulo-pagina" id="titulo-personagens">
                     Seleção de personagem
                 </h1>
 
@@ -64,7 +64,7 @@ function SelecaoPersonagem() {
 
                 <button
                     type="button"
-                    className="selecao-personagem__confirmar"
+                    className="botao botao--confirmar selecao-personagem__confirmar"
                     disabled={!escolha || !fase}
                     onClick={confirmarPersonagem}
                 >

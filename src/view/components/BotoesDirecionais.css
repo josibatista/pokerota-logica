@@ -1,0 +1,35 @@
+.botoes-direcionais {
+    display: grid;
+    grid-template-columns: repeat(3, 44px);
+    grid-template-areas:
+        ". cima ."
+        "esquerda baixo direita";
+    gap: 6px;
+    touch-action: none;
+    user-select: none;
+}
+
+.botoes-direcionais__botao {
+    --botao-tamanho: 44px;
+    touch-action: none;
+}
+
+.botoes-direcionais__botao--cima {
+    grid-area: cima;
+}
+
+.botoes-direcionais__botao--esquerda {
+    grid-area: esquerda;
+}
+
+.botoes-direcionais__botao--baixo {
+    grid-area: baixo;
+}
+
+.botoes-direcionais__botao--direita {
+    grid-area: direita;
+}
+
+.botoes-direcionais__botao--ativo {
+    filter: brightness(0.95);
+}

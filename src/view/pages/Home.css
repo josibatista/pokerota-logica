@@ -31,7 +31,7 @@
 
 .home__apresentacao {
     grid-column: 1;
-    border-right: 2px solid #2883bf;
+    border-right: 2px solid var(--pokerotaDestaque);
 }
 
 .home__acesso {
@@ -48,22 +48,13 @@
     min-width: 0;
 }
 
-.home__titulo,
-.home__subtitulo {
+.home__titulo {
     margin: 0;
-    color: #173451;
+    color: var(--pokerotaTextoForte);
     font-weight: 700;
     letter-spacing: normal;
-}
-
-.home__titulo {
     font-size: 1.2rem;
     line-height: 1.25;
-}
-
-.home__subtitulo {
-    font-size: 1.25rem;
-    line-height: 1.35;
 }
 
 .home__descricao {
@@ -79,57 +70,12 @@
 }
 
 .home__botao {
+    --botao-foco: var(--pokerotaPrimario);
+    --botao-foco-distancia: 4px;
+    --botao-opacidade-desabilitado: 1;
     grid-row: 2;
     align-self: stretch;
     justify-self: center;
-    min-height: 48px;
-    max-width: 100%;
-    padding: 12px 20px;
-    border: 2px solid #800c0c;
-    border-radius: 10px;
-    font: inherit;
-    font-weight: 600;
-    cursor: pointer;
-    overflow-wrap: anywhere;
-    transition:
-        background-color 0.2s ease,
-        border-color 0.2s ease,
-        box-shadow 0.2s ease;
-}
-
-.home__botao--experimentar {
-    background: #800c0c;
-    color: #ffffff;
-}
-
-.home__botao--experimentar:hover:not(:disabled) {
-    background: #a51414;
-    border-color: #a51414;
-    box-shadow: 0 4px 10px rgb(128 12 12 / 20%);
-}
-
-.home__botao--google {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    background: #ffffff;
-    color: #800c0c;
-}
-
-.home__botao--google:hover:not(:disabled) {
-    background: #fff0f0;
-    box-shadow: 0 4px 10px rgb(128 12 12 / 15%);
-}
-
-.home__botao:focus-visible {
-    outline: 3px solid #800c0c;
-    outline-offset: 4px;
-}
-
-.home__botao:disabled {
-    opacity: 1;
-    cursor: not-allowed;
 }
 
 .home__icone-google {
@@ -145,7 +91,7 @@
     margin: 0;
     font-size: 0.85rem;
     line-height: 1.5;
-    color: #495b6b;
+    color: var(--pokerotaTextoSuave);
 }
 
 .home__mensagem {
@@ -174,7 +120,7 @@
 
     .home__apresentacao {
         border-right: none;
-        border-bottom: 2px solid #2883bf;
+        border-bottom: 2px solid var(--pokerotaDestaque);
     }
 
     .home__botao,

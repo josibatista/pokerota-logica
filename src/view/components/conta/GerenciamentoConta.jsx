@@ -73,11 +73,11 @@ function GerenciamentoConta({ usuario = null, carregandoSessao = false, onEncerr
 
     return (
         <section className="gerenciamento-conta" aria-label="Gerenciamento da conta" aria-busy={ocupado}>
-            <div className="gerenciamento-conta__acoes">
-                <button type="button" className="gerenciamento-conta__botao gerenciamento-conta__botao--excluir" disabled={ocupado || !podeExcluir} onClick={abrirConfirmacao}>
+            <div className="acoes gerenciamento-conta__acoes">
+                <button type="button" className="botao botao--secundario botao--perigo-contorno gerenciamento-conta__botao" disabled={ocupado || !podeExcluir} onClick={abrirConfirmacao}>
                     Apagar minha conta
                 </button>
-                <button type="button" className="gerenciamento-conta__botao" disabled={ocupado || !podeSair} onClick={encerrarSessao}>
+                <button type="button" className="botao botao--secundario gerenciamento-conta__botao" disabled={ocupado || !podeSair} onClick={encerrarSessao}>
                     {acao === 'sair' ? 'Saindo…' : 'Sair da minha conta'}
                 </button>
             </div>

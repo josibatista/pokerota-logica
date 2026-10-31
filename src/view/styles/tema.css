@@ -1,0 +1,60 @@
+/* As classes permanecem no layout; o tema não depende da preferência do SO. */
+.temaClaro {
+  color-scheme: light;
+  --pokerotaImagemFundo: url('../assets/fundo_branco.png');
+  --pokerotaBase: #e6e2db;
+  --pokerotaTexto: #1c2430;
+  --pokerotaTitulo: #1e3a8a;
+  --pokerotaPainel: rgba(255, 252, 247, 0.94);
+  --pokerotaSuperficie: #fffdf8;
+  --pokerotaBorda: #2346a0;
+  --pokerotaIcone: #1e3a8a;
+  --pokerotaTituloPagina: #08060d;
+  --pokerotaTextoForte: #173451;
+  --pokerotaTextoSuave: #495b6b;
+  --pokerotaTextoCartao: #222222;
+  --pokerotaDestaque: #2883bf;
+  --pokerotaCartao: #f0fbfc;
+  --pokerotaBordaCartao: #777777;
+  --pokerotaAcaoSuperficie: #ffffff;
+  --pokerotaAcaoHover: #edf7ff;
+  --pokerotaPerigoTexto: #a52626;
+  --pokerotaErro: #9b2020;
+}
+
+.temaEscuro {
+  color-scheme: dark;
+  --pokerotaImagemFundo: url('../assets/fundo_cinza.png');
+  --pokerotaBase: #1a2228;
+  --pokerotaTexto: #f4f6fb;
+  --pokerotaTitulo: #ffcb05;
+  --pokerotaPainel: rgba(18, 24, 32, 0.92);
+  --pokerotaSuperficie: #1b2430;
+  --pokerotaBorda: #9ec1ff;
+  --pokerotaIcone: #ffcb05;
+  --pokerotaTituloPagina: #f4f6fb;
+  --pokerotaTextoForte: #f4f6fb;
+  --pokerotaTextoSuave: #9ec1ff;
+  --pokerotaTextoCartao: #f4f6fb;
+  --pokerotaDestaque: #9ec1ff;
+  --pokerotaCartao: #1b2430;
+  --pokerotaBordaCartao: #9ec1ff;
+  --pokerotaAcaoSuperficie: #1b2430;
+  --pokerotaAcaoHover: #1e3a8a;
+  --pokerotaPerigoTexto: #fff0f0;
+  --pokerotaErro: #fff0f0;
+}
+
+/* Cores de marca e de ações que preservam a aparência nos dois temas. */
+.estrutura {
+  --pokerotaAmarelo: #ffcb05;
+  --pokerotaPrimario: #800c0c;
+  --pokerotaPrimarioHover: #a51414;
+  --pokerotaConfirmar: #c62828;
+  --pokerotaConfirmarHover: #a61e1e;
+  --pokerotaConfirmarBordaHover: #650909;
+  --pokerotaPerigo: #a52626;
+  --pokerotaSobreAcao: #ffffff;
+  --pokerotaGoogleFundo: #ffffff;
+  --pokerotaVermelhoSuave: #fff0f0;
+}

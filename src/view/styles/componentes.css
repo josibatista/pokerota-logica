@@ -1,0 +1,196 @@
+/* Bases opt-in: posição e dimensões particulares ficam nos componentes. */
+.botao {
+  min-height: 48px;
+  max-width: 100%;
+  padding: 12px 20px;
+  border: 2px solid var(--pokerotaBorda);
+  border-radius: 10px;
+  background: var(--pokerotaSuperficie);
+  color: var(--pokerotaIcone);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  overflow-wrap: anywhere;
+}
+
+.botao:focus-visible {
+  outline: 3px solid var(--botao-foco, var(--pokerotaAmarelo));
+  outline-offset: var(--botao-foco-distancia, 3px);
+}
+
+.botao:disabled {
+  opacity: var(--botao-opacidade-desabilitado, 0.65);
+  cursor: not-allowed;
+}
+
+.botao--painel:hover:not(:disabled),
+.botao--icone:hover:not(:disabled),
+.botao--destrutivo:hover:not(:disabled) {
+  filter: brightness(0.95);
+}
+
+.botao--primario,
+.botao--google,
+.botao--confirmar {
+  border-color: var(--pokerotaPrimario);
+  transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.botao--primario {
+  background: var(--pokerotaPrimario);
+  color: var(--pokerotaSobreAcao);
+}
+
+.botao--primario:hover:not(:disabled) {
+  background: var(--pokerotaPrimarioHover);
+  border-color: var(--pokerotaPrimarioHover);
+  box-shadow: 0 4px 10px rgb(128 12 12 / 20%);
+}
+
+.botao--google {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: var(--pokerotaGoogleFundo);
+  color: var(--pokerotaPrimario);
+}
+
+.botao--google:hover:not(:disabled) {
+  background: var(--pokerotaVermelhoSuave);
+  box-shadow: 0 4px 10px rgb(128 12 12 / 15%);
+}
+
+.botao--confirmar {
+  background: var(--pokerotaConfirmar);
+  color: var(--pokerotaSobreAcao);
+}
+
+.botao--confirmar:hover:not(:disabled) {
+  background: var(--pokerotaConfirmarHover);
+  border-color: var(--pokerotaConfirmarBordaHover);
+}
+
+.botao--secundario {
+  --botao-foco: var(--pokerotaDestaque);
+  --botao-foco-distancia: 4px;
+  border-color: var(--pokerotaDestaque);
+  background: var(--pokerotaAcaoSuperficie);
+  color: var(--pokerotaTextoForte);
+}
+
+.botao--secundario:hover:not(:disabled) {
+  background: var(--botao-fundo-hover, var(--pokerotaAcaoHover));
+}
+
+.botao--perigo-contorno {
+  border-color: var(--pokerotaPerigoTexto);
+  color: var(--pokerotaPerigoTexto);
+}
+
+.botao--perigo-contorno:hover:not(:disabled) {
+  background: var(--pokerotaVermelhoSuave);
+  color: var(--pokerotaPerigo);
+}
+
+.botao--destrutivo {
+  border-color: var(--pokerotaPerigo);
+  background: var(--pokerotaPerigo);
+  color: var(--pokerotaSobreAcao);
+}
+
+.botao--icone {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: var(--botao-tamanho, 36px);
+  height: var(--botao-tamanho, 36px);
+  min-height: 0;
+  padding: 0;
+  border-radius: 999px;
+}
+
+.icone-controle {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+
+.acoes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: var(--acoes-alinhamento, center);
+  gap: var(--acoes-espaco, 12px);
+}
+
+.selecao {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+.selecao__janela {
+  width: min(100%, 950px);
+  padding: 24px;
+  box-sizing: border-box;
+}
+
+.cartao-selecao {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--pokerotaTextoCartao);
+  font: inherit;
+  cursor: pointer;
+}
+
+.cartao-selecao:focus-visible {
+  outline: 3px solid var(--pokerotaDestaque);
+  outline-offset: 4px;
+  border-radius: var(--cartao-raio-foco, 10px);
+}
+
+.cartao-selecao:disabled {
+  cursor: not-allowed;
+}
+
+.cartao-selecao__imagem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  border: 2px solid var(--pokerotaBordaCartao);
+  border-radius: 10px;
+  background: var(--pokerotaCartao);
+  box-sizing: border-box;
+}
+
+.mapa-fase--destaque .cartao-selecao__imagem,
+.selecao-personagem__cartao--selecionado .cartao-selecao__imagem {
+  border: 3px solid var(--pokerotaDestaque);
+}
+
+.titulo-pagina {
+  font-family: inherit;
+  font-weight: 500;
+  color: var(--pokerotaTituloPagina);
+  font-size: 56px;
+  letter-spacing: -1.68px;
+  margin: 32px 0;
+}
+
+@media (max-width: 1024px) {
+  .titulo-pagina { font-size: 36px; margin: 20px 0; }
+}
+
+@media (max-width: 600px) {
+  .selecao__janela { padding: 16px; }
+}

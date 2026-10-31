@@ -50,7 +50,7 @@ function Home({ usuario = null, carregandoSessao = false, onEntrarComGoogle }) {
                     </div>
                     <button
                         type="button"
-                        className="home__botao home__botao--experimentar"
+                        className="botao botao--primario home__botao"
                         disabled={ocupado}
                         onClick={() => navigate('/jogo', { state: { visitante: true } })}
                     >
@@ -66,7 +66,7 @@ function Home({ usuario = null, carregandoSessao = false, onEntrarComGoogle }) {
                     </div>
                     <button
                         type="button"
-                        className="home__botao home__botao--google"
+                        className="botao botao--google home__botao"
                         onClick={entrar}
                         disabled={ocupado || !acessoDisponivel}
                         aria-describedby="home-status"
