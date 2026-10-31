@@ -32,5 +32,5 @@ if (usarEmulador) {
     connectAuthEmulator(auth, 'http://127.0.0.1:9099');
 }
 
-export { auth, db };
+export { auth, db, usarEmulador };
 export default app;

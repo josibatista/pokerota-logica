@@ -55,9 +55,17 @@ function GerenciamentoConta({ usuario = null, carregandoSessao = false, onEncerr
             setConfirmacaoAberta(false);
             navigate('/', { replace: true });
         } catch (erro) {
-            setErroExclusao(erro?.code === 'auth/requires-recent-login'
-                ? 'Para apagar sua conta, você precisa entrar de novo com o Google.'
-                : 'Não conseguimos apagar sua conta. Tente de novo.');
+            const codigo = erro?.code;
+            const detalheObrigatorio = codigo === 'conta/exclusao-parcial'
+                || (typeof codigo === 'string' && codigo.startsWith('progresso/'));
+
+            if (codigo === 'auth/requires-recent-login') {
+                setErroExclusao('Para apagar sua conta, você precisa entrar de novo com o Google.');
+            } else if (detalheObrigatorio) {
+                setErroExclusao(erro.message || 'Não conseguimos apagar sua conta. Tente de novo.');
+            } else {
+                setErroExclusao('Não conseguimos apagar sua conta. Tente de novo.');
+            }
         } finally {
             setAcao(null);
         }
