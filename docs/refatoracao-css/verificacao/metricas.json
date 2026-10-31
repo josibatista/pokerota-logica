@@ -1,0 +1,15 @@
+{
+  "base": "554ed0a",
+  "antes": {
+    "arquivos": 10,
+    "linhas": 1441,
+    "declaracoes": 806,
+    "repeticoes_exatas": 390
+  },
+  "depois": {
+    "arquivos": 12,
+    "linhas": 1079,
+    "declaracoes": 606,
+    "repeticoes_exatas": 241
+  }
+}

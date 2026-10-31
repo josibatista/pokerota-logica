@@ -1,0 +1,25 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> pokerota-logica@0.0.0 test:e2e
+> playwright test tests/estilos.spec.js --workers=1
+
+[WebServer] (node:32) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+[WebServer] (node:45) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 8 tests using 1 worker
+
+(node:79) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [chromium] › tests/estilos.spec.js:21:9 › estilos — 1366x900 — claro (8.8s)
+  ✓  2 [chromium] › tests/estilos.spec.js:21:9 › estilos — 1366x900 — escuro (7.3s)
+  ✓  3 [chromium] › tests/estilos.spec.js:21:9 › estilos — 768x1024 — claro (19.3s)
+  ✓  4 [chromium] › tests/estilos.spec.js:21:9 › estilos — 768x1024 — escuro (6.6s)
+  ✓  5 [chromium] › tests/estilos.spec.js:21:9 › estilos — 390x844 — claro (5.5s)
+  ✓  6 [chromium] › tests/estilos.spec.js:21:9 › estilos — 390x844 — escuro (5.7s)
+  ✓  7 [chromium] › tests/estilos.spec.js:21:9 › estilos — 844x390 — claro (5.2s)
+  ✓  8 [chromium] › tests/estilos.spec.js:21:9 › estilos — 844x390 — escuro (5.5s)
+
+  8 passed (1.1m)

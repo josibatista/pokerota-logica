@@ -1,0 +1,2369 @@
+{
+  "home-desktop-Claro": {
+    "viewport": [
+      1366,
+      900
+    ],
+    "overflow": false,
+    "elements": [
+      {
+        "classe": "painel",
+        "width": 960,
+        "height": 560,
+        "x": 203,
+        "y": 215.046875,
+        "color": "rgb(28, 36, 48)",
+        "background": "rgba(255, 252, 247, 0.94)"
+      },
+      {
+        "classe": "botao botao--primario home__botao",
+        "width": 172.640625,
+        "height": 54.09375,
+        "x": 376.671875,
+        "y": 571.515625,
+        "color": "rgb(255, 255, 255)",
+        "background": "rgb(128, 12, 12)"
+      },
+      {
+        "classe": "botao botao--google home__botao",
+        "width": 266.71875,
+        "height": 54.09375,
+        "x": 768.640625,
+        "y": 571.515625,
+        "color": "rgb(128, 12, 12)",
+        "background": "rgb(255, 255, 255)"
+      }
+    ]
+  },
+  "home-desktop-Escuro": {
+    "viewport": [
+      1366,
+      900
+    ],
+    "overflow": false,
+    "elements": [
+      {
+        "classe": "painel",
+        "width": 960,
+        "height": 560,
+        "x": 203,
+        "y": 215.046875,
+        "color": "rgb(244, 246, 251)",
+        "background": "rgba(18, 24, 32, 0.92)"
+      },
+      {
+        "classe": "botao botao--primario home__botao",
+        "width": 172.640625,
+        "height": 54.09375,
+        "x": 376.671875,
+        "y": 571.515625,
+        "color": "rgb(255, 255, 255)",
+        "background": "rgb(128, 12, 12)"
+      },
+      {
+        "classe": "botao botao--google home__botao",
+        "width": 266.71875,
+        "height": 54.09375,
+        "x": 768.640625,
+        "y": 571.515625,
+        "color": "rgb(128, 12, 12)",
+        "background": "rgb(255, 255, 255)"
+      }
+    ]
+  },
+  "home-tablet-Claro": {
+    "viewport": [
+      768,
+      1024
+    ],
+    "overflow": false,
+    "elements": [
+      {
+        "classe": "painel",
+        "width": 736,
+        "height": 560,
+        "x": 16,
+        "y": 277.046875,
+        "color": "rgb(28, 36, 48)",
+        "background": "rgba(255, 252, 247, 0.94)"
+      },
+      {
+        "classe": "botao botao--primario home__botao",
+        "width": 158.34375,
+        "height": 52,
+        "x": 140.828125,
+        "y": 635.4375,
+        "color": "rgb(255, 255, 255)",
+        "background": "rgb(128, 12, 12)"
+      },
+      {
+        "classe": "botao botao--google home__botao",
+        "width": 245.75,
+        "height": 52,
+        "x": 424.125,
+        "y": 635.4375,
+        "color": "rgb(128, 12, 12)",
+        "background": "rgb(255, 255, 255)"
+      }
+    ]
+  },
+  "home-tablet-Escuro": {
+    "viewport": [
+      768,
+      1024
+    ],
+    "overflow": false,
+    "elements": [
+      {
+        "classe": "painel",
+        "width": 736,
+        "height": 560,
+        "x": 16,
+        "y": 277.046875,
+        "color": "rgb(244, 246, 251)",
+        "background": "rgba(18, 24, 32, 0.92)"
+      },
+      {
+        "classe": "botao botao--primario home__botao",
+        "width": 158.34375,
+        "height": 52,
+        "x": 140.828125,
+        "y": 635.4375,
+        "color": "rgb(255, 255, 255)",
+        "background": "rgb(128, 12, 12)"
+      },
+      {
+        "classe": "botao botao--google home__botao",
+        "width": 245.75,
+        "height": 52,
+        "x": 424.125,
+        "y": 635.4375,
+        "color": "rgb(128, 12, 12)",
+        "background": "rgb(255, 255, 255)"
+      }
+    ]
+  },
+  "home-mobile-Claro": {
+    "viewport": [
+      390,
+      844
+    ],
+    "overflow": false,
+    "elements": [
+      {
+        "classe": "painel",
+        "width": 366,
+        "height": 560,
+        "x": 12,
+        "y": 180.3125,
+        "color": "rgb(28, 36, 48)",
+        "background": "rgba(255, 252, 247, 0.94)"
+      },
+      {
+        "classe": "botao botao--primario home__botao",
+        "width": 158.34375,
+        "height": 51.203125,
+        "x": 115.828125,
+        "y": 471.09375,
+        "color": "rgb(255, 255, 255)",
+        "background": "rgb(128, 12, 12)"
+      },
+      {
+        "classe": "botao botao--google home__botao",
+        "width": 245.75,
+        "height": 52,
+        "x": 72.125,
+        "y": 821.078125,
+        "color": "rgb(128, 12, 12)",
+        "background": "rgb(255, 255, 255)"
+      }
+    ]
+  },
+  "home-mobile-Escuro": {
+    "viewport": [
+      390,
+      844
+    ],
+    "overflow": false,
+    "elements": [
+      {
+        "classe": "painel",
+        "width": 366,
+        "height": 560,
+        "x": 12,
+        "y": 180.3125,
+        "color": "rgb(244, 246, 251)",
+        "background": "rgba(18, 24, 32, 0.92)"
+      },
+      {
+        "classe": "botao botao--primario home__botao",
+        "width": 158.34375,
+        "height": 51.203125,
+        "x": 115.828125,
+        "y": 471.09375,
+        "color": "rgb(255, 255, 255)",
+        "background": "rgb(128, 12, 12)"
+      },
+      {
+        "classe": "botao botao--google home__botao",
+        "width": 245.75,
+        "height": 52,
+        "x": 72.125,
+        "y": 821.078125,
+        "color": "rgb(128, 12, 12)",
+        "background": "rgb(255, 255, 255)"
+      }
+    ]
+  },
+  "home-baixo-Claro": {
+    "viewport": [
+      844,
+      390
+    ],
+    "overflow": false,
+    "elements": [
+      {
+        "classe": "painel",
+        "width": 812,
+        "height": 560,
+        "x": 16,
+        "y": 106.09375,
+        "color": "rgb(28, 36, 48)",
+        "background": "rgba(255, 252, 247, 0.94)"
+      },
+      {
+        "classe": "botao botao--primario home__botao",
+        "width": 158.34375,
+        "height": 52,
+        "x": 159.828125,
+        "y": 451.703125,
+        "color": "rgb(255, 255, 255)",
+        "background": "rgb(128, 12, 12)"
+      },
+      {
+        "classe": "botao botao--google home__botao",
+        "width": 245.75,
+        "height": 52,
+        "x": 481.125,
+        "y": 451.703125,
+        "color": "rgb(128, 12, 12)",
+        "background": "rgb(255, 255, 255)"
+      }
+    ]
+  },
+  "home-baixo-Escuro": {
+    "viewport": [
+      844,
+      390
+    ],
+    "overflow": false,
+    "elements": [
+      {
+        "classe": "painel",
+        "width": 812,
+        "height": 560,
+        "x": 16,
+        "y": 106.09375,
+        "color": "rgb(244, 246, 251)",
+        "background": "rgba(18, 24, 32, 0.92)"
+      },
+      {
+        "classe": "botao botao--primario home__botao",
+        "width": 158.34375,
+        "height": 52,
+        "x": 159.828125,
+        "y": 451.703125,
+        "color": "rgb(255, 255, 255)",
+        "background": "rgb(128, 12, 12)"
+      },
+      {
+        "classe": "botao botao--google home__botao",
+        "width": 245.75,
+        "height": 52,
+        "x": 481.125,
+        "y": 451.703125,
+        "color": "rgb(128, 12, 12)",
+        "background": "rgb(255, 255, 255)"
+      }
+    ]
+  },
+  "niveis-desktop-Claro": {
+    "viewport": [
+      1366,
+      900
+    ],
+    "overflow": false,
+    "elements": [
+      {
+        "classe": "painel",
+        "width": 960,
+        "height": 560,
+        "x": 203,
+        "y": 215.046875,
+        "color": "rgb(28, 36, 48)",
+        "background": "rgba(255, 252, 247, 0.94)"
+      },
+      {
+        "classe": "cartao-selecao mapa-fase mapa-fase--destaque ",
+        "width": 268,
+        "height": 169.09375,
+        "x": 261,
+        "y": 367.140625,
+        "color": "rgb(34, 34, 34)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "classe": "cartao-selecao mapa-fase  mapa-fase--bloqueada",
+        "width": 268,
+        "height": 169.09375,
+        "x": 549,
+        "y": 367.140625,
+        "color": "rgb(34, 34, 34)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "classe": "cartao-selecao mapa-fase  mapa-fase--bloqueada",
+        "width": 268,
+        "height": 169.09375,
+        "x": 837,
+        "y": 367.140625,
+        "color": "rgb(34, 34, 34)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "classe": "cartao-selecao mapa-fase  mapa-fase--bloqueada",
+        "width": 268,
+        "height": 169.09375,
+        "x": 405,
+        "y": 564.234375,
+        "color": "rgb(34, 34, 34)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "classe": "cartao-selecao mapa-fase  mapa-fase--bloqueada",
+        "width": 268,
+        "height": 169.09375,
+        "x": 693,
+        "y": 564.234375,
+        "color": "rgb(34, 34, 34)",
+        "background": "rgba(0, 0, 0, 0)"
+      }
+    ]
+  },
+  "niveis-desktop-Escuro": {
+    "viewport": [
+      1366,
+      900
+    ],
+    "overflow": false,
+    "elements": [
+      {
+        "classe": "painel",
+        "width": 960,
+        "height": 560,
+        "x": 203,
+        "y": 215.046875,
+        "color": "rgb(244, 246, 251)",
+        "background": "rgba(18, 24, 32, 0.92)"
+      },
+      {
+        "classe": "cartao-selecao mapa-fase mapa-fase--destaque ",
+        "width": 268,
+        "height": 169.09375,
+        "x": 261,
+        "y": 367.140625,
+        "color": "rgb(244, 246, 251)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "classe": "cartao-selecao mapa-fase  mapa-fase--bloqueada",
+        "width": 268,
+        "height": 169.09375,
+        "x": 549,
+        "y": 367.140625,
+        "color": "rgb(244, 246, 251)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "classe": "cartao-selecao mapa-fase  mapa-fase--bloqueada",
+        "width": 268,
+        "height": 169.09375,
+        "x": 837,
+        "y": 367.140625,
+        "color": "rgb(244, 246, 251)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "classe": "cartao-selecao mapa-fase  mapa-fase--bloqueada",
+        "width": 268,
+        "height": 169.09375,
+        "x": 405,
+        "y": 564.234375,
+        "color": "rgb(244, 246, 251)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "classe": "cartao-selecao mapa-fase  mapa-fase--bloqueada",
+        "width": 268,
+        "height": 169.09375,
+        "x": 693,
+        "y": 564.234375,
+        "color": "rgb(244, 246, 251)",
+        "background": "rgba(0, 0, 0, 0)"
+      }
+    ]
+  },
+  "niveis-tablet-Claro": {
+    "viewport": [
+      768,
+      1024
+    ],
+    "overflow": false,
+    "elements": [
+      {
+        "classe": "painel",
+        "width": 736,
+        "height": 560,
+        "x": 16,
+        "y": 277.046875,
+        "color": "rgb(28, 36, 48)",
+        "background": "rgba(255, 252, 247, 0.94)"
+      },
+      {
+        "classe": "cartao-selecao mapa-fase mapa-fase--destaque ",
+        "width": 193.328125,
+        "height": 166.203125,
+        "x": 74,
+        "y": 426.25,
+        "color": "rgb(34, 34, 34)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "classe": "cartao-selecao mapa-fase  mapa-fase--bloqueada",
+        "width": 193.328125,
+        "height": 166.203125,
+        "x": 287.328125,
+        "y": 426.25,
+        "color": "rgb(34, 34, 34)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "classe": "cartao-selecao mapa-fase  mapa-fase--bloqueada",
+        "width": 193.328125,
+        "height": 166.203125,
+        "x": 500.65625,
+        "y": 426.25,
+        "color": "rgb(34, 34, 34)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "classe": "cartao-selecao mapa-fase  mapa-fase--bloqueada",
+        "width": 193.328125,
+        "height": 166.203125,
+        "x": 180.65625,
+        "y": 620.453125,
+        "color": "rgb(34, 34, 34)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "classe": "cartao-selecao mapa-fase  mapa-fase--bloqueada",
+        "width": 193.34375,
+        "height": 166.203125,
+        "x": 393.984375,
+        "y": 620.453125,
+        "color": "rgb(34, 34, 34)",
+        "background": "rgba(0, 0, 0, 0)"
+      }
+    ]
+  },
+  "niveis-tablet-Escuro": {
+    "viewport": [
+      768,
+      1024
+    ],
+    "overflow": false,
+    "elements": [
+      {
+        "classe": "painel",
+        "width": 736,
+        "height": 560,
+        "x": 16,
+        "y": 277.046875,
+        "color": "rgb(244, 246, 251)",
+        "background": "rgba(18, 24, 32, 0.92)"
+      },
+      {
+        "classe": "cartao-selecao mapa-fase mapa-fase--destaque ",
+        "width": 193.328125,
+        "height": 166.203125,
+        "x": 74,
+        "y": 426.25,
+        "color": "rgb(244, 246, 251)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "classe": "cartao-selecao mapa-fase  mapa-fase--bloqueada",
+        "width": 193.328125,
+        "height": 166.203125,
+        "x": 287.328125,
+        "y": 426.25,
+        "color": "rgb(244, 246, 251)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "classe": "cartao-selecao mapa-fase  mapa-fase--bloqueada",
+        "width": 193.328125,
+        "height": 166.203125,
+        "x": 500.65625,
+        "y": 426.25,
+        "color": "rgb(244, 246, 251)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "classe": "cartao-selecao mapa-fase  mapa-fase--bloqueada",
+        "width": 193.328125,
+        "height": 166.203125,
+        "x": 180.65625,
+        "y": 620.453125,
+        "color": "rgb(244, 246, 251)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "classe": "cartao-selecao mapa-fase  mapa-fase--bloqueada",
+        "width": 193.34375,
+        "height": 166.203125,
+        "x": 393.984375,
+        "y": 620.453125,
+        "color": "rgb(244, 246, 251)",
+        "background": "rgba(0, 0, 0, 0)"
+      }
+    ]
+  },
+  "niveis-mobile-Claro": {
+    "viewport": [
+      390,
+      844
+    ],
+    "overflow": false,
+    "elements": [
+      {
+        "classe": "painel",
+        "width": 366,
+        "height": 560,
+        "x": 12,
+        "y": 180.3125,
+        "color": "rgb(28, 36, 48)",
+        "background": "rgba(255, 252, 247, 0.94)"
+      },
+      {
+        "classe": "cartao-selecao mapa-fase mapa-fase--destaque ",
+        "width": 131,
+        "height": 166.203125,
+        "x": 58,
+        "y": 317.515625,
+        "color": "rgb(34, 34, 34)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "classe": "cartao-selecao mapa-fase  mapa-fase--bloqueada",
+        "width": 131,
+        "height": 166.203125,
+        "x": 201,
+        "y": 317.515625,
+        "color": "rgb(34, 34, 34)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "classe": "cartao-selecao mapa-fase  mapa-fase--bloqueada",
+        "width": 131,
+        "height": 166.203125,
+        "x": 58,
+        "y": 499.71875,
+        "color": "rgb(34, 34, 34)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "classe": "cartao-selecao mapa-fase  mapa-fase--bloqueada",
+        "width": 131,
+        "height": 166.203125,
+        "x": 201,
+        "y": 499.71875,
+        "color": "rgb(34, 34, 34)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "classe": "cartao-selecao mapa-fase  mapa-fase--bloqueada",
+        "width": 131,
+        "height": 166.203125,
+        "x": 58,
+        "y": 681.921875,
+        "color": "rgb(34, 34, 34)",
+        "background": "rgba(0, 0, 0, 0)"
+      }
+    ]
+  },
+  "niveis-mobile-Escuro": {
+    "viewport": [
+      390,
+      844
+    ],
+    "overflow": false,
+    "elements": [
+      {
+        "classe": "painel",
+        "width": 366,
+        "height": 560,
+        "x": 12,
+        "y": 180.3125,
+        "color": "rgb(244, 246, 251)",
+        "background": "rgba(18, 24, 32, 0.92)"
+      },
+      {
+        "classe": "cartao-selecao mapa-fase mapa-fase--destaque ",
+        "width": 131,
+        "height": 166.203125,
+        "x": 58,
+        "y": 317.515625,
+        "color": "rgb(244, 246, 251)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "classe": "cartao-selecao mapa-fase  mapa-fase--bloqueada",
+        "width": 131,
+        "height": 166.203125,
+        "x": 201,
+        "y": 317.515625,
+        "color": "rgb(244, 246, 251)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "classe": "cartao-selecao mapa-fase  mapa-fase--bloqueada",
+        "width": 131,
+        "height": 166.203125,
+        "x": 58,
+        "y": 499.71875,
+        "color": "rgb(244, 246, 251)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "classe": "cartao-selecao mapa-fase  mapa-fase--bloqueada",
+        "width": 131,
+        "height": 166.203125,
+        "x": 201,
+        "y": 499.71875,
+        "color": "rgb(244, 246, 251)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "classe": "cartao-selecao mapa-fase  mapa-fase--bloqueada",
+        "width": 131,
+        "height": 166.203125,
+        "x": 58,
+        "y": 681.921875,
+        "color": "rgb(244, 246, 251)",
+        "background": "rgba(0, 0, 0, 0)"
+      }
+    ]
+  },
+  "niveis-baixo-Claro": {
+    "viewport": [
+      844,
+      390
+    ],
+    "overflow": false,
+    "elements": [
+      {
+        "classe": "painel",
+        "width": 812,
+        "height": 560,
+        "x": 16,
+        "y": 106.09375,
+        "color": "rgb(28, 36, 48)",
+        "background": "rgba(255, 252, 247, 0.94)"
+      },
+      {
+        "classe": "cartao-selecao mapa-fase mapa-fase--destaque ",
+        "width": 218.65625,
+        "height": 166.203125,
+        "x": 74,
+        "y": 255.296875,
+        "color": "rgb(34, 34, 34)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "classe": "cartao-selecao mapa-fase  mapa-fase--bloqueada",
+        "width": 218.671875,
+        "height": 166.203125,
+        "x": 312.65625,
+        "y": 255.296875,
+        "color": "rgb(34, 34, 34)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "classe": "cartao-selecao mapa-fase  mapa-fase--bloqueada",
+        "width": 218.671875,
+        "height": 166.203125,
+        "x": 551.328125,
+        "y": 255.296875,
+        "color": "rgb(34, 34, 34)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "classe": "cartao-selecao mapa-fase  mapa-fase--bloqueada",
+        "width": 218.671875,
+        "height": 166.203125,
+        "x": 193.328125,
+        "y": 449.5,
+        "color": "rgb(34, 34, 34)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "classe": "cartao-selecao mapa-fase  mapa-fase--bloqueada",
+        "width": 218.65625,
+        "height": 166.203125,
+        "x": 432,
+        "y": 449.5,
+        "color": "rgb(34, 34, 34)",
+        "background": "rgba(0, 0, 0, 0)"
+      }
+    ]
+  },
+  "niveis-baixo-Escuro": {
+    "viewport": [
+      844,
+      390
+    ],
+    "overflow": false,
+    "elements": [
+      {
+        "classe": "painel",
+        "width": 812,
+        "height": 560,
+        "x": 16,
+        "y": 106.09375,
+        "color": "rgb(244, 246, 251)",
+        "background": "rgba(18, 24, 32, 0.92)"
+      },
+      {
+        "classe": "cartao-selecao mapa-fase mapa-fase--destaque ",
+        "width": 218.65625,
+        "height": 166.203125,
+        "x": 74,
+        "y": 255.296875,
+        "color": "rgb(244, 246, 251)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "classe": "cartao-selecao mapa-fase  mapa-fase--bloqueada",
+        "width": 218.671875,
+        "height": 166.203125,
+        "x": 312.65625,
+        "y": 255.296875,
+        "color": "rgb(244, 246, 251)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "classe": "cartao-selecao mapa-fase  mapa-fase--bloqueada",
+        "width": 218.671875,
+        "height": 166.203125,
+        "x": 551.328125,
+        "y": 255.296875,
+        "color": "rgb(244, 246, 251)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "classe": "cartao-selecao mapa-fase  mapa-fase--bloqueada",
+        "width": 218.671875,
+        "height": 166.203125,
+        "x": 193.328125,
+        "y": 449.5,
+        "color": "rgb(244, 246, 251)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "classe": "cartao-selecao mapa-fase  mapa-fase--bloqueada",
+        "width": 218.65625,
+        "height": 166.203125,
+        "x": 432,
+        "y": 449.5,
+        "color": "rgb(244, 246, 251)",
+        "background": "rgba(0, 0, 0, 0)"
+      }
+    ]
+  },
+  "personagens-desktop-Claro": {
+    "viewport": [
+      1366,
+      900
+    ],
+    "overflow": false,
+    "elements": [
+      {
+        "classe": "painel",
+        "width": 960,
+        "height": 560,
+        "x": 203,
+        "y": 215.046875,
+        "color": "rgb(28, 36, 48)",
+        "background": "rgba(255, 252, 247, 0.94)"
+      },
+      {
+        "classe": "cartao-selecao selecao-personagem__cartao ",
+        "width": 152.796875,
+        "height": 188.90625,
+        "x": 261,
+        "y": 413.234375,
+        "color": "rgb(28, 36, 48)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "classe": "cartao-selecao selecao-personagem__cartao ",
+        "width": 152.796875,
+        "height": 188.90625,
+        "x": 433.796875,
+        "y": 413.234375,
+        "color": "rgb(28, 36, 48)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "classe": "cartao-selecao selecao-personagem__cartao ",
+        "width": 152.796875,
+        "height": 188.90625,
+        "x": 606.59375,
+        "y": 413.234375,
+        "color": "rgb(28, 36, 48)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "classe": "cartao-selecao selecao-personagem__cartao ",
+        "width": 152.796875,
+        "height": 188.90625,
+        "x": 779.390625,
+        "y": 413.234375,
+        "color": "rgb(28, 36, 48)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "classe": "cartao-selecao selecao-personagem__cartao ",
+        "width": 152.8125,
+        "height": 188.90625,
+        "x": 952.1875,
+        "y": 413.234375,
+        "color": "rgb(28, 36, 48)",
+        "background": "rgba(0, 0, 0, 0)"
+      }
+    ]
+  },
+  "personagens-desktop-Escuro": {
+    "viewport": [
+      1366,
+      900
+    ],
+    "overflow": false,
+    "elements": [
+      {
+        "classe": "painel",
+        "width": 960,
+        "height": 560,
+        "x": 203,
+        "y": 215.046875,
+        "color": "rgb(244, 246, 251)",
+        "background": "rgba(18, 24, 32, 0.92)"
+      },
+      {
+        "classe": "cartao-selecao selecao-personagem__cartao ",
+        "width": 152.796875,
+        "height": 188.90625,
+        "x": 261,
+        "y": 413.234375,
+        "color": "rgb(244, 246, 251)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "classe": "cartao-selecao selecao-personagem__cartao ",
+        "width": 152.796875,
+        "height": 188.90625,
+        "x": 433.796875,
+        "y": 413.234375,
+        "color": "rgb(244, 246, 251)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "classe": "cartao-selecao selecao-personagem__cartao ",
+        "width": 152.796875,
+        "height": 188.90625,
+        "x": 606.59375,
+        "y": 413.234375,
+        "color": "rgb(244, 246, 251)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "classe": "cartao-selecao selecao-personagem__cartao ",
+        "width": 152.796875,
+        "height": 188.90625,
+        "x": 779.390625,
+        "y": 413.234375,
+        "color": "rgb(244, 246, 251)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "classe": "cartao-selecao selecao-personagem__cartao ",
+        "width": 152.8125,
+        "height": 188.90625,
+        "x": 952.1875,
+        "y": 413.234375,
+        "color": "rgb(244, 246, 251)",
+        "background": "rgba(0, 0, 0, 0)"
+      }
+    ]
+  },
+  "personagens-tablet-Claro": {
+    "viewport": [
+      768,
+      1024
+    ],
+    "overflow": false,
+    "elements": [
+      {
+        "classe": "painel",
+        "width": 736,
+        "height": 560,
+        "x": 16,
+        "y": 277.046875,
+        "color": "rgb(28, 36, 48)",
+        "background": "rgba(255, 252, 247, 0.94)"
+      },
+      {
+        "classe": "cartao-selecao selecao-personagem__cartao ",
+        "width": 108,
+        "height": 141.203125,
+        "x": 74,
+        "y": 469.453125,
+        "color": "rgb(28, 36, 48)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "classe": "cartao-selecao selecao-personagem__cartao ",
+        "width": 108,
+        "height": 141.203125,
+        "x": 202,
+        "y": 469.453125,
+        "color": "rgb(28, 36, 48)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "classe": "cartao-selecao selecao-personagem__cartao ",
+        "width": 108,
+        "height": 141.203125,
+        "x": 330,
+        "y": 469.453125,
+        "color": "rgb(28, 36, 48)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "classe": "cartao-selecao selecao-personagem__cartao ",
+        "width": 108,
+        "height": 141.203125,
+        "x": 458,
+        "y": 469.453125,
+        "color": "rgb(28, 36, 48)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "classe": "cartao-selecao selecao-personagem__cartao ",
+        "width": 108,
+        "height": 141.203125,
+        "x": 586,
+        "y": 469.453125,
+        "color": "rgb(28, 36, 48)",
+        "background": "rgba(0, 0, 0, 0)"
+      }
+    ]
+  },
+  "personagens-tablet-Escuro": {
+    "viewport": [
+      768,
+      1024
+    ],
+    "overflow": false,
+    "elements": [
+      {
+        "classe": "painel",
+        "width": 736,
+        "height": 560,
+        "x": 16,
+        "y": 277.046875,
+        "color": "rgb(244, 246, 251)",
+        "background": "rgba(18, 24, 32, 0.92)"
+      },
+      {
+        "classe": "cartao-selecao selecao-personagem__cartao ",
+        "width": 108,
+        "height": 141.203125,
+        "x": 74,
+        "y": 469.453125,
+        "color": "rgb(244, 246, 251)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "classe": "cartao-selecao selecao-personagem__cartao ",
+        "width": 108,
+        "height": 141.203125,
+        "x": 202,
+        "y": 469.453125,
+        "color": "rgb(244, 246, 251)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "classe": "cartao-selecao selecao-personagem__cartao ",
+        "width": 108,
+        "height": 141.203125,
+        "x": 330,
+        "y": 469.453125,
+        "color": "rgb(244, 246, 251)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "classe": "cartao-selecao selecao-personagem__cartao ",
+        "width": 108,
+        "height": 141.203125,
+        "x": 458,
+        "y": 469.453125,
+        "color": "rgb(244, 246, 251)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "classe": "cartao-selecao selecao-personagem__cartao ",
+        "width": 108,
+        "height": 141.203125,
+        "x": 586,
+        "y": 469.453125,
+        "color": "rgb(244, 246, 251)",
+        "background": "rgba(0, 0, 0, 0)"
+      }
+    ]
+  },
+  "personagens-mobile-Claro": {
+    "viewport": [
+      390,
+      844
+    ],
+    "overflow": false,
+    "elements": [
+      {
+        "classe": "painel",
+        "width": 366,
+        "height": 560,
+        "x": 12,
+        "y": 180.3125,
+        "color": "rgb(28, 36, 48)",
+        "background": "rgba(255, 252, 247, 0.94)"
+      },
+      {
+        "classe": "cartao-selecao selecao-personagem__cartao ",
+        "width": 131,
+        "height": 164.203125,
+        "x": 58,
+        "y": 383.921875,
+        "color": "rgb(28, 36, 48)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "classe": "cartao-selecao selecao-personagem__cartao ",
+        "width": 131,
+        "height": 164.203125,
+        "x": 201,
+        "y": 383.921875,
+        "color": "rgb(28, 36, 48)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "classe": "cartao-selecao selecao-personagem__cartao ",
+        "width": 131,
+        "height": 164.203125,
+        "x": 58,
+        "y": 568.125,
+        "color": "rgb(28, 36, 48)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "classe": "cartao-selecao selecao-personagem__cartao ",
+        "width": 131,
+        "height": 164.203125,
+        "x": 201,
+        "y": 568.125,
+        "color": "rgb(28, 36, 48)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "classe": "cartao-selecao selecao-personagem__cartao ",
+        "width": 131,
+        "height": 164.203125,
+        "x": 58,
+        "y": 752.328125,
+        "color": "rgb(28, 36, 48)",
+        "background": "rgba(0, 0, 0, 0)"
+      }
+    ]
+  },
+  "personagens-mobile-Escuro": {
+    "viewport": [
+      390,
+      844
+    ],
+    "overflow": false,
+    "elements": [
+      {
+        "classe": "painel",
+        "width": 366,
+        "height": 560,
+        "x": 12,
+        "y": 180.3125,
+        "color": "rgb(244, 246, 251)",
+        "background": "rgba(18, 24, 32, 0.92)"
+      },
+      {
+        "classe": "cartao-selecao selecao-personagem__cartao ",
+        "width": 131,
+        "height": 164.203125,
+        "x": 58,
+        "y": 383.921875,
+        "color": "rgb(244, 246, 251)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "classe": "cartao-selecao selecao-personagem__cartao ",
+        "width": 131,
+        "height": 164.203125,
+        "x": 201,
+        "y": 383.921875,
+        "color": "rgb(244, 246, 251)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "classe": "cartao-selecao selecao-personagem__cartao ",
+        "width": 131,
+        "height": 164.203125,
+        "x": 58,
+        "y": 568.125,
+        "color": "rgb(244, 246, 251)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "classe": "cartao-selecao selecao-personagem__cartao ",
+        "width": 131,
+        "height": 164.203125,
+        "x": 201,
+        "y": 568.125,
+        "color": "rgb(244, 246, 251)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "classe": "cartao-selecao selecao-personagem__cartao ",
+        "width": 131,
+        "height": 164.203125,
+        "x": 58,
+        "y": 752.328125,
+        "color": "rgb(244, 246, 251)",
+        "background": "rgba(0, 0, 0, 0)"
+      }
+    ]
+  },
+  "personagens-baixo-Claro": {
+    "viewport": [
+      844,
+      390
+    ],
+    "overflow": false,
+    "elements": [
+      {
+        "classe": "painel",
+        "width": 812,
+        "height": 560,
+        "x": 16,
+        "y": 106.09375,
+        "color": "rgb(28, 36, 48)",
+        "background": "rgba(255, 252, 247, 0.94)"
+      },
+      {
+        "classe": "cartao-selecao selecao-personagem__cartao ",
+        "width": 123.1875,
+        "height": 156.40625,
+        "x": 74,
+        "y": 298.5,
+        "color": "rgb(28, 36, 48)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "classe": "cartao-selecao selecao-personagem__cartao ",
+        "width": 123.203125,
+        "height": 156.40625,
+        "x": 217.1875,
+        "y": 298.5,
+        "color": "rgb(28, 36, 48)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "classe": "cartao-selecao selecao-personagem__cartao ",
+        "width": 123.203125,
+        "height": 156.40625,
+        "x": 360.390625,
+        "y": 298.5,
+        "color": "rgb(28, 36, 48)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "classe": "cartao-selecao selecao-personagem__cartao ",
+        "width": 123.203125,
+        "height": 156.40625,
+        "x": 503.59375,
+        "y": 298.5,
+        "color": "rgb(28, 36, 48)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "classe": "cartao-selecao selecao-personagem__cartao ",
+        "width": 123.1875,
+        "height": 156.40625,
+        "x": 646.796875,
+        "y": 298.5,
+        "color": "rgb(28, 36, 48)",
+        "background": "rgba(0, 0, 0, 0)"
+      }
+    ]
+  },
+  "personagens-baixo-Escuro": {
+    "viewport": [
+      844,
+      390
+    ],
+    "overflow": false,
+    "elements": [
+      {
+        "classe": "painel",
+        "width": 812,
+        "height": 560,
+        "x": 16,
+        "y": 106.09375,
+        "color": "rgb(244, 246, 251)",
+        "background": "rgba(18, 24, 32, 0.92)"
+      },
+      {
+        "classe": "cartao-selecao selecao-personagem__cartao ",
+        "width": 123.1875,
+        "height": 156.40625,
+        "x": 74,
+        "y": 298.5,
+        "color": "rgb(244, 246, 251)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "classe": "cartao-selecao selecao-personagem__cartao ",
+        "width": 123.203125,
+        "height": 156.40625,
+        "x": 217.1875,
+        "y": 298.5,
+        "color": "rgb(244, 246, 251)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "classe": "cartao-selecao selecao-personagem__cartao ",
+        "width": 123.203125,
+        "height": 156.40625,
+        "x": 360.390625,
+        "y": 298.5,
+        "color": "rgb(244, 246, 251)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "classe": "cartao-selecao selecao-personagem__cartao ",
+        "width": 123.203125,
+        "height": 156.40625,
+        "x": 503.59375,
+        "y": 298.5,
+        "color": "rgb(244, 246, 251)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "classe": "cartao-selecao selecao-personagem__cartao ",
+        "width": 123.1875,
+        "height": 156.40625,
+        "x": 646.796875,
+        "y": 298.5,
+        "color": "rgb(244, 246, 251)",
+        "background": "rgba(0, 0, 0, 0)"
+      }
+    ]
+  },
+  "personagem-selecionado": {
+    "viewport": [
+      1366,
+      900
+    ],
+    "overflow": false,
+    "elements": [
+      {
+        "classe": "painel",
+        "width": 960,
+        "height": 560,
+        "x": 203,
+        "y": 215.046875,
+        "color": "rgb(244, 246, 251)",
+        "background": "rgba(18, 24, 32, 0.92)"
+      },
+      {
+        "classe": "cartao-selecao selecao-personagem__cartao ",
+        "width": 152.796875,
+        "height": 188.90625,
+        "x": 261,
+        "y": 413.234375,
+        "color": "rgb(244, 246, 251)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "classe": "cartao-selecao selecao-personagem__cartao ",
+        "width": 152.796875,
+        "height": 188.90625,
+        "x": 433.796875,
+        "y": 413.234375,
+        "color": "rgb(244, 246, 251)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "classe": "cartao-selecao selecao-personagem__cartao ",
+        "width": 152.796875,
+        "height": 188.90625,
+        "x": 606.59375,
+        "y": 413.234375,
+        "color": "rgb(244, 246, 251)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "classe": "cartao-selecao selecao-personagem__cartao ",
+        "width": 152.796875,
+        "height": 188.90625,
+        "x": 779.390625,
+        "y": 413.234375,
+        "color": "rgb(244, 246, 251)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "classe": "cartao-selecao selecao-personagem__cartao selecao-personagem__cartao--selecionado",
+        "width": 152.8125,
+        "height": 188.90625,
+        "x": 952.1875,
+        "y": 413.234375,
+        "color": "rgb(244, 246, 251)",
+        "background": "rgba(0, 0, 0, 0)"
+      }
+    ]
+  },
+  "jogo-desktop-Claro": {
+    "viewport": [
+      1366,
+      900
+    ],
+    "overflow": false,
+    "elements": [
+      {
+        "classe": "painel",
+        "width": 960,
+        "height": 560,
+        "x": 203,
+        "y": 170,
+        "color": "rgb(28, 36, 48)",
+        "background": "rgba(255, 252, 247, 0.94)"
+      },
+      {
+        "classe": "p5Canvas",
+        "width": 547.1875,
+        "height": 341.984375,
+        "x": 409.40625,
+        "y": 252,
+        "color": "rgb(28, 36, 48)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "classe": "botoes-direcionais",
+        "width": 144,
+        "height": 94,
+        "x": 611,
+        "y": 602,
+        "color": "rgb(28, 36, 48)",
+        "background": "rgba(0, 0, 0, 0)"
+      }
+    ]
+  },
+  "jogo-desktop-Escuro": {
+    "viewport": [
+      1366,
+      900
+    ],
+    "overflow": false,
+    "elements": [
+      {
+        "classe": "painel",
+        "width": 960,
+        "height": 560,
+        "x": 203,
+        "y": 170,
+        "color": "rgb(244, 246, 251)",
+        "background": "rgba(18, 24, 32, 0.92)"
+      },
+      {
+        "classe": "p5Canvas",
+        "width": 547.1875,
+        "height": 341.984375,
+        "x": 409.40625,
+        "y": 252,
+        "color": "rgb(244, 246, 251)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "classe": "botoes-direcionais",
+        "width": 144,
+        "height": 94,
+        "x": 611,
+        "y": 602,
+        "color": "rgb(244, 246, 251)",
+        "background": "rgba(0, 0, 0, 0)"
+      }
+    ]
+  },
+  "jogo-tablet-Claro": {
+    "viewport": [
+      768,
+      1024
+    ],
+    "overflow": false,
+    "elements": [
+      {
+        "classe": "painel",
+        "width": 736,
+        "height": 560,
+        "x": 16,
+        "y": 232,
+        "color": "rgb(28, 36, 48)",
+        "background": "rgba(255, 252, 247, 0.94)"
+      },
+      {
+        "classe": "p5Canvas",
+        "width": 547.1875,
+        "height": 341.984375,
+        "x": 110.40625,
+        "y": 314,
+        "color": "rgb(28, 36, 48)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "classe": "botoes-direcionais",
+        "width": 144,
+        "height": 94,
+        "x": 312,
+        "y": 664,
+        "color": "rgb(28, 36, 48)",
+        "background": "rgba(0, 0, 0, 0)"
+      }
+    ]
+  },
+  "jogo-tablet-Escuro": {
+    "viewport": [
+      768,
+      1024
+    ],
+    "overflow": false,
+    "elements": [
+      {
+        "classe": "painel",
+        "width": 736,
+        "height": 560,
+        "x": 16,
+        "y": 232,
+        "color": "rgb(244, 246, 251)",
+        "background": "rgba(18, 24, 32, 0.92)"
+      },
+      {
+        "classe": "p5Canvas",
+        "width": 547.1875,
+        "height": 341.984375,
+        "x": 110.40625,
+        "y": 314,
+        "color": "rgb(244, 246, 251)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "classe": "botoes-direcionais",
+        "width": 144,
+        "height": 94,
+        "x": 312,
+        "y": 664,
+        "color": "rgb(244, 246, 251)",
+        "background": "rgba(0, 0, 0, 0)"
+      }
+    ]
+  },
+  "jogo-mobile-Claro": {
+    "viewport": [
+      390,
+      844
+    ],
+    "overflow": false,
+    "elements": [
+      {
+        "classe": "painel",
+        "width": 366,
+        "height": 560,
+        "x": 12,
+        "y": 142,
+        "color": "rgb(28, 36, 48)",
+        "background": "rgba(255, 252, 247, 0.94)"
+      },
+      {
+        "classe": "p5Canvas",
+        "width": 306,
+        "height": 191.25,
+        "x": 42,
+        "y": 299.375,
+        "color": "rgb(28, 36, 48)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "classe": "botoes-direcionais",
+        "width": 144,
+        "height": 94,
+        "x": 123,
+        "y": 578,
+        "color": "rgb(28, 36, 48)",
+        "background": "rgba(0, 0, 0, 0)"
+      }
+    ]
+  },
+  "jogo-mobile-Escuro": {
+    "viewport": [
+      390,
+      844
+    ],
+    "overflow": false,
+    "elements": [
+      {
+        "classe": "painel",
+        "width": 366,
+        "height": 560,
+        "x": 12,
+        "y": 142,
+        "color": "rgb(244, 246, 251)",
+        "background": "rgba(18, 24, 32, 0.92)"
+      },
+      {
+        "classe": "p5Canvas",
+        "width": 306,
+        "height": 191.25,
+        "x": 42,
+        "y": 299.375,
+        "color": "rgb(244, 246, 251)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "classe": "botoes-direcionais",
+        "width": 144,
+        "height": 94,
+        "x": 123,
+        "y": 578,
+        "color": "rgb(244, 246, 251)",
+        "background": "rgba(0, 0, 0, 0)"
+      }
+    ]
+  },
+  "jogo-baixo-Claro": {
+    "viewport": [
+      844,
+      390
+    ],
+    "overflow": false,
+    "elements": [
+      {
+        "classe": "painel",
+        "width": 812,
+        "height": 560,
+        "x": 16,
+        "y": 16,
+        "color": "rgb(28, 36, 48)",
+        "background": "rgba(255, 252, 247, 0.94)"
+      },
+      {
+        "classe": "p5Canvas",
+        "width": 547.1875,
+        "height": 341.984375,
+        "x": 148.40625,
+        "y": 98,
+        "color": "rgb(28, 36, 48)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "classe": "botoes-direcionais",
+        "width": 144,
+        "height": 94,
+        "x": 350,
+        "y": 448,
+        "color": "rgb(28, 36, 48)",
+        "background": "rgba(0, 0, 0, 0)"
+      }
+    ]
+  },
+  "jogo-baixo-Escuro": {
+    "viewport": [
+      844,
+      390
+    ],
+    "overflow": false,
+    "elements": [
+      {
+        "classe": "painel",
+        "width": 812,
+        "height": 560,
+        "x": 16,
+        "y": 16,
+        "color": "rgb(244, 246, 251)",
+        "background": "rgba(18, 24, 32, 0.92)"
+      },
+      {
+        "classe": "p5Canvas",
+        "width": 547.1875,
+        "height": 341.984375,
+        "x": 148.40625,
+        "y": 98,
+        "color": "rgb(244, 246, 251)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "classe": "botoes-direcionais",
+        "width": 144,
+        "height": 94,
+        "x": 350,
+        "y": 448,
+        "color": "rgb(244, 246, 251)",
+        "background": "rgba(0, 0, 0, 0)"
+      }
+    ]
+  },
+  "conta-desktop-Claro": {
+    "viewport": [
+      1366,
+      900
+    ],
+    "overflow": false,
+    "elements": [
+      {
+        "classe": "painel",
+        "width": 960,
+        "height": 560,
+        "x": 203,
+        "y": 215.046875,
+        "color": "rgb(28, 36, 48)",
+        "background": "rgba(255, 252, 247, 0.94)"
+      }
+    ]
+  },
+  "conta-desktop-Escuro": {
+    "viewport": [
+      1366,
+      900
+    ],
+    "overflow": false,
+    "elements": [
+      {
+        "classe": "painel",
+        "width": 960,
+        "height": 560,
+        "x": 203,
+        "y": 215.046875,
+        "color": "rgb(244, 246, 251)",
+        "background": "rgba(18, 24, 32, 0.92)"
+      }
+    ]
+  },
+  "conta-tablet-Claro": {
+    "viewport": [
+      768,
+      1024
+    ],
+    "overflow": false,
+    "elements": [
+      {
+        "classe": "painel",
+        "width": 736,
+        "height": 560,
+        "x": 16,
+        "y": 277.046875,
+        "color": "rgb(28, 36, 48)",
+        "background": "rgba(255, 252, 247, 0.94)"
+      }
+    ]
+  },
+  "conta-tablet-Escuro": {
+    "viewport": [
+      768,
+      1024
+    ],
+    "overflow": false,
+    "elements": [
+      {
+        "classe": "painel",
+        "width": 736,
+        "height": 560,
+        "x": 16,
+        "y": 277.046875,
+        "color": "rgb(244, 246, 251)",
+        "background": "rgba(18, 24, 32, 0.92)"
+      }
+    ]
+  },
+  "conta-mobile-Claro": {
+    "viewport": [
+      390,
+      844
+    ],
+    "overflow": false,
+    "elements": [
+      {
+        "classe": "painel",
+        "width": 366,
+        "height": 560,
+        "x": 12,
+        "y": 180.3125,
+        "color": "rgb(28, 36, 48)",
+        "background": "rgba(255, 252, 247, 0.94)"
+      }
+    ]
+  },
+  "conta-mobile-Escuro": {
+    "viewport": [
+      390,
+      844
+    ],
+    "overflow": false,
+    "elements": [
+      {
+        "classe": "painel",
+        "width": 366,
+        "height": 560,
+        "x": 12,
+        "y": 180.3125,
+        "color": "rgb(244, 246, 251)",
+        "background": "rgba(18, 24, 32, 0.92)"
+      }
+    ]
+  },
+  "conta-baixo-Claro": {
+    "viewport": [
+      844,
+      390
+    ],
+    "overflow": false,
+    "elements": [
+      {
+        "classe": "painel",
+        "width": 812,
+        "height": 560,
+        "x": 16,
+        "y": 106.09375,
+        "color": "rgb(28, 36, 48)",
+        "background": "rgba(255, 252, 247, 0.94)"
+      }
+    ]
+  },
+  "conta-baixo-Escuro": {
+    "viewport": [
+      844,
+      390
+    ],
+    "overflow": false,
+    "elements": [
+      {
+        "classe": "painel",
+        "width": 812,
+        "height": 560,
+        "x": 16,
+        "y": 106.09375,
+        "color": "rgb(244, 246, 251)",
+        "background": "rgba(18, 24, 32, 0.92)"
+      }
+    ]
+  },
+  "exclusao-desktop-Claro": {
+    "viewport": [
+      1366,
+      900
+    ],
+    "overflow": false,
+    "elements": [
+      {
+        "classe": "painel",
+        "width": 960,
+        "height": 560,
+        "x": 203,
+        "y": 215.046875,
+        "color": "rgb(28, 36, 48)",
+        "background": "rgba(255, 252, 247, 0.94)"
+      }
+    ]
+  },
+  "exclusao-desktop-Escuro": {
+    "viewport": [
+      1366,
+      900
+    ],
+    "overflow": false,
+    "elements": [
+      {
+        "classe": "painel",
+        "width": 960,
+        "height": 560,
+        "x": 203,
+        "y": 215.046875,
+        "color": "rgb(244, 246, 251)",
+        "background": "rgba(18, 24, 32, 0.92)"
+      }
+    ]
+  },
+  "exclusao-tablet-Claro": {
+    "viewport": [
+      768,
+      1024
+    ],
+    "overflow": false,
+    "elements": [
+      {
+        "classe": "painel",
+        "width": 736,
+        "height": 560,
+        "x": 16,
+        "y": 277.046875,
+        "color": "rgb(28, 36, 48)",
+        "background": "rgba(255, 252, 247, 0.94)"
+      }
+    ]
+  },
+  "exclusao-tablet-Escuro": {
+    "viewport": [
+      768,
+      1024
+    ],
+    "overflow": false,
+    "elements": [
+      {
+        "classe": "painel",
+        "width": 736,
+        "height": 560,
+        "x": 16,
+        "y": 277.046875,
+        "color": "rgb(244, 246, 251)",
+        "background": "rgba(18, 24, 32, 0.92)"
+      }
+    ]
+  },
+  "exclusao-mobile-Claro": {
+    "viewport": [
+      390,
+      844
+    ],
+    "overflow": false,
+    "elements": [
+      {
+        "classe": "painel",
+        "width": 366,
+        "height": 560,
+        "x": 12,
+        "y": 180.3125,
+        "color": "rgb(28, 36, 48)",
+        "background": "rgba(255, 252, 247, 0.94)"
+      }
+    ]
+  },
+  "exclusao-mobile-Escuro": {
+    "viewport": [
+      390,
+      844
+    ],
+    "overflow": false,
+    "elements": [
+      {
+        "classe": "painel",
+        "width": 366,
+        "height": 560,
+        "x": 12,
+        "y": 180.3125,
+        "color": "rgb(244, 246, 251)",
+        "background": "rgba(18, 24, 32, 0.92)"
+      }
+    ]
+  },
+  "exclusao-baixo-Claro": {
+    "viewport": [
+      844,
+      390
+    ],
+    "overflow": false,
+    "elements": [
+      {
+        "classe": "painel",
+        "width": 812,
+        "height": 560,
+        "x": 16,
+        "y": 106.09375,
+        "color": "rgb(28, 36, 48)",
+        "background": "rgba(255, 252, 247, 0.94)"
+      }
+    ]
+  },
+  "exclusao-baixo-Escuro": {
+    "viewport": [
+      844,
+      390
+    ],
+    "overflow": false,
+    "elements": [
+      {
+        "classe": "painel",
+        "width": 812,
+        "height": 560,
+        "x": 16,
+        "y": 106.09375,
+        "color": "rgb(244, 246, 251)",
+        "background": "rgba(18, 24, 32, 0.92)"
+      }
+    ]
+  },
+  "final-desktop-Claro": {
+    "viewport": [
+      1366,
+      900
+    ],
+    "overflow": false,
+    "elements": [
+      {
+        "classe": "painel",
+        "width": 960,
+        "height": 560,
+        "x": 203,
+        "y": 170,
+        "color": "rgb(28, 36, 48)",
+        "background": "rgba(255, 252, 247, 0.94)"
+      },
+      {
+        "classe": "botao botao--painel finalizacao-fase__botao",
+        "width": 219.53125,
+        "height": 54.09375,
+        "x": 479.078125,
+        "y": 612.984375,
+        "color": "rgb(30, 58, 138)",
+        "background": "rgb(255, 253, 248)"
+      },
+      {
+        "classe": "botao botao--painel finalizacao-fase__botao",
+        "width": 176.296875,
+        "height": 54.09375,
+        "x": 710.609375,
+        "y": 612.984375,
+        "color": "rgb(30, 58, 138)",
+        "background": "rgb(255, 253, 248)"
+      }
+    ]
+  },
+  "final-desktop-Escuro": {
+    "viewport": [
+      1366,
+      900
+    ],
+    "overflow": false,
+    "elements": [
+      {
+        "classe": "painel",
+        "width": 960,
+        "height": 560,
+        "x": 203,
+        "y": 170,
+        "color": "rgb(244, 246, 251)",
+        "background": "rgba(18, 24, 32, 0.92)"
+      },
+      {
+        "classe": "botao botao--painel finalizacao-fase__botao",
+        "width": 219.53125,
+        "height": 54.09375,
+        "x": 479.078125,
+        "y": 612.984375,
+        "color": "rgb(255, 203, 5)",
+        "background": "rgb(27, 36, 48)"
+      },
+      {
+        "classe": "botao botao--painel finalizacao-fase__botao",
+        "width": 176.296875,
+        "height": 54.09375,
+        "x": 710.609375,
+        "y": 612.984375,
+        "color": "rgb(255, 203, 5)",
+        "background": "rgb(27, 36, 48)"
+      }
+    ]
+  },
+  "final-tablet-Claro": {
+    "viewport": [
+      768,
+      1024
+    ],
+    "overflow": false,
+    "elements": [
+      {
+        "classe": "painel",
+        "width": 736,
+        "height": 560,
+        "x": 16,
+        "y": 232,
+        "color": "rgb(28, 36, 48)",
+        "background": "rgba(255, 252, 247, 0.94)"
+      },
+      {
+        "classe": "botao botao--painel finalizacao-fase__botao",
+        "width": 200.015625,
+        "height": 51.203125,
+        "x": 197.1875,
+        "y": 674.484375,
+        "color": "rgb(30, 58, 138)",
+        "background": "rgb(255, 253, 248)"
+      },
+      {
+        "classe": "botao botao--painel finalizacao-fase__botao",
+        "width": 161.59375,
+        "height": 51.203125,
+        "x": 409.203125,
+        "y": 674.484375,
+        "color": "rgb(30, 58, 138)",
+        "background": "rgb(255, 253, 248)"
+      }
+    ]
+  },
+  "final-tablet-Escuro": {
+    "viewport": [
+      768,
+      1024
+    ],
+    "overflow": false,
+    "elements": [
+      {
+        "classe": "painel",
+        "width": 736,
+        "height": 560,
+        "x": 16,
+        "y": 232,
+        "color": "rgb(244, 246, 251)",
+        "background": "rgba(18, 24, 32, 0.92)"
+      },
+      {
+        "classe": "botao botao--painel finalizacao-fase__botao",
+        "width": 200.015625,
+        "height": 51.203125,
+        "x": 197.1875,
+        "y": 674.484375,
+        "color": "rgb(255, 203, 5)",
+        "background": "rgb(27, 36, 48)"
+      },
+      {
+        "classe": "botao botao--painel finalizacao-fase__botao",
+        "width": 161.59375,
+        "height": 51.203125,
+        "x": 409.203125,
+        "y": 674.484375,
+        "color": "rgb(255, 203, 5)",
+        "background": "rgb(27, 36, 48)"
+      }
+    ]
+  },
+  "final-mobile-Claro": {
+    "viewport": [
+      390,
+      844
+    ],
+    "overflow": false,
+    "elements": [
+      {
+        "classe": "painel",
+        "width": 366,
+        "height": 560,
+        "x": 12,
+        "y": 142,
+        "color": "rgb(28, 36, 48)",
+        "background": "rgba(255, 252, 247, 0.94)"
+      },
+      {
+        "classe": "botao botao--painel finalizacao-fase__botao",
+        "width": 200.015625,
+        "height": 51.203125,
+        "x": 94.984375,
+        "y": 543.28125,
+        "color": "rgb(30, 58, 138)",
+        "background": "rgb(255, 253, 248)"
+      },
+      {
+        "classe": "botao botao--painel finalizacao-fase__botao",
+        "width": 161.59375,
+        "height": 51.203125,
+        "x": 114.203125,
+        "y": 606.484375,
+        "color": "rgb(30, 58, 138)",
+        "background": "rgb(255, 253, 248)"
+      }
+    ]
+  },
+  "final-mobile-Escuro": {
+    "viewport": [
+      390,
+      844
+    ],
+    "overflow": false,
+    "elements": [
+      {
+        "classe": "painel",
+        "width": 366,
+        "height": 560,
+        "x": 12,
+        "y": 142,
+        "color": "rgb(244, 246, 251)",
+        "background": "rgba(18, 24, 32, 0.92)"
+      },
+      {
+        "classe": "botao botao--painel finalizacao-fase__botao",
+        "width": 200.015625,
+        "height": 51.203125,
+        "x": 94.984375,
+        "y": 543.28125,
+        "color": "rgb(255, 203, 5)",
+        "background": "rgb(27, 36, 48)"
+      },
+      {
+        "classe": "botao botao--painel finalizacao-fase__botao",
+        "width": 161.59375,
+        "height": 51.203125,
+        "x": 114.203125,
+        "y": 606.484375,
+        "color": "rgb(255, 203, 5)",
+        "background": "rgb(27, 36, 48)"
+      }
+    ]
+  },
+  "final-baixo-Claro": {
+    "viewport": [
+      844,
+      390
+    ],
+    "overflow": false,
+    "elements": [
+      {
+        "classe": "painel",
+        "width": 812,
+        "height": 560,
+        "x": 16,
+        "y": 16,
+        "color": "rgb(28, 36, 48)",
+        "background": "rgba(255, 252, 247, 0.94)"
+      },
+      {
+        "classe": "botao botao--painel finalizacao-fase__botao",
+        "width": 200.015625,
+        "height": 51.203125,
+        "x": 235.1875,
+        "y": 423.671875,
+        "color": "rgb(30, 58, 138)",
+        "background": "rgb(255, 253, 248)"
+      },
+      {
+        "classe": "botao botao--painel finalizacao-fase__botao",
+        "width": 161.59375,
+        "height": 51.203125,
+        "x": 447.203125,
+        "y": 423.671875,
+        "color": "rgb(30, 58, 138)",
+        "background": "rgb(255, 253, 248)"
+      }
+    ]
+  },
+  "final-baixo-Escuro": {
+    "viewport": [
+      844,
+      390
+    ],
+    "overflow": false,
+    "elements": [
+      {
+        "classe": "painel",
+        "width": 812,
+        "height": 560,
+        "x": 16,
+        "y": 16,
+        "color": "rgb(244, 246, 251)",
+        "background": "rgba(18, 24, 32, 0.92)"
+      },
+      {
+        "classe": "botao botao--painel finalizacao-fase__botao",
+        "width": 200.015625,
+        "height": 51.203125,
+        "x": 235.1875,
+        "y": 423.671875,
+        "color": "rgb(255, 203, 5)",
+        "background": "rgb(27, 36, 48)"
+      },
+      {
+        "classe": "botao botao--painel finalizacao-fase__botao",
+        "width": 161.59375,
+        "height": 51.203125,
+        "x": 447.203125,
+        "y": 423.671875,
+        "color": "rgb(255, 203, 5)",
+        "background": "rgb(27, 36, 48)"
+      }
+    ]
+  },
+  "mapa-2": {
+    "viewport": [
+      1366,
+      900
+    ],
+    "overflow": false,
+    "elements": [
+      {
+        "classe": "painel",
+        "width": 960,
+        "height": 560,
+        "x": 203,
+        "y": 170,
+        "color": "rgb(28, 36, 48)",
+        "background": "rgba(255, 252, 247, 0.94)"
+      },
+      {
+        "classe": "p5Canvas",
+        "width": 547.1875,
+        "height": 341.984375,
+        "x": 409.40625,
+        "y": 252,
+        "color": "rgb(28, 36, 48)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "classe": "botoes-direcionais",
+        "width": 144,
+        "height": 94,
+        "x": 611,
+        "y": 602,
+        "color": "rgb(28, 36, 48)",
+        "background": "rgba(0, 0, 0, 0)"
+      }
+    ]
+  },
+  "mapa-3": {
+    "viewport": [
+      1366,
+      900
+    ],
+    "overflow": false,
+    "elements": [
+      {
+        "classe": "painel",
+        "width": 960,
+        "height": 560,
+        "x": 203,
+        "y": 170,
+        "color": "rgb(28, 36, 48)",
+        "background": "rgba(255, 252, 247, 0.94)"
+      },
+      {
+        "classe": "p5Canvas",
+        "width": 547.1875,
+        "height": 341.984375,
+        "x": 409.40625,
+        "y": 252,
+        "color": "rgb(28, 36, 48)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "classe": "botoes-direcionais",
+        "width": 144,
+        "height": 94,
+        "x": 611,
+        "y": 602,
+        "color": "rgb(28, 36, 48)",
+        "background": "rgba(0, 0, 0, 0)"
+      }
+    ]
+  },
+  "mapa-4": {
+    "viewport": [
+      1366,
+      900
+    ],
+    "overflow": false,
+    "elements": [
+      {
+        "classe": "painel",
+        "width": 960,
+        "height": 560,
+        "x": 203,
+        "y": 170,
+        "color": "rgb(28, 36, 48)",
+        "background": "rgba(255, 252, 247, 0.94)"
+      },
+      {
+        "classe": "p5Canvas",
+        "width": 547.1875,
+        "height": 341.984375,
+        "x": 409.40625,
+        "y": 252,
+        "color": "rgb(28, 36, 48)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "classe": "botoes-direcionais",
+        "width": 144,
+        "height": 94,
+        "x": 611,
+        "y": 602,
+        "color": "rgb(28, 36, 48)",
+        "background": "rgba(0, 0, 0, 0)"
+      }
+    ]
+  },
+  "mapa-5": {
+    "viewport": [
+      1366,
+      900
+    ],
+    "overflow": false,
+    "elements": [
+      {
+        "classe": "painel",
+        "width": 960,
+        "height": 560,
+        "x": 203,
+        "y": 170,
+        "color": "rgb(28, 36, 48)",
+        "background": "rgba(255, 252, 247, 0.94)"
+      },
+      {
+        "classe": "p5Canvas",
+        "width": 547.1875,
+        "height": 341.984375,
+        "x": 409.40625,
+        "y": 252,
+        "color": "rgb(28, 36, 48)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "classe": "botoes-direcionais",
+        "width": 144,
+        "height": 94,
+        "x": 611,
+        "y": 602,
+        "color": "rgb(28, 36, 48)",
+        "background": "rgba(0, 0, 0, 0)"
+      }
+    ]
+  }
+}

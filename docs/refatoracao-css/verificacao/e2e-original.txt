@@ -1,0 +1,87 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+i  emulators: Starting emulators: auth
+i  emulators: Detected demo project ID "demo-pokerota", emulated services will use a demo configuration and attempts to access non-emulated services for this project will fail.
+⚠  emulators: It seems that you are running multiple instances of the emulator suite for project demo-pokerota. This may result in unexpected behavior.
+i  Running script: npm run test:e2e -- --config=/tmp/pokerota-original-playwright.config.mjs --grep "CT-AUT-001|CT-AUT-002" --fully-parallel --workers=2
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> pokerota-logica@0.0.0 test:e2e
+> playwright test --config=/tmp/pokerota-original-playwright.config.mjs --grep CT-AUT-001|CT-AUT-002 --fully-parallel --workers=2
+
+[WebServer] (node:58) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+[WebServer] (node:71) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 2 tests using 2 workers
+
+(node:108) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:114) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [chromium] › tests/autenticacao.spec.js:166:5 › Autenticação — login › CT-AUT-001 — deve autenticar e manter a sessão após atualizar (30.4s)
+  ✘  2 [chromium] › tests/autenticacao.spec.js:174:5 › Autenticação — login › CT-AUT-002 — deve permanecer sem sessão ao cancelar o login (30.3s)
+
+
+  1) [chromium] › tests/autenticacao.spec.js:166:5 › Autenticação — login › CT-AUT-001 — deve autenticar e manter a sessão após atualizar 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: page.waitForEvent: Test timeout of 30000ms exceeded.
+    =========================== logs ===========================
+    waiting for event "popup"
+    ============================================================
+
+      52 |     await verificarHomeSemSessao(page);
+      53 |
+    > 54 |     const janelaPromise = page.waitForEvent('popup');
+         |                                ^
+      55 |
+      56 |     await page.getByRole('button', {
+      57 |         name: 'Entrar com Google',
+        at abrirLogin (/tmp/pokerota-original/tests/autenticacao.spec.js:54:32)
+        at entrarComContaTeste (/tmp/pokerota-original/tests/autenticacao.spec.js:81:20)
+        at /tmp/pokerota-original/tests/autenticacao.spec.js:167:9
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../pokerota-validacao/e2e-original-results/autenticacao-Autenticação--b2f1c-ter-a-sessão-após-atualizar-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../pokerota-validacao/e2e-original-results/autenticacao-Autenticação--b2f1c-ter-a-sessão-após-atualizar-chromium/error-context.md
+
+  2) [chromium] › tests/autenticacao.spec.js:174:5 › Autenticação — login › CT-AUT-002 — deve permanecer sem sessão ao cancelar o login 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: page.waitForEvent: Test timeout of 30000ms exceeded.
+    =========================== logs ===========================
+    waiting for event "popup"
+    ============================================================
+
+      52 |     await verificarHomeSemSessao(page);
+      53 |
+    > 54 |     const janelaPromise = page.waitForEvent('popup');
+         |                                ^
+      55 |
+      56 |     await page.getByRole('button', {
+      57 |         name: 'Entrar com Google',
+        at abrirLogin (/tmp/pokerota-original/tests/autenticacao.spec.js:54:32)
+        at /tmp/pokerota-original/tests/autenticacao.spec.js:175:24
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../pokerota-validacao/e2e-original-results/autenticacao-Autenticação--26b63--sessão-ao-cancelar-o-login-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../pokerota-validacao/e2e-original-results/autenticacao-Autenticação--26b63--sessão-ao-cancelar-o-login-chromium/error-context.md
+
+  2 failed
+    [chromium] › tests/autenticacao.spec.js:166:5 › Autenticação — login › CT-AUT-001 — deve autenticar e manter a sessão após atualizar 
+    [chromium] › tests/autenticacao.spec.js:174:5 › Autenticação — login › CT-AUT-002 — deve permanecer sem sessão ao cancelar o login 
+⚠  Script exited unsuccessfully (code 1)
+i  emulators: Shutting down emulators.
+i  auth: Stopping Authentication Emulator
+i  hub: Stopping emulator hub
+i  logging: Stopping Logging Emulator
+
+Error: Script "npm run test:e2e -- --config=/tmp/pokerota-original-playwright.config.mjs --grep "CT-AUT-001|CT-AUT-002" --fully-parallel --workers=2" exited with code 1

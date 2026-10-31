@@ -1,0 +1,326 @@
+{
+  "mapa-5": {
+    "viewport": [
+      1366,
+      900
+    ],
+    "overflow": false,
+    "elements": [
+      {
+        "classe": "painel",
+        "width": 960,
+        "height": 560,
+        "x": 203,
+        "y": 170,
+        "color": "rgb(28, 36, 48)",
+        "background": "rgba(255, 252, 247, 0.94)"
+      },
+      {
+        "classe": "p5Canvas",
+        "width": 547.1875,
+        "height": 341.984375,
+        "x": 409.40625,
+        "y": 252,
+        "color": "rgb(28, 36, 48)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "classe": "botoes-direcionais",
+        "width": 144,
+        "height": 94,
+        "x": 611,
+        "y": 602,
+        "color": "rgb(28, 36, 48)",
+        "background": "rgba(0, 0, 0, 0)"
+      }
+    ]
+  },
+  "hall-desktop-Claro": {
+    "viewport": [
+      1366,
+      900
+    ],
+    "overflow": false,
+    "elements": [
+      {
+        "classe": "painel",
+        "width": 960,
+        "height": 560,
+        "x": 203,
+        "y": 170,
+        "color": "rgb(28, 36, 48)",
+        "background": "rgba(255, 252, 247, 0.94)"
+      },
+      {
+        "classe": "p5Canvas",
+        "width": 547.1875,
+        "height": 341.984375,
+        "x": 409.40625,
+        "y": 252,
+        "color": "rgb(28, 36, 48)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "classe": "botoes-direcionais",
+        "width": 144,
+        "height": 94,
+        "x": 611,
+        "y": 602,
+        "color": "rgb(28, 36, 48)",
+        "background": "rgba(0, 0, 0, 0)"
+      }
+    ]
+  },
+  "hall-desktop-Escuro": {
+    "viewport": [
+      1366,
+      900
+    ],
+    "overflow": false,
+    "elements": [
+      {
+        "classe": "painel",
+        "width": 960,
+        "height": 560,
+        "x": 203,
+        "y": 170,
+        "color": "rgb(244, 246, 251)",
+        "background": "rgba(18, 24, 32, 0.92)"
+      },
+      {
+        "classe": "p5Canvas",
+        "width": 547.1875,
+        "height": 341.984375,
+        "x": 409.40625,
+        "y": 252,
+        "color": "rgb(244, 246, 251)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "classe": "botoes-direcionais",
+        "width": 144,
+        "height": 94,
+        "x": 611,
+        "y": 602,
+        "color": "rgb(244, 246, 251)",
+        "background": "rgba(0, 0, 0, 0)"
+      }
+    ]
+  },
+  "hall-tablet-Claro": {
+    "viewport": [
+      768,
+      1024
+    ],
+    "overflow": false,
+    "elements": [
+      {
+        "classe": "painel",
+        "width": 736,
+        "height": 560,
+        "x": 16,
+        "y": 232,
+        "color": "rgb(28, 36, 48)",
+        "background": "rgba(255, 252, 247, 0.94)"
+      },
+      {
+        "classe": "p5Canvas",
+        "width": 547.1875,
+        "height": 341.984375,
+        "x": 110.40625,
+        "y": 314,
+        "color": "rgb(28, 36, 48)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "classe": "botoes-direcionais",
+        "width": 144,
+        "height": 94,
+        "x": 312,
+        "y": 664,
+        "color": "rgb(28, 36, 48)",
+        "background": "rgba(0, 0, 0, 0)"
+      }
+    ]
+  },
+  "hall-tablet-Escuro": {
+    "viewport": [
+      768,
+      1024
+    ],
+    "overflow": false,
+    "elements": [
+      {
+        "classe": "painel",
+        "width": 736,
+        "height": 560,
+        "x": 16,
+        "y": 232,
+        "color": "rgb(244, 246, 251)",
+        "background": "rgba(18, 24, 32, 0.92)"
+      },
+      {
+        "classe": "p5Canvas",
+        "width": 547.1875,
+        "height": 341.984375,
+        "x": 110.40625,
+        "y": 314,
+        "color": "rgb(244, 246, 251)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "classe": "botoes-direcionais",
+        "width": 144,
+        "height": 94,
+        "x": 312,
+        "y": 664,
+        "color": "rgb(244, 246, 251)",
+        "background": "rgba(0, 0, 0, 0)"
+      }
+    ]
+  },
+  "hall-mobile-Claro": {
+    "viewport": [
+      390,
+      844
+    ],
+    "overflow": false,
+    "elements": [
+      {
+        "classe": "painel",
+        "width": 366,
+        "height": 560,
+        "x": 12,
+        "y": 142,
+        "color": "rgb(28, 36, 48)",
+        "background": "rgba(255, 252, 247, 0.94)"
+      },
+      {
+        "classe": "p5Canvas",
+        "width": 306,
+        "height": 191.25,
+        "x": 42,
+        "y": 299.375,
+        "color": "rgb(28, 36, 48)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "classe": "botoes-direcionais",
+        "width": 144,
+        "height": 94,
+        "x": 123,
+        "y": 578,
+        "color": "rgb(28, 36, 48)",
+        "background": "rgba(0, 0, 0, 0)"
+      }
+    ]
+  },
+  "hall-mobile-Escuro": {
+    "viewport": [
+      390,
+      844
+    ],
+    "overflow": false,
+    "elements": [
+      {
+        "classe": "painel",
+        "width": 366,
+        "height": 560,
+        "x": 12,
+        "y": 142,
+        "color": "rgb(244, 246, 251)",
+        "background": "rgba(18, 24, 32, 0.92)"
+      },
+      {
+        "classe": "p5Canvas",
+        "width": 306,
+        "height": 191.25,
+        "x": 42,
+        "y": 299.375,
+        "color": "rgb(244, 246, 251)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "classe": "botoes-direcionais",
+        "width": 144,
+        "height": 94,
+        "x": 123,
+        "y": 578,
+        "color": "rgb(244, 246, 251)",
+        "background": "rgba(0, 0, 0, 0)"
+      }
+    ]
+  },
+  "hall-baixo-Claro": {
+    "viewport": [
+      844,
+      390
+    ],
+    "overflow": false,
+    "elements": [
+      {
+        "classe": "painel",
+        "width": 812,
+        "height": 560,
+        "x": 16,
+        "y": 16,
+        "color": "rgb(28, 36, 48)",
+        "background": "rgba(255, 252, 247, 0.94)"
+      },
+      {
+        "classe": "p5Canvas",
+        "width": 547.1875,
+        "height": 341.984375,
+        "x": 148.40625,
+        "y": 98,
+        "color": "rgb(28, 36, 48)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "classe": "botoes-direcionais",
+        "width": 144,
+        "height": 94,
+        "x": 350,
+        "y": 448,
+        "color": "rgb(28, 36, 48)",
+        "background": "rgba(0, 0, 0, 0)"
+      }
+    ]
+  },
+  "hall-baixo-Escuro": {
+    "viewport": [
+      844,
+      390
+    ],
+    "overflow": false,
+    "elements": [
+      {
+        "classe": "painel",
+        "width": 812,
+        "height": 560,
+        "x": 16,
+        "y": 16,
+        "color": "rgb(244, 246, 251)",
+        "background": "rgba(18, 24, 32, 0.92)"
+      },
+      {
+        "classe": "p5Canvas",
+        "width": 547.1875,
+        "height": 341.984375,
+        "x": 148.40625,
+        "y": 98,
+        "color": "rgb(244, 246, 251)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "classe": "botoes-direcionais",
+        "width": 144,
+        "height": 94,
+        "x": 350,
+        "y": 448,
+        "color": "rgb(244, 246, 251)",
+        "background": "rgba(0, 0, 0, 0)"
+      }
+    ]
+  }
+}
