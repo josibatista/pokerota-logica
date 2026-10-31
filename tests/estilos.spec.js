@@ -25,6 +25,15 @@ for (const viewport of [
                 await expect(page.locator('.painel')).toBeVisible();
                 expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
 
+                if (tela === 'home') {
+                    await page.locator('.home__pikachu').evaluate(img => img.decode());
+                    const experimentar = page.getByRole('button', { name: 'Experimente', exact: true });
+                    await experimentar.hover();
+                    await expect(experimentar).toHaveCSS('background-color', 'rgb(165, 20, 20)');
+                    const google = page.getByRole('button', { name: 'Entrar com Google', exact: true });
+                    await google.hover();
+                    await expect(google).toHaveCSS('background-color', 'rgb(255, 240, 240)');
+                }
                 if (tela === 'niveis') {
                     const cartoes = page.locator('.mapa-fase');
                     await expect(cartoes).toHaveCount(5);
@@ -53,10 +62,17 @@ for (const viewport of [
                     expect(desenho.height).toBeLessThanOrEqual(area.height + 1);
                     expect(desenho.width / desenho.height).toBeCloseTo(1.6, 1);
                     await expect(page.locator('.botoes-direcionais__botao')).toHaveCount(4);
+                    const frente = page.getByRole('button', { name: 'Mover para frente', exact: true });
+                    await frente.hover();
+                    await expect(frente).toHaveCSS('filter', 'brightness(0.95)');
                 }
                 if (tela === 'conta') {
                     await page.getByRole('button', { name: 'Apagar minha conta', exact: true }).click();
                     await expect(page.getByRole('dialog')).toBeVisible();
+                    const cancelar = page.getByRole('button', { name: 'Cancelar', exact: true });
+                    const fundo = await cancelar.evaluate(e => getComputedStyle(e).backgroundColor);
+                    await cancelar.hover();
+                    await expect(cancelar).toHaveCSS('background-color', fundo);
                     await page.getByRole('button', { name: 'Continuar', exact: true }).click();
                     await expect(page.getByRole('dialog', { name: 'Tem certeza?' })).toBeVisible();
                     await page.getByRole('button', { name: 'Cancelar', exact: true }).click();

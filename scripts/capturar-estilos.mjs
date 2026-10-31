@@ -41,7 +41,7 @@ async function shot(name) {
             await img.decode().catch(() => {});
         }
     });
-    await page.screenshot({ path: out + '/' + name + '.png', fullPage: true });
+    await page.screenshot({ path: out + '/' + name + '.png', fullPage: true, animations: 'disabled' });
     metrics[name] = await page.evaluate(() => ({
         viewport: [innerWidth, innerHeight],
         overflow: document.documentElement.scrollWidth > innerWidth,
