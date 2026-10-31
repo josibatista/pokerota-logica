@@ -19,7 +19,7 @@ const configuracoesPersonagens = {
         quadrosPorDirecao: 2,
     },
 
-    bulbasauro: {
+    bulbasaur: {
         imagem: bulbasauro,
         larguraSprite: 32,
         alturaSprite: 32,

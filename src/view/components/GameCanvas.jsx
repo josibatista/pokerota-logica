@@ -25,7 +25,7 @@ const mapas = {
 function GameCanvas({
     fase,
     onConcluir,
-    personagemSelecionado = 'pikachu',
+    personagemSelecionado,
     estado = null,
     reinicio = 0,
     onReiniciarEstado,

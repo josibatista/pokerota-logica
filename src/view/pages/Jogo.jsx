@@ -29,8 +29,13 @@ function Jogo() {
     const visitante = location.state?.visitante === true;
     const fase = obterFaseDaRota(location);
 
+    const personagemEmJogo = visitante
+        ? PERSONAGEM_PADRAO
+        : personagemSelecionado;
+
+    
     const estado = useMemo(() => {
-        if (!fase) {
+        if (!fase || !personagemEmJogo) {
             return null;
         }
 
@@ -42,7 +47,7 @@ function Jogo() {
 
         const resultado = associarPersonagem({
             jogadorId: visitante ? 'visitante' : 'jogador-local',
-            personagemSelecionado: PERSONAGEM_PADRAO,
+            personagemSelecionado: personagemEmJogo,
             personagens: configuracoesPersonagens,
             x: configuracao.personagemInicial.x,
             y: configuracao.personagemInicial.y,
@@ -54,7 +59,7 @@ function Jogo() {
         }
 
         return resultado.estado;
-    }, [fase, visitante]);
+    }, [fase, visitante, personagemEmJogo]);
 
     const [faseFinalizada, setFaseFinalizada] = useState(null);
     const [proximaDisponivel, setProximaDisponivel] = useState(false);
@@ -255,7 +260,7 @@ function Jogo() {
                     <GameCanvas
                         fase={fase}
                         onConcluir={concluirFase}
-                        personagemSelecionado={PERSONAGEM_PADRAO}
+                        personagemSelecionado={estado?.personagemSelecionado}
                         estado={estado}
                         reinicio={reinicio}
                         onReiniciarEstado={reiniciarEstado}
