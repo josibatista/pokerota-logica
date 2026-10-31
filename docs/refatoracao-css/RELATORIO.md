@@ -159,6 +159,7 @@ Neste container, processos iniciados em chamadas distintas não compartilham a r
 - `test: organizar captura visual e metricas de css`
 - `test: conferir hover dos botoes compartilhados`
 - `docs: registrar resultados e comparacoes da refatoracao css`
+- `docs: normalizar registros de validacao`
 
 A publicação utiliza a integração GitHub, pois o Git local não dispõe de credencial HTTPS. A sequência de commits é mantida e as árvores publicadas são comparadas às árvores locais. Os hashes de commits gerados pela integração diferem dos hashes locais por metadados de autoria/data. A branch é criada sem sobrescrever uma referência anterior e sem force push.
 

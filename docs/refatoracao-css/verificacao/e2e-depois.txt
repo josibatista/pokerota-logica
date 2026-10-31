@@ -55,7 +55,7 @@ Running 18 tests using 3 workers
   ✓  17 [chromium] › tests/estilos.spec.js:21:9 › estilos — 844x390 — escuro (8.4s)
 
 
-  1) [chromium] › tests/autenticacao.spec.js:166:5 › Autenticação — login › CT-AUT-001 — deve autenticar e manter a sessão após atualizar 
+  1) [chromium] › tests/autenticacao.spec.js:166:5 › Autenticação — login › CT-AUT-001 — deve autenticar e manter a sessão após atualizar
 
     Test timeout of 30000ms exceeded.
 
@@ -81,7 +81,7 @@ Running 18 tests using 3 workers
 
     Error Context: test-results/autenticacao-Autenticação--b2f1c-ter-a-sessão-após-atualizar-chromium/error-context.md
 
-  2) [chromium] › tests/autenticacao.spec.js:174:5 › Autenticação — login › CT-AUT-002 — deve permanecer sem sessão ao cancelar o login 
+  2) [chromium] › tests/autenticacao.spec.js:174:5 › Autenticação — login › CT-AUT-002 — deve permanecer sem sessão ao cancelar o login
 
     Test timeout of 30000ms exceeded.
 
@@ -106,7 +106,7 @@ Running 18 tests using 3 workers
 
     Error Context: test-results/autenticacao-Autenticação--26b63--sessão-ao-cancelar-o-login-chromium/error-context.md
 
-  3) [chromium] › tests/autenticacao.spec.js:194:9 › Autenticação — gerenciamento da conta › CT-AUT-003 — deve preservar a conta ao cancelar na confirmação 1 
+  3) [chromium] › tests/autenticacao.spec.js:194:9 › Autenticação — gerenciamento da conta › CT-AUT-003 — deve preservar a conta ao cancelar na confirmação 1
 
     Test timeout of 30000ms exceeded.
 
@@ -132,7 +132,7 @@ Running 18 tests using 3 workers
 
     Error Context: test-results/autenticacao-Autenticação--acfac-o-cancelar-na-confirmação-1-chromium/error-context.md
 
-  4) [chromium] › tests/autenticacao.spec.js:194:9 › Autenticação — gerenciamento da conta › CT-AUT-003 — deve preservar a conta ao cancelar na confirmação 2 
+  4) [chromium] › tests/autenticacao.spec.js:194:9 › Autenticação — gerenciamento da conta › CT-AUT-003 — deve preservar a conta ao cancelar na confirmação 2
 
     Test timeout of 30000ms exceeded.
 
@@ -158,7 +158,7 @@ Running 18 tests using 3 workers
 
     Error Context: test-results/autenticacao-Autenticação--c9810-o-cancelar-na-confirmação-2-chromium/error-context.md
 
-  5) [chromium] › tests/autenticacao.spec.js:221:5 › Autenticação — gerenciamento da conta › CT-AUT-004 — deve excluir a conta após duas confirmações 
+  5) [chromium] › tests/autenticacao.spec.js:221:5 › Autenticação — gerenciamento da conta › CT-AUT-004 — deve excluir a conta após duas confirmações
 
     Test timeout of 30000ms exceeded.
 
@@ -184,7 +184,7 @@ Running 18 tests using 3 workers
 
     Error Context: test-results/autenticacao-Autenticação--1ad4d-onta-após-duas-confirmações-chromium/error-context.md
 
-  6) [chromium] › tests/autenticacao.spec.js:242:5 › Autenticação — gerenciamento da conta › CT-AUT-005 — deve encerrar a sessão e bloquear as rotas privadas 
+  6) [chromium] › tests/autenticacao.spec.js:242:5 › Autenticação — gerenciamento da conta › CT-AUT-005 — deve encerrar a sessão e bloquear as rotas privadas
 
     Test timeout of 30000ms exceeded.
 
@@ -210,7 +210,7 @@ Running 18 tests using 3 workers
 
     Error Context: test-results/autenticacao-Autenticação--571f9--bloquear-as-rotas-privadas-chromium/error-context.md
 
-  7) [chromium] › tests/autenticacao.spec.js:258:5 › Autenticação — gerenciamento da conta › CT-AUT-006 — deve criar novo cadastro ao entrar com a mesma identidade após excluir a conta 
+  7) [chromium] › tests/autenticacao.spec.js:258:5 › Autenticação — gerenciamento da conta › CT-AUT-006 — deve criar novo cadastro ao entrar com a mesma identidade após excluir a conta
 
     Test timeout of 30000ms exceeded.
 
@@ -248,13 +248,13 @@ Running 18 tests using 3 workers
     Error Context: test-results/autenticacao-Autenticação--eac23-tidade-após-excluir-a-conta-chromium/error-context.md
 
   7 failed
-    [chromium] › tests/autenticacao.spec.js:166:5 › Autenticação — login › CT-AUT-001 — deve autenticar e manter a sessão após atualizar 
-    [chromium] › tests/autenticacao.spec.js:174:5 › Autenticação — login › CT-AUT-002 — deve permanecer sem sessão ao cancelar o login 
-    [chromium] › tests/autenticacao.spec.js:194:9 › Autenticação — gerenciamento da conta › CT-AUT-003 — deve preservar a conta ao cancelar na confirmação 1 
-    [chromium] › tests/autenticacao.spec.js:194:9 › Autenticação — gerenciamento da conta › CT-AUT-003 — deve preservar a conta ao cancelar na confirmação 2 
-    [chromium] › tests/autenticacao.spec.js:221:5 › Autenticação — gerenciamento da conta › CT-AUT-004 — deve excluir a conta após duas confirmações 
-    [chromium] › tests/autenticacao.spec.js:242:5 › Autenticação — gerenciamento da conta › CT-AUT-005 — deve encerrar a sessão e bloquear as rotas privadas 
-    [chromium] › tests/autenticacao.spec.js:258:5 › Autenticação — gerenciamento da conta › CT-AUT-006 — deve criar novo cadastro ao entrar com a mesma identidade após excluir a conta 
+    [chromium] › tests/autenticacao.spec.js:166:5 › Autenticação — login › CT-AUT-001 — deve autenticar e manter a sessão após atualizar
+    [chromium] › tests/autenticacao.spec.js:174:5 › Autenticação — login › CT-AUT-002 — deve permanecer sem sessão ao cancelar o login
+    [chromium] › tests/autenticacao.spec.js:194:9 › Autenticação — gerenciamento da conta › CT-AUT-003 — deve preservar a conta ao cancelar na confirmação 1
+    [chromium] › tests/autenticacao.spec.js:194:9 › Autenticação — gerenciamento da conta › CT-AUT-003 — deve preservar a conta ao cancelar na confirmação 2
+    [chromium] › tests/autenticacao.spec.js:221:5 › Autenticação — gerenciamento da conta › CT-AUT-004 — deve excluir a conta após duas confirmações
+    [chromium] › tests/autenticacao.spec.js:242:5 › Autenticação — gerenciamento da conta › CT-AUT-005 — deve encerrar a sessão e bloquear as rotas privadas
+    [chromium] › tests/autenticacao.spec.js:258:5 › Autenticação — gerenciamento da conta › CT-AUT-006 — deve criar novo cadastro ao entrar com a mesma identidade após excluir a conta
   11 passed (2.0m)
 ⚠  Script exited unsuccessfully (code 1)
 i  emulators: Shutting down emulators.

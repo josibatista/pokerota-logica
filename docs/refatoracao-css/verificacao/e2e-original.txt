@@ -24,7 +24,7 @@ Running 2 tests using 2 workers
   ✘  2 [chromium] › tests/autenticacao.spec.js:174:5 › Autenticação — login › CT-AUT-002 — deve permanecer sem sessão ao cancelar o login (30.3s)
 
 
-  1) [chromium] › tests/autenticacao.spec.js:166:5 › Autenticação — login › CT-AUT-001 — deve autenticar e manter a sessão após atualizar 
+  1) [chromium] › tests/autenticacao.spec.js:166:5 › Autenticação — login › CT-AUT-001 — deve autenticar e manter a sessão após atualizar
 
     Test timeout of 30000ms exceeded.
 
@@ -50,7 +50,7 @@ Running 2 tests using 2 workers
 
     Error Context: ../pokerota-validacao/e2e-original-results/autenticacao-Autenticação--b2f1c-ter-a-sessão-após-atualizar-chromium/error-context.md
 
-  2) [chromium] › tests/autenticacao.spec.js:174:5 › Autenticação — login › CT-AUT-002 — deve permanecer sem sessão ao cancelar o login 
+  2) [chromium] › tests/autenticacao.spec.js:174:5 › Autenticação — login › CT-AUT-002 — deve permanecer sem sessão ao cancelar o login
 
     Test timeout of 30000ms exceeded.
 
@@ -76,8 +76,8 @@ Running 2 tests using 2 workers
     Error Context: ../pokerota-validacao/e2e-original-results/autenticacao-Autenticação--26b63--sessão-ao-cancelar-o-login-chromium/error-context.md
 
   2 failed
-    [chromium] › tests/autenticacao.spec.js:166:5 › Autenticação — login › CT-AUT-001 — deve autenticar e manter a sessão após atualizar 
-    [chromium] › tests/autenticacao.spec.js:174:5 › Autenticação — login › CT-AUT-002 — deve permanecer sem sessão ao cancelar o login 
+    [chromium] › tests/autenticacao.spec.js:166:5 › Autenticação — login › CT-AUT-001 — deve autenticar e manter a sessão após atualizar
+    [chromium] › tests/autenticacao.spec.js:174:5 › Autenticação — login › CT-AUT-002 — deve permanecer sem sessão ao cancelar o login
 ⚠  Script exited unsuccessfully (code 1)
 i  emulators: Shutting down emulators.
 i  auth: Stopping Authentication Emulator
