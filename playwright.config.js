@@ -1,4 +1,8 @@
+import process from 'node:process';
 import { defineConfig, devices } from '@playwright/test';
+
+const porta = process.env.PLAYWRIGHT_PORT || '5174';
+const baseURL = process.env.PLAYWRIGHT_BASE_URL || `http://127.0.0.1:${porta}`;
 
 export default defineConfig({
   testDir: './tests',
@@ -12,7 +16,14 @@ export default defineConfig({
   ],
 
   use: {
-    baseURL: 'http://127.0.0.1:5174', 
+    baseURL,
+    // Overrides opcionais para ambientes com Chromium já instalado/proxy.
+    launchOptions: {
+      executablePath: process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH || undefined,
+      proxy: process.env.PLAYWRIGHT_PROXY_SERVER
+        ? { server: process.env.PLAYWRIGHT_PROXY_SERVER, bypass: '127.0.0.1,localhost' }
+        : undefined,
+    },
     trace: 'on-first-retry',
     screenshot: 'only-on-failure',
   },
@@ -25,8 +36,8 @@ export default defineConfig({
   ],
 
   webServer: {
-    command: 'npm run dev -- --mode test --host 127.0.0.1 --port 5174 --strictPort',
-    url: 'http://127.0.0.1:5174',
+    command: `npm run dev -- --mode test --host 0.0.0.0 --port ${porta} --strictPort`,
+    url: baseURL,
     reuseExistingServer: false,
     timeout: 120000,
   },
