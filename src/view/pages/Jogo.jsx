@@ -1,6 +1,7 @@
 
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { usePersonagem } from '../context/PersonagemContext';
 import GameCanvas from '../components/GameCanvas';
 import BotoesDirecionais from '../components/BotoesDirecionais';
 import FinalizacaoFase from '../components/FinalizacaoFase';
@@ -22,6 +23,8 @@ const TECLAS_DIRECIONAIS = ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'];
 function Jogo() {
     const location = useLocation();
     const navegar = useNavigate();
+
+    const { personagemSelecionado } = usePersonagem();
 
     const visitante = location.state?.visitante === true;
     const fase = obterFaseDaRota(location);
@@ -213,6 +216,22 @@ function Jogo() {
                     onClick={() => navegar('/niveis')}
                 >
                     Voltar para seleção de fases
+                </button>
+            </main>
+        );
+    }
+
+    if (!visitante && !personagemSelecionado) {
+        return (
+            <main className="jogo">
+                <p>Nenhum personagem foi selecionado.</p>
+                <button
+                    type="button"
+                    onClick={() => navegar('/personagem', {
+                        state: { fase },
+                    })}
+                >
+                    Escolher personagem
                 </button>
             </main>
         );

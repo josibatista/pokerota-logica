@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import {loginComGoogle, inscreverEstadoAutenticacao, logout, excluirConta as excluirContaController} from '../controller/authController';
+import { PersonagemProvider } from './context/PersonagemContext';
 import Estrutura from './components/layouts/Estrutura';
 import AppRoutes from './routes/AppRoutes';
 import './App.css';
@@ -55,19 +56,22 @@ function App() {
     }
 
     return (
-        <Estrutura
-            usuario={usuario}
-            onEncerrarSessao={encerrarSessao}
-        >
-            <AppRoutes
+        <PersonagemProvider key={usuario?.uid ?? 'visitante'}>
+            <Estrutura
                 usuario={usuario}
-                carregandoSessao={carregandoSessao}
-                onEntrarComGoogle={entrarComGoogle}
                 onEncerrarSessao={encerrarSessao}
-                onExcluirConta={excluirMinhaConta}
-            />
-        </Estrutura>
+            >
+                <AppRoutes
+                    usuario={usuario}
+                    carregandoSessao={carregandoSessao}
+                    onEntrarComGoogle={entrarComGoogle}
+                    onEncerrarSessao={encerrarSessao}
+                    onExcluirConta={excluirMinhaConta}
+                />
+            </Estrutura>
+        </PersonagemProvider>
     );
+
 }
 
 export default App;

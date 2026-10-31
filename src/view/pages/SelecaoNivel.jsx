@@ -74,7 +74,7 @@ function SelecaoNivel() {
 
         //um segundo clique na fase selecionada abre o jogo nessa fase
         if (faseSelecionada === numero) {
-            navegar('/jogo', {
+            navegar('/personagem', {
                 state: { fase: numero },
             });
             return;
