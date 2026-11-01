@@ -1,3 +1,4 @@
+import obstaculosNivel1 from './colisoes/dados/nivel1.js';
 
 const configuracoesMapas = {
     1: {
@@ -11,6 +12,7 @@ const configuracoesMapas = {
             x: 442,
             y: 45,
         },
+        obstaculos: obstaculosNivel1,
     },
 
     2: {
