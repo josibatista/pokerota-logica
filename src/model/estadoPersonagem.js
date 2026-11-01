@@ -1,5 +1,6 @@
 const DIRECOES = ['cima', 'baixo', 'esquerda', 'direita'];
 const DIRECAO_INICIAL = 'baixo';
+import verificarColisao from './colisoes/verificarColisao.js';
 
 // Mesma velocidade do canvas: 2 px por atualização, com a diagonal normalizada.
 const VELOCIDADE = 2;
@@ -177,7 +178,7 @@ class EstadoPersonagem {
         };
     }
 
-    atualizar() {
+    atualizar(configuracaoColisao = null) {
         const deslocamento = calcularDeslocamento(this.comandosAtivos());
 
         if (!deslocamento.emMovimento) {
@@ -185,8 +186,39 @@ class EstadoPersonagem {
         }
 
         this.direcao = deslocamento.direcao;
-        this.x += deslocamento.x;
-        this.y += deslocamento.y;
+
+        const proximoX = this.x + deslocamento.x;
+        const proximoY = this.y + deslocamento.y;
+
+        // Verifica se a posição pode ser ocupada
+        const podeMoverPara = (x, y) => {
+            if (!configuracaoColisao) {
+                return true;
+            }
+
+            return !verificarColisao({
+                x,
+                y,
+                ...configuracaoColisao,
+            });
+        };
+
+        // Movimento permitido: atualiza a posição.
+        if (podeMoverPara(proximoX, proximoY)) {
+            this.x = proximoX;
+            this.y = proximoY;
+        }
+        // Na diagonal, tenta deslizar pelo eixo livre.
+        else if (deslocamento.x !== 0 && deslocamento.y !== 0) {
+            if (podeMoverPara(proximoX, this.y)) {
+                this.x = proximoX;
+            }
+
+            if (podeMoverPara(this.x, proximoY)) {
+                this.y = proximoY;
+            }
+        }
+
         return this;
     }
 
