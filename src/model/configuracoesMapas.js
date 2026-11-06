@@ -1,4 +1,5 @@
 import obstaculosNivel1 from './colisoes/dados/nivel1.js';
+import obstaculosNivel4 from './colisoes/dados/nivel4.js';
 
 const configuracoesMapas = {
     1: {
@@ -46,12 +47,13 @@ const configuracoesMapas = {
         escala: 2.1,    
         personagemInicial: {
             x: 400,
-            y: 2560,
+            y: 200,
         },
         pokeparada: {
             x: 395,
             y: 60,
-        }
+        },
+        obstaculos: obstaculosNivel4,
     },
 
     5: {
