@@ -416,6 +416,29 @@ function GameCanvas({
                 }
             }
 
+            // verifica se o personagem alcançou o ponto de transição do nível 4
+            function verificarTransicaoNivel4() {
+                if (
+                    fase !== 4 ||
+                    !configuracao.transicao ||
+                    transicaoEmAndamento ||
+                    faseConcluida
+                ) {
+                    return;
+                }
+
+                const { origem, destino } = configuracao.transicao;
+
+                const distanciaX = Math.abs(estado.x - origem.x);
+                const distanciaY = Math.abs(estado.y - origem.y);
+
+                // verifica se o personagem chegou próximo ao ponto de transição
+                if (distanciaX < 20 && distanciaY < 20) {
+                    definirPosicao(estado, destino.x, destino.y);
+                    indiceQuadro = 0;
+                }
+            }
+
             //inicializa o canvas e carrega os recursos necessários para a fase
             p.setup = () => {
                 if (!ativo) {
@@ -444,6 +467,9 @@ function GameCanvas({
                 //verifica a transição antes de atualizar o movimento do personagem
                 verificarTransicao();
                 aplicarMovimento();
+                
+                //checagem do mapa nível 4 
+                verificarTransicaoNivel4();
 
                 //recalcula as dimensões porque o mapa pode mudar após a transição
                 const larguraMapa = mapa.width * escalaMapa;

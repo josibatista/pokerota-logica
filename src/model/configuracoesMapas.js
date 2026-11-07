@@ -46,12 +46,22 @@ const configuracoesMapas = {
         mapa: 'nivel4',
         escala: 2.1,    
         personagemInicial: {
-            x: 400,
-            y: 200,
+            x: 490,
+            y: 2560,
         },
         pokeparada: {
             x: 395,
             y: 60,
+        },
+        transicao: {
+            origem: {
+                x: 182,
+                y: 963,
+            },
+            destino: {
+                x: 620,
+                y: 963,
+            },
         },
         obstaculos: obstaculosNivel4,
     },
