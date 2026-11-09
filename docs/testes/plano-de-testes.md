@@ -14,7 +14,7 @@ Planejar a validação funcional do jogo educativo PokéRota Lógica, com casos 
 - **Níveis:** sistema/E2E e integração de fluxos relevantes.
 - **Técnicas:** BDD (Dado/Quando/Então), cenários positivos/negativos, transição de estados e limites de movimentação.
 - **Execução:** manual durante desenvolvimento; automação Playwright quando o módulo correspondente estiver implementado.
-- **Ambiente:** Vite local e Firebase Authentication Emulator para a automação de autenticação, utilizando contas fictícias no projeto `demo-pokerota`. Os demais módulos terão seus ambientes preparados conforme a implementação.
+- **Ambiente:** Vite local, Firebase Authentication Emulator e Firestore Emulator, utilizando contas fictícias e dados de progresso isolados no projeto `demo-pokerota`. Os testes de integração com serviços reais e os demais módulos terão seus ambientes preparados conforme a implementação.
 - **Ferramenta:** Playwright Test (Chromium inicial).
 - **Prioridade:** seguir a prioridade declarada no documento de [requisitos](../requisitos.md).
 
@@ -43,6 +43,7 @@ Planejar a validação funcional do jogo educativo PokéRota Lógica, com casos 
 **Total:** 33 casos de teste funcionais, distribuídos em cinco conjuntos.  
 Casos BDD: `casos-funcionais/*.md`; rastreabilidade: `matriz-rastreabilidade.md`; configuração: `playwright.config.js`. Registrar por execução: ID, data, ambiente, resultado (passou/falhou/bloqueado/não executado), evidência e defeito associado.
 
+
 ## 8. Execução dos testes automatizados
 
 ### Preparação
@@ -54,25 +55,27 @@ npm install
 npx playwright install chromium
 ```
 
-O emulador é configurado em `firebase.json`. O Playwright inicia o Vite
-automaticamente no modo `test`, em `http://127.0.0.1:5174`, sem reutilizar
-um servidor de desenvolvimento já aberto.
+Os emuladores são configurados em `firebase.json`, com as regras de acesso ao Firestore definidas em `firestore.rules`. Para sua execução, é necessário possuir uma versão compatível do Java instalada.
 
-Nesse modo, a aplicação utiliza o Authentication Emulator em
-`http://127.0.0.1:9099`, com o projeto `demo-pokerota`.
+O Playwright inicia o Vite automaticamente no modo `test`, em `http://127.0.0.1:5174`, sem reutilizar um servidor de desenvolvimento já aberto.
 
-O comando habitual `npm run dev` continua utilizando a configuração
-Firebase do ambiente de desenvolvimento.
+Nesse modo, a aplicação utiliza o projeto fictício `demo-pokerota`, com os seguintes serviços:
+
+- **Authentication Emulator:** `http://127.0.0.1:9099`, utilizado para autenticação com contas fictícias.
+- **Firestore Emulator:** `http://127.0.0.1:8080`, utilizado para armazenamento, consulta e exclusão dos dados de progresso.
+- **Emulator Suite UI:** `http://127.0.0.1:4000`, utilizada para inspeção dos serviços e dados locais.
+
+O comando habitual `npm run dev` continua utilizando a configuração Firebase do ambiente de desenvolvimento.
 
 ### Executar a suíte
 
-Em um terminal, inicie o emulador e mantenha-o aberto:
+Em um terminal, inicie os emuladores e mantenha-os abertos:
 
 ```bash
-npx firebase emulators:start --only auth --project demo-pokerota
+npx firebase emulators:start --only auth,firestore --project demo-pokerota
 ```
 
-Em outro terminal, execute:
+Em outro terminal, execute a suíte completa:
 
 ```bash
 npm run test:e2e
@@ -80,18 +83,22 @@ npm run test:e2e
 
 Não é necessário iniciar o Vite manualmente.
 
-Para executar apenas os testes de autenticação:
+Para executar separadamente os conjuntos de testes:
 
 ```bash
 npx playwright test tests/autenticacao.spec.js
+npx playwright test tests/smoke.spec.js
+npx playwright test tests/fases.spec.js
+npx playwright test tests/personagem.spec.js
+npx playwright test tests/progresso.spec.js
 ```
 
 ### Investigar falhas
 
-Para executar em sequência, com navegador visível e registro dos passos:
+Para executar os testes em sequência, com navegador visível e registro dos passos:
 
 ```bash
-npx playwright test tests/autenticacao.spec.js --headed --workers=1 --trace=on
+npx playwright test --headed --workers=1 --trace=on
 ```
 
 Para abrir o relatório da última execução:
@@ -100,30 +107,36 @@ Para abrir o relatório da última execução:
 npx playwright show-report
 ```
 
-Os resultados gerados em `test-results/` e `playwright-report/`, assim
-como os logs do emulador, não devem ser versionados. As evidências
-necessárias à entrega devem ser selecionadas e registradas separadamente.
+Os resultados gerados em `test-results/` e `playwright-report/`, assim como os logs dos emuladores, não devem ser versionados. As evidências necessárias à entrega devem ser selecionadas e registradas separadamente.
 
 ### Cobertura atual
 
-- `tests/smoke.spec.js`: carregamento inicial da Home e opções de acesso.
-- `tests/autenticacao.spec.js`: CT-AUT-001 a CT-AUT-006 e duas verificações
-  complementares de acesso às rotas privadas sem sessão.
+A suíte contempla 26 testes automatizados, distribuídos em cinco arquivos:
 
-O arquivo de autenticação possui nove testes: dois de proteção das
-rotas, um para cada CT-AUT e uma variação adicional do CT-AUT-003,
-que verifica o cancelamento nas duas confirmações.
+- `tests/smoke.spec.js`: 1 teste de carregamento inicial da Home e opções de acesso.
+- `tests/autenticacao.spec.js`: 9 testes, abrangendo CT-AUT-001 a CT-AUT-006 e verificações complementares de proteção das rotas privadas e cancelamento da exclusão.
+- `tests/fases.spec.js`: 4 testes, abrangendo CT-FAS-001, CT-FAS-002, CT-FAS-005 e uma verificação complementar de navegação.
+- `tests/personagem.spec.js`: 5 testes, abrangendo CT-MOV-002 e verificações complementares de exibição, seleção, troca, manutenção da escolha e bloqueio da confirmação sem fase definida.
+- `tests/progresso.spec.js`: 7 testes, abrangendo CT-PRO-001 a CT-PRO-005, CT-FAS-003 e CT-FAS-004.
+
+As funções compartilhadas de autenticação e preparação, consulta e verificação do progresso estão organizadas em `tests/utils/`.
+
+A quantidade de testes executáveis não representa percentual de cobertura de código. A mensuração desse indicador exige instrumentação específica.
 
 ### Particularidades e limites
 
-As contas utilizadas são fictícias. A automação verifica a integração
-da aplicação com o Authentication Emulator; a autenticação com o
-serviço real do Google permanece uma verificação manual.
+As contas utilizadas são fictícias, e os dados de progresso são manipulados exclusivamente no Firestore Emulator, sem utilização do banco de produção.
 
-No CT-AUT-006, o teste reutiliza a credencial fictícia do provedor na
-segunda autenticação, mantendo a mesma identidade simulada. A resposta
-continua sendo produzida pelo emulador. O teste verifica a criação de
-um novo cadastro com UID diferente após a exclusão.
+A automação de autenticação verifica a integração com o Authentication Emulator. A autenticação com o serviço real do Google permanece uma verificação manual.
 
-A exclusão verificada corresponde ao Firebase Authentication. A remoção
-de dados associados no Firestore não está coberta por esta automação.
+No CT-AUT-006, o teste reutiliza a credencial fictícia do provedor na segunda autenticação, mantendo a mesma identidade simulada. A resposta continua sendo produzida pelo emulador. O teste verifica a criação de um novo cadastro com UID diferente após a exclusão.
+
+A operação de exclusão do progresso também é executada no Firestore Emulator. Entretanto, a remoção efetiva do documento após a exclusão da conta ainda necessita de uma verificação automatizada específica.
+
+Nos testes de persistência, são utilizadas consultas diretas ao Firestore Emulator e chamadas ao controlador real da aplicação para verificar armazenamento, recuperação, atualização e isolamento do progresso entre usuários.
+
+Os CT-PRO-001, CT-PRO-005 e CT-FAS-003 verificam a integração com o salvamento do progresso, mas não reproduzem a conclusão efetiva de uma fase por meio da movimentação do personagem no Canvas. Essa integração permanece pendente de validação.
+
+O CT-PRO-002 verifica a recuperação do progresso após recarregar a aplicação com a sessão autenticada. A recuperação após logout e novo login ainda não é verificada especificamente.
+
+A seleção de personagens utiliza React Context, preservando a escolha durante a navegação na aplicação. A persistência do personagem entre sessões não faz parte da implementação atual.
