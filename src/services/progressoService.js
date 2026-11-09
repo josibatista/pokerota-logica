@@ -1,7 +1,7 @@
 import { deleteDoc, doc, getDoc, setDoc } from 'firebase/firestore';
 import { obterUsuarioAtual } from './authService';
 import Progresso from '../model/progresso.js';
-import { db, usarEmulador } from './firebase';
+import { db } from './firebase';
 
 const COLECAO_PROGRESSO = 'progresso';
 
@@ -130,13 +130,6 @@ export function salvarProgresso(valor) {
 
 export function excluirProgresso() {
     return executarOperacao(async () => {
-        // O modo de teste usa só o emulador de Authentication e o projeto
-        // demo-pokerota. Nesse ambiente não há documento de progresso.
-        // Fora dele, a exclusão do documento é obrigatória.
-        if (usarEmulador) {
-            return;
-        }
-
         const uid = await obterUidAutenticado();
         // deleteDoc conclui mesmo quando o documento ainda não existe.
         await deleteDoc(referenciaProgresso(uid));
