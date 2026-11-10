@@ -2,7 +2,7 @@ import './estrutura.css';
 
 function Icone({ children }) {
     return (
-        <svg viewBox="0 0 24 24" className="cabecalhoIcone" aria-hidden="true" focusable="false">
+        <svg viewBox="0 0 24 24" className="icone-controle cabecalhoIcone" aria-hidden="true" focusable="false">
             {children}
         </svg>
     );
@@ -10,7 +10,7 @@ function Icone({ children }) {
 
 function BotaoCabecalho({ rotulo, onClick, children }) {
     return (
-        <button type="button" className="cabecalhoBotao" aria-label={rotulo} onClick={onClick} disabled={typeof onClick !== 'function'}>
+        <button type="button" className="botao botao--icone cabecalhoBotao" aria-label={rotulo} onClick={onClick} disabled={typeof onClick !== 'function'}>
             {children}
         </button>
     );

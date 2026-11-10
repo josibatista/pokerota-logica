@@ -87,9 +87,9 @@ function SelecaoNivel() {
     //apresenta ume stado de carregamento enquanto o progresso  consultado
     if (carregando) {
         return (
-            <main className="selecao-nivel">
+            <main className="selecao selecao-nivel">
                 <section
-                    className="selecao-nivel__janela"
+                    className="selecao__janela selecao-nivel__janela"
                     aria-label="Seleção de fases"
                 >
                     <p>Carregando progresso...</p>
@@ -101,14 +101,15 @@ function SelecaoNivel() {
     //apresenta o erro e permite recarregar a página para tentar novamente
     if (erro) {
         return (
-            <main className="selecao-nivel">
+            <main className="selecao selecao-nivel">
                 <section
-                    className="selecao-nivel__janela"
+                    className="selecao__janela selecao-nivel__janela"
                     aria-label="Seleção de fases"
                 >
                     <p role="alert">{erro}</p>
                     <button
                         type="button"
+                        className="botao botao--painel"
                         onClick={() => window.location.reload()}
                     >
                         Tentar novamente
@@ -125,9 +126,9 @@ function SelecaoNivel() {
     }));
 
     return (
-        <main className="selecao-nivel">
+        <main className="selecao selecao-nivel">
             <section
-                className="selecao-nivel__janela"
+                className="selecao__janela selecao-nivel__janela"
                 aria-label="Seleção de fases"
             >
                 <p>

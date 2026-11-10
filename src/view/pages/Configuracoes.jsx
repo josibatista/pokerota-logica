@@ -8,7 +8,7 @@ function Configuracoes({
 }) {
     return (
         <main>
-            <h1>Configurações</h1>
+            <h1 className="titulo-pagina">Configurações</h1>
 
             <GerenciamentoConta
                 usuario={usuario}

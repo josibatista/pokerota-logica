@@ -1,54 +1,17 @@
 .gerenciamento-conta {
     width: 100%;
-    color: #222222;
+    color: var(--pokerotaTexto);
     box-sizing: border-box;
 }
 
 .gerenciamento-conta__acoes {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 16px;
-}
-
-.gerenciamento-conta__botao {
-    min-height: 48px;
-    padding: 12px 20px;
-    border: 2px solid #2883bf;
-    border-radius: 10px;
-    background: #ffffff;
-    color: #173451;
-    font: inherit;
-    font-weight: 600;
-    cursor: pointer;
-}
-
-.gerenciamento-conta__botao--excluir {
-    border-color: #a52626;
-    color: #a52626;
-}
-
-.gerenciamento-conta__botao:hover:not(:disabled) {
-    background: #edf7ff;
-}
-
-.gerenciamento-conta__botao--excluir:hover:not(:disabled) {
-    background: #fff0f0;
-}
-
-.gerenciamento-conta__botao:disabled {
-    opacity: 0.65;
-    cursor: not-allowed;
-}
-
-.gerenciamento-conta__botao:focus-visible {
-    outline: 3px solid #2883bf;
-    outline-offset: 4px;
+    --acoes-alinhamento: space-between;
+    --acoes-espaco: 16px;
 }
 
 .gerenciamento-conta__mensagem {
     margin: 16px 0 0;
-    color: #495b6b;
+    color: var(--pokerotaTextoSuave);
     line-height: 1.5;
     font-size: 0.85rem;
 }

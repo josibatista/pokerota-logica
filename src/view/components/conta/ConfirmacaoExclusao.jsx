@@ -33,13 +33,13 @@ function ConfirmacaoExclusao({ aberta, etapa, ocupada, mensagem, onCancelar, onA
             </p>
             <p className="confirmacao-exclusao__etapa">Confirmação {etapa} de 2</p>
             <p className="confirmacao-exclusao__mensagem" role="status" aria-live="polite">{mensagem}</p>
-            <div className="confirmacao-exclusao__acoes">
-                <button type="button" className="confirmacao-exclusao__botao" onClick={onCancelar} disabled={ocupada} autoFocus>
+            <div className="acoes confirmacao-exclusao__acoes">
+                <button type="button" className="botao botao--secundario confirmacao-exclusao__botao" onClick={onCancelar} disabled={ocupada} autoFocus>
                     Cancelar
                 </button>
                 <button
                     type="button"
-                    className="confirmacao-exclusao__botao confirmacao-exclusao__botao--excluir"
+                    className="botao botao--destrutivo confirmacao-exclusao__botao"
                     onClick={etapa === 1 ? onAvancar : onConfirmar}
                     disabled={ocupada}
                 >

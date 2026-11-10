@@ -218,6 +218,7 @@ function Jogo() {
                 <p>Nenhuma fase foi selecionada.</p>
                 <button
                     type="button"
+                    className="botao botao--painel"
                     onClick={() => navegar('/niveis')}
                 >
                     Voltar para seleção de fases
@@ -232,6 +233,7 @@ function Jogo() {
                 <p>Nenhum personagem foi selecionado.</p>
                 <button
                     type="button"
+                    className="botao botao--painel"
                     onClick={() => navegar('/personagem', {
                         state: { fase },
                     })}
@@ -265,7 +267,7 @@ function Jogo() {
                         reinicio={reinicio}
                         onReiniciarEstado={reiniciarEstado}
                     />
-                    <div className="jogo__acoes">
+                    <div className="acoes jogo__acoes">
                         <BotoesDirecionais
                             key={reinicio}
                             onPressionar={pressionarBotao}

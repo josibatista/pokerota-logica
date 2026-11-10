@@ -17,7 +17,7 @@ function CartaoFase({
     return (
         <button
             type="button"
-            className={`mapa-fase ${
+            className={`cartao-selecao mapa-fase ${
                 selecionada ? 'mapa-fase--destaque' : ''
             } ${
                 bloqueada ? 'mapa-fase--bloqueada' : ''
@@ -26,7 +26,7 @@ function CartaoFase({
             disabled={bloqueada}
             aria-label={`Fase ${numero}, ${descricaoEstado}`}
         >
-            <div className="mapa-fase__imagem">
+            <div className="cartao-selecao__imagem mapa-fase__imagem">
                 <img
                     src={imagem}
                     alt={`Mapa da fase ${numero}`}

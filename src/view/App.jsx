@@ -1,9 +1,10 @@
+import './styles/tema.css';
+import './styles/componentes.css';
 import { useEffect, useState } from 'react';
 import {loginComGoogle, inscreverEstadoAutenticacao, logout, excluirConta as excluirContaController} from '../controller/authController';
 import { PersonagemProvider } from './context/PersonagemContext';
 import Estrutura from './components/layouts/Estrutura';
 import AppRoutes from './routes/AppRoutes';
-import './App.css';
 
 function App() {
     const [usuario, setUsuario] = useState(null);

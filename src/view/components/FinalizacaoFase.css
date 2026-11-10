@@ -12,7 +12,7 @@
 
 .finalizacao-fase__mensagem {
     margin: 0;
-    color: var(--pokerotaTitulo, #1e3a8a);
+    color: var(--pokerotaTitulo);
     font: inherit;
     font-size: 1.5rem;
     font-weight: 800;
@@ -27,7 +27,7 @@
     height: 3px;
     margin: 12px auto 0;
     border-radius: 999px;
-    background: #ffcb05;
+    background: var(--pokerotaAmarelo);
 }
 
 .finalizacao-fase__cena {
@@ -109,37 +109,4 @@
     .finalizacao-fase__personagem {
         max-height: min(170px, 32vh);
     }
-}
-
-.finalizacao-fase__acoes {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 12px;
-}
-
-.finalizacao-fase__botao {
-    min-height: 48px;
-    padding: 12px 20px;
-    border: 2px solid var(--pokerotaBorda, #2346a0);
-    border-radius: 10px;
-    background: var(--pokerotaSuperficie, #fffdf8);
-    color: var(--pokerotaIcone, #1e3a8a);
-    font: inherit;
-    font-weight: 600;
-    cursor: pointer;
-}
-
-.finalizacao-fase__botao:hover:not(:disabled) {
-    filter: brightness(0.95);
-}
-
-.finalizacao-fase__botao:focus-visible {
-    outline: 3px solid #ffcb05;
-    outline-offset: 3px;
-}
-
-.finalizacao-fase__botao:disabled {
-    opacity: 0.65;
-    cursor: not-allowed;
 }
