@@ -1,9 +1,13 @@
-import { randomUUID } from 'node:crypto';
 import { test, expect } from '@playwright/test';
+import {
+    abrirLogin,
+    entrarComContaTeste,
+    verificarAreaAutenticada,
+    verificarHomeSemSessao,
+} from './utils/autenticacao.js';
 
 const EMULADOR_URL = 'http://127.0.0.1:9099';
 const ROTAS_PROTEGIDAS = ['/niveis', '/personagem'];
-const NOME_TESTE = 'Pessoa Teste';
 
 function respostaDoEmulador(resposta, operacao) {
     const url = new URL(resposta.url());
@@ -19,81 +23,6 @@ function respostaDeAutenticacaoLocal(resposta) {
 
 function respostaDeExclusaoLocal(resposta) {
     return respostaDoEmulador(resposta, 'delete');
-}
-
-async function verificarHomeSemSessao(page) {
-    await expect(page).toHaveURL(/\/$/);
-
-    await expect(page.getByRole('heading', {
-        name: 'Entre para começar sua aventura!',
-    })).toBeVisible();
-
-    await expect(page.getByRole('button', {
-        name: 'Entrar com Google',
-        exact: true,
-    })).toBeEnabled();
-}
-
-async function verificarAreaAutenticada(page) {
-    await expect(page).toHaveURL(/\/niveis$/);
-
-    await expect(
-        page.getByText(`Olá, ${NOME_TESTE}!`, { exact: true })
-    ).toBeVisible();
-
-    await expect(page.getByRole('button', {
-        name: 'Sair',
-        exact: true,
-    })).toBeEnabled();
-}
-
-async function abrirLogin(page) {
-    await page.goto('/');
-    await verificarHomeSemSessao(page);
-
-    const janelaPromise = page.waitForEvent('popup');
-
-    await page.getByRole('button', {
-        name: 'Entrar com Google',
-        exact: true,
-    }).click();
-
-    const janela = await janelaPromise;
-
-    // Confirma que a autenticação está usando o emulador local.
-    await expect(janela).toHaveURL(
-        /^http:\/\/127\.0\.0\.1:9099\/.*$/
-    );
-
-    await janela.waitForLoadState('load');
-
-    await expect(janela.getByRole('button', {
-        name: /Add new account/i,
-    })).toBeVisible();
-
-    return janela;
-}
-
-async function entrarComContaTeste(
-    page,
-    email = `pokerota-${randomUUID()}@example.com`
-) {
-    const janela = await abrirLogin(page);
-
-    await janela.getByRole('button', {
-        name: /Add new account/i,
-    }).click();
-
-    await janela.locator('#email-input').fill(email);
-    await janela.locator('#display-name-input').fill(NOME_TESTE);
-
-    await janela.getByRole('button', {
-        name: /Sign in with Google\.com/i,
-    }).click();
-
-    await verificarAreaAutenticada(page);
-
-    return email;
 }
 
 async function iniciarExclusao(page) {
