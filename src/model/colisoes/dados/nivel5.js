@@ -1,5 +1,5 @@
 const obstaculosNivel5 = [
-    // árvores
+    // árvores (IDs 4 e 5: base das arvoretas da fachada em y 235,2 − 20 = 215,2)
     {
         x: 0,
         y: 0,
@@ -22,61 +22,61 @@ const obstaculosNivel5 = [
         x: 0,
         y: 170.1,
         largura: 327.6,
-        altura: 23.1,
+        altura: 45.1,
     },
     {
         x: 445.2,
         y: 170.1,
         largura: 361.2,
-        altura: 23.1,
+        altura: 45.1,
     },
     {
         x: 0,
         y: 193.2,
-        largura: 184.8,
+        largura: 170.8,
         altura: 100.8,
     },
     {
-        x: 588,
+        x: 602,
         y: 193.2,
-        largura: 218.4,
+        largura: 204.4,
         altura: 100.8,
     },
     {
         x: 0,
         y: 294,
-        largura: 117.6,
+        largura: 103.6,
         altura: 67.2,
     },
     {
-        x: 655.2,
+        x: 669.2,
         y: 294,
-        largura: 151.2,
+        largura: 137.2,
         altura: 67.2,
     },
     // penhascos
     {
         x: 0,
         y: 411.6,
-        largura: 193.2,
+        largura: 179.2,
         altura: 67.2,
     },
     {
-        x: 579.6,
+        x: 593.6,
         y: 411.6,
-        largura: 226.8,
+        largura: 212.8,
         altura: 67.2,
     },
     {
         x: 0,
         y: 478.8,
-        largura: 294,
+        largura: 280,
         altura: 193.2,
     },
     {
-        x: 478.8,
+        x: 492.8,
         y: 478.8,
-        largura: 327.6,
+        largura: 313.6,
         altura: 193.2,
     },
     // construção, estátuas e pedras
@@ -140,120 +140,111 @@ const obstaculosNivel5 = [
         largura: 4.2,
         altura: 2.1,
     },
+    // Jardim: cada retângulo é a arte recuada 16 nas laterais, 12 em cima e
+    // 20 embaixo (distância entre a hitbox de 64 e o corpo visível). Objetos
+    // com até 34 de largura viram uma linha central de 0,5, como as flores da
+    // fase 4. Nos corredores de um tile (33,6) cada borda foi afastada ~2 do
+    // vão para deixar uma janela de 5,5 a 6,4 unidades para o centro do personagem.
+    // estátuas da esquerda (arte x 268,8–302,4)
+    // estátua de cima (arte y 201,6–268,8)
     {
-        x: 283.5,
-        y: 222.6,
-        largura: 4.2,
-        altura: 25.2,
+        x: 285.35,
+        y: 213.6,
+        largura: 0.5,
+        altura: 33.2,
+    },
+    // estátua do meio (arte y 302,4–369,6)
+    {
+        x: 287.15,
+        y: 316.4,
+        largura: 0.5,
+        altura: 31.2,
+    },
+    // estátua de baixo (arte y 403,2–470,4)
+    {
+        x: 285.35,
+        y: 417.2,
+        largura: 0.5,
+        altura: 33.2,
+    },
+    // estátuas da direita (arte x 470,4–504)
+    // estátua de cima
+    {
+        x: 486.95,
+        y: 213.6,
+        largura: 0.5,
+        altura: 33.2,
+    },
+    // estátua do meio
+    {
+        x: 485.65,
+        y: 316.4,
+        largura: 0.5,
+        altura: 31.2,
+    },
+    // estátua de baixo
+    {
+        x: 486.95,
+        y: 417.2,
+        largura: 0.5,
+        altura: 33.2,
+    },
+    // objetos brancos da esquerda
+    // coluna de quatro objetos (arte x 203,7–235,2, y 268,8–403,2)
+    {
+        x: 217.2,
+        y: 280.8,
+        largura: 0.5,
+        altura: 102.4,
+    },
+    // objeto de cima (arte x 237,3–268,8, y 235,2–268,8)
+    {
+        x: 252.8,
+        y: 246.4,
+        largura: 0.5,
+        altura: 0.4,
+    },
+    // objeto de baixo (arte y 403,2–436,8)
+    {
+        x: 252.8,
+        y: 417.2,
+        largura: 0.5,
+        altura: 0.4,
+    },
+    // objetos brancos da direita
+    // coluna de quatro objetos (arte x 539,7–571,2)
+    {
+        x: 556.5,
+        y: 280.8,
+        largura: 0.5,
+        altura: 102.4,
+    },
+    // objeto de cima (arte x 506,1–537,6)
+    {
+        x: 521.6,
+        y: 246.4,
+        largura: 0.5,
+        altura: 0.4,
+    },
+    // objeto de baixo
+    {
+        x: 521.6,
+        y: 417.2,
+        largura: 0.5,
+        altura: 0.4,
+    },
+    // paredes laterais da escadaria (arte x 302,4–336 e 436,8–470,4, a partir de y 436,8)
+    {
+        x: 318.4,
+        y: 448.8,
+        largura: 1.6,
+        altura: 223.2,
     },
     {
-        x: 485.1,
-        y: 222.6,
-        largura: 4.2,
-        altura: 25.2,
-    },
-    {
-        x: 245.7,
-        y: 239.4,
-        largura: 12.6,
-        altura: 12.6,
-    },
-    {
-        x: 514.5,
-        y: 239.4,
-        largura: 12.6,
-        altura: 12.6,
-    },
-    {
-        x: 214.2,
-        y: 275.1,
-        largura: 10.5,
-        altura: 12.6,
-    },
-    {
-        x: 550.2,
-        y: 275.1,
-        largura: 10.5,
-        altura: 12.6,
-    },
-    {
-        x: 214.2,
-        y: 308.7,
-        largura: 10.5,
-        altura: 12.6,
-    },
-    {
-        x: 279.3,
-        y: 308.7,
-        largura: 12.6,
-        altura: 46.2,
-    },
-    {
-        x: 480.9,
-        y: 308.7,
-        largura: 12.6,
-        altura: 46.2,
-    },
-    {
-        x: 550.2,
-        y: 308.7,
-        largura: 10.5,
-        altura: 12.6,
-    },
-    {
-        x: 214.2,
-        y: 342.3,
-        largura: 10.5,
-        altura: 12.6,
-    },
-    {
-        x: 550.2,
-        y: 342.3,
-        largura: 10.5,
-        altura: 12.6,
-    },
-    {
-        x: 214.2,
-        y: 375.9,
-        largura: 10.5,
-        altura: 12.6,
-    },
-    {
-        x: 550.2,
-        y: 375.9,
-        largura: 10.5,
-        altura: 12.6,
-    },
-    {
-        x: 262.5,
-        y: 405.3,
-        largura: 29.4,
-        altura: 16.8,
-    },
-    {
-        x: 438.9,
-        y: 407.4,
-        largura: 60.9,
-        altura: 92.4,
-    },
-    {
-        x: 480.9,
-        y: 405.3,
-        largura: 29.4,
-        altura: 16.8,
-    },
-    // corrimãos e colunas laterais da escadaria
-    {
-        x: 298.2,
-        y: 436.8,
-        largura: 35.7,
-        altura: 231,
-    },
-    {
-        x: 436.8,
-        y: 436.8,
-        largura: 37.8,
-        altura: 231,
+        x: 452.8,
+        y: 448.8,
+        largura: 1.6,
+        altura: 223.2,
     },
 ];
 
@@ -506,41 +497,44 @@ const obstaculosHallDaFama = [
         altura: 2.1,
     },
     // pilares e máquina de registro
+    // pilares: arte de 25,2 × 58,8 (x 71,4–96,6 e 273–298,2; topos em 107,1,
+    // 207,9 e 308,7). x = início + 16, largura = 25,2 − 32, y = topo + 12,
+    // altura = 58,8 − 32. O vão de 42 entre dois pilares fica transitável
     {
-        x: 75.6,
-        y: 111.3,
-        largura: 16.8,
-        altura: 50.4,
+        x: 87.4,
+        y: 119.1,
+        largura: -6.8,
+        altura: 26.8,
     },
     {
-        x: 277.2,
-        y: 111.3,
-        largura: 16.8,
-        altura: 50.4,
+        x: 289,
+        y: 119.1,
+        largura: -6.8,
+        altura: 26.8,
     },
     {
-        x: 75.6,
-        y: 212.1,
-        largura: 16.8,
-        altura: 50.4,
+        x: 87.4,
+        y: 219.9,
+        largura: -6.8,
+        altura: 26.8,
     },
     {
-        x: 277.2,
-        y: 212.1,
-        largura: 16.8,
-        altura: 50.4,
+        x: 289,
+        y: 219.9,
+        largura: -6.8,
+        altura: 26.8,
     },
     {
-        x: 75.6,
-        y: 312.9,
-        largura: 16.8,
-        altura: 50.4,
+        x: 87.4,
+        y: 320.7,
+        largura: -6.8,
+        altura: 26.8,
     },
     {
-        x: 277.2,
-        y: 312.9,
-        largura: 16.8,
-        altura: 50.4,
+        x: 289,
+        y: 320.7,
+        largura: -6.8,
+        altura: 26.8,
     },
 ];
 export { obstaculosHallDaFama };
