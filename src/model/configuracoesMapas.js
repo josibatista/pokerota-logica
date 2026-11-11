@@ -1,3 +1,8 @@
+import obstaculosNivel1 from './colisoes/dados/nivel1.js';
+import obstaculosNivel2 from './colisoes/dados/nivel2.js';
+import obstaculosNivel3 from './colisoes/dados/nivel3.js';
+import obstaculosNivel4 from './colisoes/dados/nivel4.js';
+import obstaculosNivel5, { obstaculosHallDaFama } from './colisoes/dados/nivel5.js';
 
 const configuracoesMapas = {
     1: {
@@ -11,6 +16,7 @@ const configuracoesMapas = {
             x: 442,
             y: 45,
         },
+        obstaculos: obstaculosNivel1,
     },
 
     2: {
@@ -23,7 +29,8 @@ const configuracoesMapas = {
         pokeparada: {
             x: 410,
             y: 50,
-        }
+        },
+        obstaculos: obstaculosNivel2,
     },
 
     3: {
@@ -36,20 +43,32 @@ const configuracoesMapas = {
         pokeparada: {
             x: 186,
             y: 378,
-        }
+        },
+        obstaculos: obstaculosNivel3,
     },
 
     4: {
         mapa: 'nivel4',
         escala: 2.1,    
         personagemInicial: {
-            x: 400,
+            x: 490,
             y: 2560,
         },
         pokeparada: {
             x: 395,
             y: 60,
-        }
+        },
+        transicao: {
+            origem: {
+                x: 182,
+                y: 963,
+            },
+            destino: {
+                x: 620,
+                y: 963,
+            },
+        },
+        obstaculos: obstaculosNivel4,
     },
 
     5: {
@@ -57,7 +76,7 @@ const configuracoesMapas = {
         escala: 2.1,
         personagemInicial: {
             x: 385,
-            y: 405,
+            y: 613,
         },
         porta: {
             x: 385,
@@ -73,9 +92,11 @@ const configuracoesMapas = {
             // O valor pode ser calibrado pelo texto X/Y exibido no canvas.
             objetivo: {
                 x: 185,
-                y: 160,
+                y: 155,
             },
+            obstaculos: obstaculosHallDaFama,
         },
+        obstaculos: obstaculosNivel5,
     },
 };
 

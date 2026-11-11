@@ -124,37 +124,43 @@ function GameCanvas({
                     return;
                 }
 
-                const resultado = atualizarMovimentacao(estado);
+                // Guarda a posição anterior para verificar se realmente ocorreu deslocamento.
+                const anteriorX = estado.x;
+                const anteriorY = estado.y;
 
-                if (!resultado.sucesso || !estado.estaEmMovimento()) {
+                // Utiliza as dimensões reais do mapa escalado.
+                const limitesMapa = {
+                    largura: mapa.width * escalaMapa,
+                    altura: mapa.height * escalaMapa,
+                };
+
+                // Cada cenário fornece seus próprios obstáculos.
+                const obstaculos = mapaFinal
+                    ? (configuracao.hallDaFama?.obstaculos ?? [])
+                    : (configuracao.obstaculos ?? []);
+
+                const resultado = atualizarMovimentacao(estado, {
+                    obstaculos,
+                    limitesMapa,
+                });
+
+                // Interrompe a animação se não houve deslocamento.
+                const personagemParado =
+                    anteriorX === estado.x &&
+                    anteriorY === estado.y;
+
+                if (!resultado.sucesso || personagemParado) {
                     indiceQuadro = 0;
                     return;
                 }
 
-                //controla o tempo da animação dos quadros do sprite
                 const tempoAtual = p.millis();
                 if (tempoAtual - ultimoQuadroAnimacao >= intervaloAnimacao) {
-                    indiceQuadro = (indiceQuadro + 1) % configuracaoPersonagem.quadrosPorDirecao;
+                    indiceQuadro =
+                        (indiceQuadro + 1) %
+                        configuracaoPersonagem.quadrosPorDirecao;
+
                     ultimoQuadroAnimacao = tempoAtual;
-                }
-            }
-
-            //impede que o personagem ultrapasse os limites do mapa e devolve essa posição ao estado
-            function limitarPosicaoPersonagem(larguraMapa, alturaMapa) {
-                const x = p.constrain(
-                    estado.x,
-                    tamanhoPersonagem / 2,
-                    larguraMapa - tamanhoPersonagem / 2
-                );
-
-                const y = p.constrain(
-                    estado.y,
-                    tamanhoPersonagem / 2,
-                    alturaMapa - tamanhoPersonagem / 2
-                );
-
-                if (x !== estado.x || y !== estado.y) {
-                    definirPosicao(estado, x, y);
                 }
             }
 
@@ -410,6 +416,29 @@ function GameCanvas({
                 }
             }
 
+            // verifica se o personagem alcançou o ponto de transição do nível 4
+            function verificarTransicaoNivel4() {
+                if (
+                    fase !== 4 ||
+                    !configuracao.transicao ||
+                    transicaoEmAndamento ||
+                    faseConcluida
+                ) {
+                    return;
+                }
+
+                const { origem, destino } = configuracao.transicao;
+
+                const distanciaX = Math.abs(estado.x - origem.x);
+                const distanciaY = Math.abs(estado.y - origem.y);
+
+                // verifica se o personagem chegou próximo ao ponto de transição
+                if (distanciaX < 20 && distanciaY < 20) {
+                    definirPosicao(estado, destino.x, destino.y);
+                    indiceQuadro = 0;
+                }
+            }
+
             //inicializa o canvas e carrega os recursos necessários para a fase
             p.setup = () => {
                 if (!ativo) {
@@ -438,12 +467,13 @@ function GameCanvas({
                 //verifica a transição antes de atualizar o movimento do personagem
                 verificarTransicao();
                 aplicarMovimento();
+                
+                //checagem do mapa nível 4 
+                verificarTransicaoNivel4();
 
                 //recalcula as dimensões porque o mapa pode mudar após a transição
                 const larguraMapa = mapa.width * escalaMapa;
                 const alturaMapa = mapa.height * escalaMapa;
-
-                limitarPosicaoPersonagem(larguraMapa, alturaMapa);
 
                 //verifica se o personagem chegou à Poképarada ou à máquina de registro
                 verificarPokeparada();

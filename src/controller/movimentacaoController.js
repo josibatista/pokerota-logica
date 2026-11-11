@@ -144,10 +144,15 @@ export function reiniciarPersonagem(estado, posicao) {
     }
 }
 
-export function atualizarMovimentacao(estado) {
+export function atualizarMovimentacao(
+    estado,
+    configuracaoColisao = null
+) {
     try {
         garantirEstado(estado);
-        estado.atualizar();
+
+        estado.atualizar(configuracaoColisao);
+
         return resultadoSucesso(estado);
     } catch (error) {
         return resultadoFalha(
