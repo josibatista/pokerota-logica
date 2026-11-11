@@ -2,8 +2,8 @@ const DIRECOES = ['cima', 'baixo', 'esquerda', 'direita'];
 const DIRECAO_INICIAL = 'baixo';
 import verificarColisao from './colisoes/verificarColisao.js';
 
-// Mesma velocidade do canvas: 2 px por atualização, com a diagonal normalizada.
-const VELOCIDADE = 2;
+// Mesma velocidade do canvas: 3 px por atualização, com a diagonal normalizada.
+const VELOCIDADE = 3;
 const FATOR_DIAGONAL = 0.7071;
 
 function erroMovimentacao(mensagem, codigo) {
