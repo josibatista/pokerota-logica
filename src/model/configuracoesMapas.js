@@ -92,7 +92,7 @@ const configuracoesMapas = {
             // O valor pode ser calibrado pelo texto X/Y exibido no canvas.
             objetivo: {
                 x: 185,
-                y: 160,
+                y: 155,
             },
             obstaculos: obstaculosHallDaFama,
         },
