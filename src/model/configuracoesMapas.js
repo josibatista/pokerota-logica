@@ -51,7 +51,7 @@ const configuracoesMapas = {
         mapa: 'nivel4',
         escala: 2.1,    
         personagemInicial: {
-            x: 490,
+            x: 400,
             y: 2560,
         },
         pokeparada: {
