@@ -4,6 +4,14 @@
     box-sizing: border-box;
 }
 
+.gerenciamento-conta__titulo {
+    margin: 0 0 12px;
+    color: var(--pokerotaTextoForte);
+    font: inherit;
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
 .gerenciamento-conta__acoes {
     --acoes-alinhamento: space-between;
     --acoes-espaco: 16px;

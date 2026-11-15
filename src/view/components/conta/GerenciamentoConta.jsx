@@ -13,6 +13,14 @@ function GerenciamentoConta({ usuario = null, carregandoSessao = false, onEncerr
     const ocupado = carregandoSessao || acao !== null;
     const podeSair = Boolean(usuario) && typeof onEncerrarSessao === 'function';
     const podeExcluir = Boolean(usuario) && typeof onExcluirConta === 'function';
+    const aviso = mensagem
+        || (carregandoSessao
+            ? 'Só um momento…'
+            : !usuario
+                ? 'Entre na sua conta para usar estes botões.'
+                : (!podeSair || !podeExcluir)
+                    ? 'Alguns botões ainda não podem ser usados.'
+                    : '');
 
     async function encerrarSessao() {
         if (ocupado || !podeSair) return;
@@ -72,25 +80,18 @@ function GerenciamentoConta({ usuario = null, carregandoSessao = false, onEncerr
     }
 
     return (
-        <section className="gerenciamento-conta" aria-label="Gerenciamento da conta" aria-busy={ocupado}>
+        <section className="gerenciamento-conta" aria-labelledby="titulo-conta" aria-busy={ocupado}>
+            <h2 id="titulo-conta" className="gerenciamento-conta__titulo">Gerenciamento da conta</h2>
             <div className="acoes gerenciamento-conta__acoes">
-                <button type="button" className="botao botao--secundario botao--perigo-contorno gerenciamento-conta__botao" disabled={ocupado || !podeExcluir} onClick={abrirConfirmacao}>
+                <button type="button" className="botao botao--secundario botao--perigo-contorno gerenciamento-conta__botao" disabled={ocupado || !podeExcluir} aria-describedby={aviso ? 'gerenciamento-conta-aviso' : undefined} onClick={abrirConfirmacao}>
                     Apagar minha conta
                 </button>
-                <button type="button" className="botao botao--secundario gerenciamento-conta__botao" disabled={ocupado || !podeSair} onClick={encerrarSessao}>
+                <button type="button" className="botao botao--secundario gerenciamento-conta__botao" disabled={ocupado || !podeSair} aria-describedby={aviso ? 'gerenciamento-conta-aviso' : undefined} onClick={encerrarSessao}>
                     {acao === 'sair' ? 'Saindo…' : 'Sair da minha conta'}
                 </button>
             </div>
-            <p className="gerenciamento-conta__mensagem" role="status" aria-live="polite">
-                {mensagem || (
-                    carregandoSessao
-                        ? 'Só um momento…'
-                        : !usuario
-                            ? 'Entre na sua conta para usar estes botões.'
-                            : !podeSair || !podeExcluir
-                                ? 'Alguns botões ainda não podem ser usados.'
-                                : ''
-                )}
+            <p id="gerenciamento-conta-aviso" className="gerenciamento-conta__mensagem" role="status" aria-live="polite">
+                {aviso}
             </p>
             <ConfirmacaoExclusao
                 aberta={confirmacaoAberta && Boolean(usuario)}

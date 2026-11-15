@@ -1,0 +1,82 @@
+.configuracoes__aparencia {
+    margin-bottom: 28px;
+}
+
+.configuracoes__titulo {
+    margin: 0 0 12px;
+    color: var(--pokerotaTextoForte);
+    font: inherit;
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+.configuracoes__temas {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    min-width: 0;
+}
+
+.configuracoes__legenda {
+    margin: 0 0 12px;
+    padding: 0;
+    color: var(--pokerotaTexto);
+    font: inherit;
+    font-weight: 600;
+}
+
+.configuracoes__opcoes {
+    --acoes-alinhamento: flex-start;
+}
+
+.configuracoes__opcao {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.configuracoes__opcao input {
+    width: 1.15rem;
+    height: 1.15rem;
+    margin: 0;
+    accent-color: var(--pokerotaIcone);
+}
+
+.configuracoes__opcao:has(:checked) {
+    border-color: var(--pokerotaDestaque);
+    background: var(--pokerotaAcaoHover);
+    box-shadow: inset 0 0 0 1px var(--pokerotaDestaque);
+}
+
+.configuracoes__opcao:has(:focus-visible) {
+    outline: 3px solid var(--pokerotaDestaque);
+    outline-offset: 4px;
+}
+
+.configuracoes__tema-atual {
+    margin: 12px 0 0;
+    color: var(--pokerotaTextoSuave);
+    font-size: 0.85rem;
+    line-height: 1.5;
+}
+
+.configuracoes__tela-cheia {
+    margin-top: 24px;
+}
+
+.configuracoes__tela-cheia-botao {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.configuracoes__tela-cheia-botao[aria-pressed='true'] {
+    border-color: var(--pokerotaDestaque);
+    background: var(--pokerotaAcaoHover);
+    box-shadow: inset 0 0 0 1px var(--pokerotaDestaque);
+}
+
+.configuracoes__tela-cheia-botao:focus-visible {
+    outline: 3px solid var(--pokerotaDestaque);
+    outline-offset: 4px;
+}
