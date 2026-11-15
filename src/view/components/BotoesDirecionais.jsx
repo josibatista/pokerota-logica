@@ -1,10 +1,10 @@
 import './BotoesDirecionais.css';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 const DIRECOES = [
     { comando: 'cima', rotulo: 'Mover para frente', rotacao: 90 },
-    { comando: 'esquerda', rotulo: 'Mover para a esquerda', rotacao: 0 },
     { comando: 'baixo', rotulo: 'Mover para trás', rotacao: 270 },
+    { comando: 'esquerda', rotulo: 'Mover para a esquerda', rotacao: 0 },
     { comando: 'direita', rotulo: 'Mover para a direita', rotacao: 180 },
 ];
 
@@ -31,6 +31,7 @@ function Seta({ rotacao }) {
 
 function BotoesDirecionais({ onPressionar, onSoltar }) {
     const [ativos, setAtivos] = useState(() => new Set());
+    const grupoRef = useRef(null);
 
     useEffect(() => {
         return () => {
@@ -38,6 +39,24 @@ function BotoesDirecionais({ onPressionar, onSoltar }) {
                 onSoltar?.(direcao.comando);
             });
         };
+    }, [onSoltar]);
+
+    useEffect(() => {
+        function liberarAoSairDaTela() {
+            const grupo = grupoRef.current;
+
+            if (grupo && document.fullscreenElement?.contains(grupo)) {
+                return;
+            }
+
+            setAtivos(new Set());
+            DIRECOES.forEach((direcao) => {
+                onSoltar?.(direcao.comando);
+            });
+        }
+
+        document.addEventListener('fullscreenchange', liberarAoSairDaTela);
+        return () => document.removeEventListener('fullscreenchange', liberarAoSairDaTela);
     }, [onSoltar]);
 
     function marcar(comando, ativo) {
@@ -122,6 +141,7 @@ function BotoesDirecionais({ onPressionar, onSoltar }) {
     return (
         <div
             className="botoes-direcionais"
+            ref={grupoRef}
             role="group"
             aria-label="Controles de movimentação"
         >
