@@ -2,6 +2,7 @@ import { test, expect } from '@playwright/test';
 import { readFileSync } from 'node:fs';
 import verificarColisao from '../src/model/colisoes/verificarColisao.js';
 import configuracoesMapas from '../src/model/configuracoesMapas.js';
+import { entrarComContaTeste } from './utils/autenticacao.js';
 
 import {
     associarPersonagem,
@@ -277,3 +278,186 @@ test.describe('Validação das colisões dos mapas', () => {
         });
     }
 });
+
+
+async function iniciarJogo(page, personagem = 'Pikachu') {
+    await entrarComContaTeste(page);
+
+    // Seleciona a primeira fase disponível.
+    await page.getByRole('button', {
+        name: 'Fase 1, disponível',
+        exact: true,
+    }).click();
+
+    await expect(page).toHaveURL(/\/personagem$/);
+
+    // Seleciona e confirma o personagem.
+    await page.getByRole('button', {
+        name: personagem,
+        exact: true,
+    }).click();
+
+    await page.getByRole('button', {
+        name: 'Selecionar',
+        exact: true,
+    }).click();
+
+    await expect(page).toHaveURL(/\/jogo$/);
+
+    const canvas = page.locator('.jogo__canvas-area canvas');
+
+    await expect(canvas).toHaveCount(1);
+    await expect(canvas).toBeVisible({ timeout: 15000 });
+
+    // Aguarda conteúdo gráfico efetivamente renderizado.
+    await aguardarRenderizacao(canvas);
+
+    return canvas;
+}
+
+async function aguardarRenderizacao(canvas) {
+    await expect.poll(async () => {
+        return canvas.evaluate((elemento) => {
+            const contexto = elemento.getContext('2d');
+
+            if (!contexto) return 0;
+
+            const { width, height } = elemento;
+
+            const pixels = contexto.getImageData(
+                0, 0, width, height
+            ).data;
+
+            let amostras = 0;
+            let coloridas = 0;
+
+            // Amostragem da superfície para diferenciar
+            // o mapa renderizado de um canvas vazio.
+            for (let y = 12; y < height; y += 24) {
+                for (let x = 12; x < width; x += 24) {
+                    const indice = (y * width + x) * 4;
+
+                    const r = pixels[indice];
+                    const g = pixels[indice + 1];
+                    const b = pixels[indice + 2];
+
+                    amostras++;
+
+                    if (Math.max(r, g, b) > 30) {
+                        coloridas++;
+                    }
+                }
+            }
+
+            return coloridas / amostras;
+        });
+    }, {
+        timeout: 15000,
+        message: 'O mapa não foi renderizado no Canvas.',
+    }).toBeGreaterThan(0.1);
+}
+
+
+test.describe('Interface da tela de jogo', () => {
+
+    test('CT-MOV-001 — deve exibir o mapa e a área de movimentação', async ({ page }) => {
+        const canvas = await iniciarJogo(page);
+
+        // Confirma a fase iniciada.
+        await expect(page.getByText('Fase 1', {
+            exact: true,
+        })).toBeVisible();
+
+        // Confirma as dimensões reais do Canvas.
+        await expect(canvas).toHaveAttribute('width', '800');
+        await expect(canvas).toHaveAttribute('height', '500');
+
+        // A função iniciarJogo já verifica que o mapa
+        // possui conteúdo gráfico renderizado.
+    });
+
+    test('CT-MOV-002 — deve utilizar o personagem selecionado na fase', async ({ page }) => {
+        // Inicia com Pikachu.
+        const canvas = await iniciarJogo(page, 'Pikachu');
+
+        const imagemPikachu = await canvas.screenshot();
+
+        // Retorna à seleção de fases.
+        await page.getByRole('button', {
+            name: 'Voltar',
+            exact: true,
+        }).click();
+
+        await expect(page).toHaveURL(/\/niveis$/);
+
+        // Acessa novamente a seleção de personagem.
+        await page.getByRole('button', {
+            name: 'Fase 1, disponível',
+            exact: true,
+        }).click();
+
+        await expect(page).toHaveURL(/\/personagem$/);
+
+        // Escolhe outro personagem.
+        await page.getByRole('button', {
+            name: 'Eevee',
+            exact: true,
+        }).click();
+
+        await page.getByRole('button', {
+            name: 'Selecionar',
+            exact: true,
+        }).click();
+
+        await expect(page).toHaveURL(/\/jogo$/);
+
+        const novoCanvas = page.locator('.jogo__canvas-area canvas');
+
+        await expect(novoCanvas).toBeVisible({ timeout: 15000 });
+
+        await aguardarRenderizacao(novoCanvas);
+
+        const imagemEevee = await novoCanvas.screenshot();
+
+        // Na mesma fase e posição inicial, trocar o personagem
+        // deve produzir uma imagem diferente no Canvas.
+        expect(imagemPikachu.equals(imagemEevee)).toBe(false);
+    });
+
+    test('CT-MOV-003 — deve disponibilizar os quatro controles direcionais', async ({ page }) => {
+        await iniciarJogo(page);
+
+        const controles = page.getByRole('group', {
+            name: 'Controles de movimentação',
+        });
+
+        await expect(controles).toBeVisible();
+
+        const direcoes = [
+            'Mover para frente',
+            'Mover para trás',
+            'Mover para a esquerda',
+            'Mover para a direita',
+        ];
+
+        for (const direcao of direcoes) {
+            const botao = controles.getByRole('button', {
+                name: direcao,
+                exact: true,
+            });
+
+            await expect(botao).toBeVisible();
+            await expect(botao).toBeEnabled();
+            await expect(botao).toHaveAttribute(
+                'aria-pressed',
+                'false'
+            );
+        }
+
+        // Exatamente quatro botões direcionais.
+        await expect(
+            controles.getByRole('button')
+        ).toHaveCount(4);
+    });
+});
+
