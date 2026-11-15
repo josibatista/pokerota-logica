@@ -1,9 +1,10 @@
-import { useEffect, useRef } from 'react';
-import { RotateCcw } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
+import { Maximize2, Minimize2, RotateCcw } from 'lucide-react';
 import p5 from 'p5';
 import { atualizarMovimentacao, definirPosicao } from '../../controller/movimentacaoController';
 import configuracoesPersonagens from '../../model/configuracoesPersonagens';
 import configuracoesMapas from '../../model/configuracoesMapas';
+import AvisoHall from './AvisoHall';
 import pokeparadaImagem from '../assets/objetos/pokeparada.png';
 import mapaNivel1 from '../assets/mapas/nivel1.png';
 import mapaNivel2 from '../assets/mapas/nivel2.png';
@@ -29,9 +30,46 @@ function GameCanvas({
     estado = null,
     reinicio = 0,
     onReiniciarEstado,
+    podeExpandirMapa = false,
+    children,
 }) {
     const canvasRef = useRef(null);
-    const avisoHallRef = useRef(null);
+    const mapaRef = useRef(null);
+    const abrirAvisoHallRef = useRef(null);
+    const [mapaCheio, setMapaCheio] = useState(false);
+    const [avisoHallAberto, setAvisoHallAberto] = useState(false);
+    const telaCheiaDisponivel = document.fullscreenEnabled === true
+        && typeof HTMLElement.prototype.requestFullscreen === 'function';
+    const podeExpandir = Boolean(podeExpandirMapa) && telaCheiaDisponivel;
+
+    abrirAvisoHallRef.current = () => setAvisoHallAberto(true);
+
+    useEffect(() => {
+        setAvisoHallAberto(false);
+    }, [fase, reinicio]);
+
+    useEffect(() => {
+        function sincronizarMapaCheio() {
+            setMapaCheio(document.fullscreenElement === mapaRef.current);
+        }
+
+        sincronizarMapaCheio();
+        document.addEventListener('fullscreenchange', sincronizarMapaCheio);
+        return () => document.removeEventListener('fullscreenchange', sincronizarMapaCheio);
+    }, []);
+
+    function alternarMapaCheio() {
+        const mapa = mapaRef.current;
+        if (!podeExpandir || !mapa) return;
+
+        const pedido = document.fullscreenElement === mapa
+            ? document.exitFullscreen()
+            : mapa.requestFullscreen();
+
+        pedido.catch(() => {
+            // A rejeição não altera o canvas; fullscreenchange mantém o ícone no estado real.
+        });
+    }
 
     useEffect(() => {
         if (!estado) {
@@ -324,9 +362,7 @@ function GameCanvas({
                         cameraX = 0;
                         cameraY = 0;
 
-                        if (avisoHallRef.current) {
-                            avisoHallRef.current.hidden = false;
-                        }
+                        abrirAvisoHallRef.current?.();
                     },
                     (erro) => {
                         console.error(
@@ -491,7 +527,6 @@ function GameCanvas({
 
         //cria a instância do p5.js e remove-a ao trocar de fase ou reiniciar.
         const instance = new p5(sketch, canvasRef.current);
-        const avisoHall = avisoHallRef.current;
 
         return () => {
             ativo = false;
@@ -503,59 +538,19 @@ function GameCanvas({
                 instance._loadingIndicator.remove();
                 instance._loadingIndicator = null;
             }
-            if (avisoHall) {
-                avisoHall.hidden = true;
-            }
             instance.remove();
         };
     }, [reinicio, fase, onConcluir, personagemSelecionado, estado]);
 
     return (
-        <div className="jogo__canvas-container">
+        <div
+            className={`jogo__mapa${mapaCheio ? ' jogo__mapa--cheio' : ''}`}
+            ref={mapaRef}
+        >
+            <div className="jogo__mapa-linha">
+            <div className="jogo__canvas-container">
             <div className="jogo__canvas-area" ref={canvasRef} />
             <div className="jogo__palco">
-                <div
-                    className="jogo__aviso-hall"
-                    ref={avisoHallRef}
-                    role="status"
-                    aria-live="polite"
-                    hidden
-                >
-                    <div className="jogo__aviso-hall-cartao jogo__aviso-hall-cartao--esquerda">
-                        <svg
-                            className="jogo__aviso-hall-icone"
-                            viewBox="0 0 24 24"
-                            aria-hidden="true"
-                            focusable="false"
-                        >
-                            <path
-                                fill="#ffcb05"
-                                stroke="#c99a00"
-                                strokeWidth="0.8"
-                                d="M12 1.8 14.7 9h7.5l-6.1 4.4 2.3 7.2L12 16.2 5.6 20.6 7.9 13.4 1.8 9h7.5z"
-                            />
-                        </svg>
-                        <p className="jogo__aviso-hall-titulo">Parabéns! Você chegou ao Hall da Fama!</p>
-                        <span className="jogo__aviso-hall-barra" aria-hidden="true" />
-                    </div>
-                    <div className="jogo__aviso-hall-cartao jogo__aviso-hall-cartao--direita">
-                        <svg
-                            className="jogo__aviso-hall-icone"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="#1e3a8a"
-                            strokeWidth="2.5"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            aria-hidden="true"
-                            focusable="false"
-                        >
-                            <path d="M12 19V5" />
-                            <path d="m5 12 7-7 7 7" />
-                        </svg>
-                        <p className="jogo__aviso-hall-texto">Vá até a máquina de registro para finalizar</p>
-                    </div>
-                </div>
                 <button
                     type="button"
                     className="jogo__reiniciar"
@@ -565,7 +560,29 @@ function GameCanvas({
                 >
                     <RotateCcw size={24} strokeWidth={3} />
                 </button>
+                <button
+                    type="button"
+                    className="jogo__expandir"
+                    onClick={alternarMapaCheio}
+                    disabled={!podeExpandir}
+                    aria-pressed={mapaCheio}
+                    aria-label={mapaCheio ? 'Sair da tela cheia do mapa' : 'Expandir mapa'}
+                    title={podeExpandir
+                        ? (mapaCheio ? 'Sair da tela cheia do mapa' : 'Expandir mapa')
+                        : 'Entre na sua conta para expandir o mapa'}
+                >
+                    {mapaCheio
+                        ? <Minimize2 size={24} strokeWidth={3} />
+                        : <Maximize2 size={24} strokeWidth={3} />}
+                </button>
             </div>
+            </div>
+            {children}
+            </div>
+            <AvisoHall
+                aberto={avisoHallAberto}
+                onFechar={() => setAvisoHallAberto(false)}
+            />
         </div>
     );
 }

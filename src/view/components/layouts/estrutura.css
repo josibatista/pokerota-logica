@@ -129,3 +129,39 @@
     padding: 12px;
   }
 }
+
+html:fullscreen,
+html:fullscreen body,
+html:fullscreen #root {
+  height: 100%;
+  min-height: 100%;
+}
+
+html:fullscreen .estrutura {
+  height: 100%;
+  min-height: 100%;
+  justify-content: flex-start;
+  overflow: auto;
+}
+
+html:fullscreen .estruturaConteudo {
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+html:fullscreen .painel {
+  flex: 1 1 auto;
+  height: auto;
+  min-height: 0;
+}
+
+html:fullscreen .painelConteudo {
+  display: flex;
+  flex-direction: column;
+}
+
+html:fullscreen .jogo {
+  flex: 1 1 auto;
+  height: auto;
+  min-height: 0;
+}

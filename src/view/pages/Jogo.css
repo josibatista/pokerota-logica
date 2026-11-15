@@ -10,17 +10,42 @@
     overflow: hidden;
 }
 
+.jogo__mapa {
+    container: mapa / inline-size;
+    display: flex;
+    flex: 1;
+    width: 100%;
+    min-width: 0;
+    min-height: 0;
+}
+
+.jogo__mapa-linha {
+    container-type: size;
+    display: grid;
+    grid-template-columns: 1fr auto auto 1fr;
+    grid-template-rows: minmax(0, 1fr);
+    align-items: center;
+    justify-items: center;
+    column-gap: 12px;
+    flex: 1;
+    width: 100%;
+    min-width: 0;
+    min-height: 0;
+}
+
 .jogo__canvas-container {
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
-    flex: 1;
+    grid-column: 2;
     min-width: 0;
     min-height: 0;
-    width: 100%;
-    max-width: 840px;
-    margin: 0 auto;
+    width: min(160cqh, calc(100cqw - 80px));
+    aspect-ratio: 8 / 5;
+    max-width: none;
+    height: auto;
+    margin: 0;
     padding: 0;
     overflow: hidden;
     container-type: size;
@@ -40,17 +65,19 @@
 .jogo__canvas-area canvas {
     display: block;
     /* O !important existe por causa do estilo inline do p5. */
-    width: auto !important;
-    height: auto !important;
-    max-width: 100%;
-    max-height: 100%;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: none;
+    max-height: none;
 }
 
 .jogo__acoes {
+    grid-column: 3;
     align-items: center;
+    align-self: center;
     flex-shrink: 0;
-    width: 100%;
-    margin-top: 8px;
+    width: auto;
+    margin-top: 0;
 }
 
 .jogo__reiniciar {
@@ -81,114 +108,192 @@
     outline-offset: 3px;
 }
 
-/* camada do mesmo tamanho do canvas (800×500, proporção 8:5), centralizada */
+.jogo__expandir {
+    position: absolute;
+    right: 12px;
+    bottom: 12px;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    background: transparent;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.jogo__expandir:hover:not(:disabled) {
+    background-color: rgb(255 255 255 / 15%);
+}
+
+.jogo__expandir:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 3px;
+}
+
+.jogo__expandir:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+}
+
+/* o bitmap é 800×500 em todas as fases; o Hall menor fica centralizado dentro dele */
 .jogo__palco {
     position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    width: min(800px, 100cqw, 160cqh);
-    aspect-ratio: 8 / 5;
+    inset: 0;
     pointer-events: none;
     container: palco / inline-size;
 }
 
-.jogo__palco .jogo__reiniciar {
+.jogo__palco .jogo__reiniciar,
+.jogo__palco .jogo__expandir {
     pointer-events: auto;
 }
 
-.jogo__aviso-hall {
-    position: absolute;
-    inset: 0;
-}
-
-.jogo__aviso-hall[hidden] {
-    display: none;
-}
-
-/* o mapa do Hall ocupa 369,6 px no centro do canvas de 800 px: sobram 215 px (26,9%) de cada lado */
-.jogo__aviso-hall-cartao {
-    position: absolute;
-    top: 6.3%;
-    width: 24.4%;
-    max-height: 60%;
-    box-sizing: border-box;
-    padding: 1.5cqw 1.25cqw;
+.jogo__mapa:fullscreen,
+.jogo__mapa--cheio {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.75cqw;
-    border: 2px solid var(--pokerotaBorda);
-    border-radius: 14px;
-    background: var(--pokerotaSuperficie);
-    box-shadow: 0 6px 18px rgb(0 0 0 / 25%);
-    text-align: center;
-    animation: jogo-aviso-hall-entrada 0.3s ease-out;
-}
-
-.jogo__aviso-hall-cartao--esquerda {
-    left: 1.25%;
-}
-
-.jogo__aviso-hall-cartao--direita {
-    right: 1.25%;
-}
-
-.jogo__aviso-hall-icone {
-    flex-shrink: 0;
-    width: clamp(14px, 2.75cqw, 22px);
-    height: clamp(14px, 2.75cqw, 22px);
-}
-
-.jogo__aviso-hall-titulo {
+    max-width: none;
+    width: 100%;
+    height: 100%;
     margin: 0;
-    color: var(--pokerotaIcone);
-    font: inherit;
-    font-size: clamp(9px, 2.4cqw, 18px);
-    font-weight: 800;
-    line-height: 1.25;
+    box-sizing: border-box;
+    background-color: #111418;
+    background-image: none;
 }
 
-.jogo__aviso-hall-texto {
+.jogo__mapa:fullscreen .jogo__canvas-container,
+.jogo__mapa--cheio .jogo__canvas-container {
+    max-width: none;
+    width: 100%;
+    height: 100%;
+    aspect-ratio: auto;
     margin: 0;
-    color: var(--pokerotaTexto);
-    font-size: clamp(9px, 2.2cqw, 16px);
-    font-weight: 600;
-    line-height: 1.3;
 }
 
-.jogo__aviso-hall-barra {
+.jogo__mapa:fullscreen .jogo__canvas-area,
+.jogo__mapa--cheio .jogo__canvas-area {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: min(100cqw, 160cqh);
+    height: auto;
+    aspect-ratio: 8 / 5;
+    flex: none;
+}
+
+.jogo__mapa:fullscreen .jogo__canvas-area canvas,
+.jogo__mapa--cheio .jogo__canvas-area canvas {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: none;
+    max-height: none;
+}
+
+.jogo__mapa:fullscreen .jogo__palco,
+.jogo__mapa--cheio .jogo__palco {
+    inset: auto;
+    left: 50%;
+    top: 50%;
+    width: min(100cqw, 160cqh);
+    height: auto;
+    aspect-ratio: 8 / 5;
+    transform: translate(-50%, -50%);
+}
+
+.jogo__mapa:fullscreen .jogo__reiniciar,
+.jogo__mapa:fullscreen .jogo__expandir,
+.jogo__mapa--cheio .jogo__reiniciar,
+.jogo__mapa--cheio .jogo__expandir {
+    z-index: 3;
+}
+
+.jogo__mapa:fullscreen .jogo__mapa-linha,
+.jogo__mapa--cheio .jogo__mapa-linha {
     display: block;
-    width: clamp(20px, 4cqw, 32px);
-    height: 3px;
-    border-radius: 999px;
-    background: var(--pokerotaAmarelo);
+    position: relative;
+    width: 100%;
+    height: 100%;
 }
 
-@keyframes jogo-aviso-hall-entrada {
-    from {
-        opacity: 0;
-    }
+.jogo__mapa:fullscreen .jogo__acoes,
+.jogo__mapa--cheio .jogo__acoes {
+    position: absolute;
+    top: 50%;
+    right: auto;
+    bottom: auto;
+    left: min(calc(50% + min(50cqw, 80cqh) + 12px), calc(100% - 68px));
+    transform: translateY(-50%);
+    z-index: 2;
+    width: max-content;
+    margin-top: 0;
+}
 
-    to {
-        opacity: 1;
+.jogo__mapa:fullscreen .botoes-direcionais,
+.jogo__mapa--cheio .botoes-direcionais {
+    grid-template-columns: 44px;
+    grid-template-rows: repeat(4, 44px);
+    padding: 8px;
+    border-radius: 18px;
+    background: rgb(17 20 24 / 55%);
+}
+
+@media (max-height: 360px) {
+    .jogo__mapa:fullscreen .jogo__acoes,
+    .jogo__mapa--cheio .jogo__acoes {
+        top: max(12px, env(safe-area-inset-top));
+        transform: none;
     }
 }
 
-@media (prefers-reduced-motion: reduce) {
-    .jogo__aviso-hall-cartao {
-        animation: none;
+@container mapa (max-width: 480px) {
+    .jogo__mapa-linha {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+    }
+
+    .jogo__canvas-container {
+        flex: 0 1 auto;
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+    }
+
+    .jogo__acoes {
+        grid-column: auto;
+    }
+
+    .jogo__canvas-area canvas {
+        width: auto !important;
+        height: auto !important;
+        max-width: 100%;
+        max-height: 100%;
+    }
+
+    .jogo__palco {
+        inset: auto;
+        left: 50%;
+        top: 50%;
+        width: min(100cqw, 160cqh);
+        height: auto;
+        aspect-ratio: 8 / 5;
+        transform: translate(-50%, -50%);
+    }
+
+    .botoes-direcionais {
+        grid-template-columns: repeat(4, 44px);
+        grid-template-rows: 44px;
     }
 }
 
-@container palco (max-width: 480px) {
-    .jogo__aviso-hall-cartao {
-        padding: 6px 4px;
-        border-radius: 10px;
-        gap: 4px;
-    }
-
-    .jogo__aviso-hall-barra {
-        display: none;
-    }
-}

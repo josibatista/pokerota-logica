@@ -20,6 +20,9 @@ function RotaProtegida({ usuario, carregandoSessao, children }) {
 function AppRoutes({
     usuario,
     carregandoSessao,
+    tema,
+    onAlterarTema,
+    telaCheia,
     onEntrarComGoogle,
     onEncerrarSessao,
     onExcluirConta,
@@ -42,6 +45,9 @@ function AppRoutes({
                     <Configuracoes
                         usuario={usuario}
                         carregandoSessao={carregandoSessao}
+                        tema={tema}
+                        onAlterarTema={onAlterarTema}
+                        telaCheia={telaCheia}
                         onEncerrarSessao={onEncerrarSessao}
                         onExcluirConta={onExcluirConta}
                     />
@@ -69,7 +75,7 @@ function AppRoutes({
                     </RotaProtegida>
                 }
             />
-            <Route path="/jogo" element={<Jogo />} />
+            <Route path="/jogo" element={<Jogo usuario={usuario} />} />
             <Route path="*" element={<Navigate to="/" replace />} /> 
         </Routes>
     );
