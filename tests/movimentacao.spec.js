@@ -418,6 +418,17 @@ async function verificarDeslocamento(page, inicial, eixo, sinal) {
     }).toBe(true);
 }
 
+async function aguardarQuadros(page, quantidade = 18) {
+    await page.evaluate(async (total) => {
+        for (let i = 0; i < total; i++) {
+            await new Promise((resolve) => {
+                requestAnimationFrame(resolve);
+            });
+        }
+    }, quantidade);
+}
+
+
 test.describe('Interface da tela de jogo', () => {
 
     test('CT-MOV-001 — deve exibir o mapa e a área de movimentação', async ({ page }) => {
@@ -635,6 +646,126 @@ test.describe('Movimentação por comandos na interface', () => {
 
             // Cada comando movimenta apenas no eixo esperado.
             expect(final[outroEixo]).toBe(inicial[outroEixo]);
+        }
+    });
+});
+
+test.describe('Bloqueios de movimentação na interface', () => {
+
+    test('CT-MOV-007 — deve impedir movimento contra obstáculo no jogo', async ({ page }) => {
+        await observarCoordenadasDoCanvas(page);
+        await iniciarJogo(page);
+
+        const inicial = await aguardarCoordenadasDoCanvas(page);
+
+        expect(inicial).toEqual({
+            x: 550,
+            y: 485,
+        });
+
+        // A escola ocupa a região x:455–655 e y:330–450.
+        // Com uma hitbox de 64px, o personagem pode chegar até y:483, mas não pode avançar para y:481.
+
+        await page.keyboard.down('ArrowUp');
+
+        try {
+            await expect.poll(async () => {
+                const atual = await obterCoordenadasDoCanvas(page);
+                return atual?.y;
+            }).toBe(483);
+
+            const posicaoBloqueada =
+                await obterCoordenadasDoCanvas(page);
+
+            // Mantém o comando ativo para tentar atravessar.
+            await aguardarQuadros(page);
+
+            const posicaoFinal =
+                await obterCoordenadasDoCanvas(page);
+
+            expect(posicaoFinal).toEqual(posicaoBloqueada);
+        } finally {
+            await page.keyboard.up('ArrowUp');
+        }
+    });
+
+    test('CT-MOV-008 — deve impedir movimento para fora do mapa', async ({ page }) => {
+        await observarCoordenadasDoCanvas(page);
+        await iniciarJogo(page);
+
+        const inicial = await aguardarCoordenadasDoCanvas(page);
+
+        // Obtém a altura real do mapa, considerando a escala.
+        const alturaMapa = await page.evaluate(async () => {
+            const imagem = new Image();
+
+            imagem.src = '/src/view/assets/mapas/nivel1.png';
+
+            await imagem.decode();
+
+            const { default: configuracoes } = await import(
+                '/src/model/configuracoesMapas.js'
+            );
+
+            return imagem.naturalHeight * configuracoes[1].escala;
+        });
+
+        // Posiciona o personagem no corredor livre entre o lago e a cerca do nível 1.
+        await page.keyboard.down('ArrowLeft');
+
+        try {
+            // Observa as coordenadas a cada quadro, evitando que o personagem ultrapasse o corredor.
+            await page.waitForFunction(
+                () => window.__pokerotaCoordenadas?.x <= 415,
+                null,
+                {
+                    polling: 'raf',
+                    timeout: 5000,
+                }
+            );
+        } finally {
+            await page.keyboard.up('ArrowLeft');
+        }
+
+        const posicaoCorredor =
+            await obterCoordenadasDoCanvas(page);
+
+        // Verifica que o personagem está no corredor livre.
+        expect(posicaoCorredor.x).toBeGreaterThan(385);
+        expect(posicaoCorredor.x).toBeLessThan(423);
+
+        // Avança até a borda inferior.
+        await page.keyboard.down('ArrowDown');
+
+        try {
+            await expect.poll(async () => {
+                const atual = await obterCoordenadasDoCanvas(page);
+                return atual?.y;
+            }, {
+                timeout: 5000,
+                message: 'O personagem não alcançou a borda inferior.',
+            }).toBeGreaterThanOrEqual(alturaMapa - 34);
+
+            const posicaoBorda =
+                await obterCoordenadasDoCanvas(page);
+
+            // Continua tentando mover para fora do mapa.
+            await aguardarQuadros(page);
+
+            const posicaoFinal =
+                await obterCoordenadasDoCanvas(page);
+
+            // A posição deve permanecer inalterada.
+            expect(posicaoFinal).toEqual(posicaoBorda);
+
+            // A hitbox não pode ultrapassar o mapa.
+            expect(posicaoFinal.y + 32)
+                .toBeLessThanOrEqual(alturaMapa);
+
+            // Confirma que o personagem realmente se movimentou.
+            expect(posicaoFinal.y).toBeGreaterThan(inicial.y);
+        } finally {
+            await page.keyboard.up('ArrowDown');
         }
     });
 });
