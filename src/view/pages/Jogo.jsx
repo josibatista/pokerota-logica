@@ -15,12 +15,14 @@ import {
 import configuracoesMapas from '../../model/configuracoesMapas';
 import configuracoesPersonagens from '../../model/configuracoesPersonagens';
 import { obterFaseDaRota } from '../faseDaRota';
+import { ID_INSTRUCOES } from '../components/Instrucoes';
+import { ID_AVISO_HALL } from '../components/AvisoHall';
 import './Jogo.css';
 
 const PERSONAGEM_PADRAO = 'pikachu';
 const TECLAS_DIRECIONAIS = ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'];
 
-function Jogo() {
+function Jogo({ usuario = null }) {
     const location = useLocation();
     const navegar = useNavigate();
 
@@ -177,8 +179,34 @@ function Jogo() {
             });
         }
 
+        function dialogoAberto(id) {
+            const dialogo = document.getElementById(id);
+            return dialogo instanceof HTMLDialogElement && dialogo.open;
+        }
+
+        function entradaBloqueada() {
+            return dialogoAberto(ID_INSTRUCOES) || dialogoAberto(ID_AVISO_HALL);
+        }
+
+        function aoAlternarDialogo(evento) {
+            const id = evento.target?.id;
+            if (id !== ID_INSTRUCOES && id !== ID_AVISO_HALL) return;
+
+            liberarTeclado();
+            if (id === ID_AVISO_HALL) {
+                ['cima', 'baixo', 'esquerda', 'direita'].forEach((direcao) => {
+                    soltarComando(estado, direcao, 'botao');
+                });
+            }
+        }
+
         function aoPressionarTecla(evento) {
             if (!TECLAS_DIRECIONAIS.includes(evento.key)) {
+                return;
+            }
+
+            if (entradaBloqueada()) {
+                liberarTeclado();
                 return;
             }
 
@@ -203,11 +231,13 @@ function Jogo() {
         window.addEventListener('keydown', aoPressionarTecla);
         window.addEventListener('keyup', aoSoltarTecla);
         window.addEventListener('blur', liberarTeclado);
+        document.addEventListener('toggle', aoAlternarDialogo, true);
 
         return () => {
             window.removeEventListener('keydown', aoPressionarTecla);
             window.removeEventListener('keyup', aoSoltarTecla);
             window.removeEventListener('blur', liberarTeclado);
+            document.removeEventListener('toggle', aoAlternarDialogo, true);
             liberarTeclado();
         };
     }, [estado, faseFinalizada]);
@@ -266,14 +296,16 @@ function Jogo() {
                         estado={estado}
                         reinicio={reinicio}
                         onReiniciarEstado={reiniciarEstado}
-                    />
-                    <div className="acoes jogo__acoes">
-                        <BotoesDirecionais
-                            key={reinicio}
-                            onPressionar={pressionarBotao}
-                            onSoltar={soltarBotao}
-                        />
-                    </div>
+                        podeExpandirMapa={Boolean(usuario)}
+                    >
+                        <div className="acoes jogo__acoes">
+                            <BotoesDirecionais
+                                key={reinicio}
+                                onPressionar={pressionarBotao}
+                                onSoltar={soltarBotao}
+                            />
+                        </div>
+                    </GameCanvas>
                 </>
             )}
         </main>

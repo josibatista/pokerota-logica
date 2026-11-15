@@ -1,8 +1,9 @@
 import { useLocation, useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Cabecalho from './Cabecalho';
 import Logo from './Logo';
 import Painel from './Painel';
+import Instrucoes from '../Instrucoes';
 import { obterFaseDaRota } from '../../faseDaRota';
 import './estrutura.css';
 
@@ -25,6 +26,7 @@ function Estrutura({
 }) {
     const [saindo, setSaindo] = useState(false);
     const [erroSaida, setErroSaida] = useState('');
+    const [instrucoesAbertas, setInstrucoesAbertas] = useState(false);
     const location = useLocation();
     const navigate = useNavigate();
     const caminho = location.pathname.replace(/\/+$/, '') || '/';
@@ -39,6 +41,15 @@ function Estrutura({
     const origem = location.state?.origem;
     const retornoConfiguracoes = typeof origem === 'string' && origem.startsWith('/')
         && origem !== '/configuracoes' ? origem : '/';
+
+    useEffect(() => {
+        setInstrucoesAbertas(false);
+    }, [caminho]);
+
+    function abrirInstrucoes() {
+        setInstrucoesAbertas(true);
+        if (typeof onInstructions === 'function') onInstructions();
+    }
 
     function voltar() {
         if (tela.retornar) {
@@ -82,7 +93,7 @@ function Estrutura({
                         saudacao={saudacao}
                         onBack={voltar}
                         onLogout={usuario && !saindo && typeof onEncerrarSessao === 'function' ? sair : undefined}
-                        onInstructions={onInstructions}
+                        onInstructions={tela.instrucoes ? abrirInstrucoes : undefined}
                         onSettings={() => navigate('/configuracoes', { state: { origem: caminho } })}
                     />
 
@@ -98,6 +109,10 @@ function Estrutura({
                     </div>
                 )}
             </div>
+            <Instrucoes
+                aberta={instrucoesAbertas}
+                onFechar={() => setInstrucoesAbertas(false)}
+            />
         </div>
     );
 }
