@@ -331,8 +331,7 @@ async function aguardarRenderizacao(canvas) {
             let amostras = 0;
             let coloridas = 0;
 
-            // Amostragem da superfície para diferenciar
-            // o mapa renderizado de um canvas vazio.
+            // Amostragem da superfície para diferenciar o mapa renderizado de um canvas vazio.
             for (let y = 12; y < height; y += 24) {
                 for (let x = 12; x < width; x += 24) {
                     const indice = (y * width + x) * 4;
@@ -357,6 +356,67 @@ async function aguardarRenderizacao(canvas) {
     }).toBeGreaterThan(0.1);
 }
 
+async function observarCoordenadasDoCanvas(page) {
+    // Observa o texto desenhado pelo Canvas sem modificar as funções de movimentação da aplicação.
+    await page.addInitScript(() => {
+        const desenharTextoOriginal =
+            CanvasRenderingContext2D.prototype.fillText;
+
+        CanvasRenderingContext2D.prototype.fillText = function (texto, ...argumentos) {
+            const resultado = desenharTextoOriginal.call(
+                this,
+                texto,
+                ...argumentos
+            );
+
+            const coordenadas =
+                /^X:\s*(-?\d+)\s*\|\s*Y:\s*(-?\d+)$/
+                    .exec(String(texto));
+
+            if (coordenadas) {
+                window.__pokerotaCoordenadas = {
+                    x: Number(coordenadas[1]),
+                    y: Number(coordenadas[2]),
+                };
+            }
+
+            return resultado;
+        };
+    });
+}
+
+async function obterCoordenadasDoCanvas(page) {
+    return page.evaluate(() =>
+        window.__pokerotaCoordenadas ?? null
+    );
+}
+
+async function aguardarCoordenadasDoCanvas(page) {
+    await expect.poll(
+        () => obterCoordenadasDoCanvas(page),
+        {
+            message: 'As coordenadas não foram desenhadas no Canvas.',
+            timeout: 15000,
+        }
+    ).not.toBeNull();
+
+    return obterCoordenadasDoCanvas(page);
+}
+
+async function verificarDeslocamento(page, inicial, eixo, sinal) {
+    await expect.poll(async () => {
+        const atual = await obterCoordenadasDoCanvas(page);
+
+        if (!atual) return false;
+
+        return sinal > 0
+            ? atual[eixo] > inicial[eixo]
+            : atual[eixo] < inicial[eixo];
+    }, {
+        timeout: 5000,
+        message: `O personagem não se deslocou no eixo ${eixo}.`,
+    }).toBe(true);
+}
 
 test.describe('Interface da tela de jogo', () => {
 
@@ -372,8 +432,7 @@ test.describe('Interface da tela de jogo', () => {
         await expect(canvas).toHaveAttribute('width', '800');
         await expect(canvas).toHaveAttribute('height', '500');
 
-        // A função iniciarJogo já verifica que o mapa
-        // possui conteúdo gráfico renderizado.
+        // A função iniciarJogo já verifica que o mapa possui conteúdo gráfico renderizado.
     });
 
     test('CT-MOV-002 — deve utilizar o personagem selecionado na fase', async ({ page }) => {
@@ -419,8 +478,7 @@ test.describe('Interface da tela de jogo', () => {
 
         const imagemEevee = await novoCanvas.screenshot();
 
-        // Na mesma fase e posição inicial, trocar o personagem
-        // deve produzir uma imagem diferente no Canvas.
+        // Na mesma fase e posição inicial, trocar o personagem deve produzir uma imagem diferente no Canvas.
         expect(imagemPikachu.equals(imagemEevee)).toBe(false);
     });
 
@@ -461,3 +519,122 @@ test.describe('Interface da tela de jogo', () => {
     });
 });
 
+test.describe('Movimentação por comandos na interface', () => {
+
+    test('CT-MOV-004 — deve movimentar o personagem por botão direcional', async ({ page }) => {
+        await observarCoordenadasDoCanvas(page);
+        await iniciarJogo(page);
+
+        const inicial = await aguardarCoordenadasDoCanvas(page);
+
+        const botao = page.getByRole('button', {
+            name: 'Mover para a direita',
+            exact: true,
+        });
+
+        await expect(botao).toBeEnabled();
+
+        // Mantém o botão pressionado enquanto verifica o movimento.
+        await botao.hover();
+        await page.mouse.down();
+
+        try {
+            await expect(botao).toHaveAttribute(
+                'aria-pressed',
+                'true'
+            );
+
+            await verificarDeslocamento(
+                page,
+                inicial,
+                'x',
+                1
+            );
+        } finally {
+            await page.mouse.up();
+        }
+
+        await expect(botao).toHaveAttribute(
+            'aria-pressed',
+            'false'
+        );
+
+        const final = await obterCoordenadasDoCanvas(page);
+
+        // O comando para a direita não deve alterar o eixo Y.
+        expect(final.y).toBe(inicial.y);
+        expect(final.x).toBeGreaterThan(inicial.x);
+    });
+
+    test('CT-MOV-005 — deve movimentar o personagem pelas setas do teclado', async ({ page }) => {
+        await observarCoordenadasDoCanvas(page);
+        await iniciarJogo(page);
+
+        const inicial = await aguardarCoordenadasDoCanvas(page);
+
+        // Simula uma seta pressionada no teclado.
+        await page.keyboard.down('ArrowLeft');
+
+        try {
+            await verificarDeslocamento(
+                page,
+                inicial,
+                'x',
+                -1
+            );
+        } finally {
+            await page.keyboard.up('ArrowLeft');
+        }
+
+        const final = await obterCoordenadasDoCanvas(page);
+
+        expect(final.x).toBeLessThan(inicial.x);
+        expect(final.y).toBe(inicial.y);
+    });
+
+    test('CT-MOV-006 — deve movimentar nas quatro direções pela interface', async ({ page }) => {
+        await observarCoordenadasDoCanvas(page);
+        await iniciarJogo(page);
+
+        const inicial = await aguardarCoordenadasDoCanvas(page);
+
+        const direcoes = [
+            { tecla: 'ArrowUp', eixo: 'y', sinal: -1 },
+            { tecla: 'ArrowDown', eixo: 'y', sinal: 1 },
+            { tecla: 'ArrowLeft', eixo: 'x', sinal: -1 },
+            { tecla: 'ArrowRight', eixo: 'x', sinal: 1 },
+        ];
+
+        for (const direcao of direcoes) {
+            // Cada direção parte da mesma posição inicial.
+            await page.getByRole('button', {
+                name: 'Reiniciar fase',
+                exact: true,
+            }).click();
+
+            await expect.poll(
+                () => obterCoordenadasDoCanvas(page)
+            ).toEqual(inicial);
+
+            await page.keyboard.down(direcao.tecla);
+
+            try {
+                await verificarDeslocamento(
+                    page,
+                    inicial,
+                    direcao.eixo,
+                    direcao.sinal
+                );
+            } finally {
+                await page.keyboard.up(direcao.tecla);
+            }
+
+            const final = await obterCoordenadasDoCanvas(page);
+
+            const outroEixo = direcao.eixo === 'x' ? 'y' : 'x';
+
+            // Cada comando movimenta apenas no eixo esperado.
+            expect(final[outroEixo]).toBe(inicial[outroEixo]);
+        }
+    });
+});
