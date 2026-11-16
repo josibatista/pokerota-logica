@@ -82,7 +82,7 @@ function Estrutura({
     return (
         <div className={`estrutura ${temaClasse}`}>
             <div className="estruturaConteudo">
-                {!tela.movimento && <Logo tamanho="pequeno" />}
+                {<Logo tamanho="pequeno" />}
 
                 <Painel>
                     <Cabecalho
