@@ -13,7 +13,7 @@ const telas = {
     '/niveis': { saudacao: true, sair: true, instrucoes: true, configuracoes: true },
     '/personagem': { voltar: '/niveis', instrucoes: true, configuracoes: true },
     '/jogo': { movimento: true, instrucoes: true, configuracoes: true },
-    '/configuracoes': { retornar: true },
+    '/configuracoes': { retornar: true, titulo: 'Configurações' },
 };
 
 function Estrutura({
@@ -35,9 +35,9 @@ function Estrutura({
     const temaClasse = tema === 'escuro' ? 'temaEscuro' : 'temaClaro';
     const nome = usuario?.nome?.trim();
     const faseCarregada = caminho === '/jogo' ? obterFaseDaRota(location) : null;
-    const saudacao = tela.saudacao
+    const saudacao = tela.titulo || (tela.saudacao
         ? (nome ? `Olá, ${nome}!` : 'Olá!')
-        : (faseCarregada ? `Fase ${faseCarregada}` : undefined);
+        : (faseCarregada ? `Fase ${faseCarregada}` : undefined));
     const origem = location.state?.origem;
     const retornoConfiguracoes = typeof origem === 'string' && origem.startsWith('/')
         && origem !== '/configuracoes' ? origem : '/';
