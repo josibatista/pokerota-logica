@@ -4,7 +4,7 @@ import {
     Pause, 
     Play,
     RotateCcw,
-    LogOut, 
+    DoorOpen, 
     Maximize2,
     Minimize2
 } from 'lucide-react'
@@ -45,7 +45,7 @@ const CONTROLES_PARTIDA = [
     {
         nome: 'Sair',
         descricao: 'Sai da fase e retorna à tela correspondente.',
-        Icone: LogOut,
+        Icone: DoorOpen,
     },
     {
         nome: 'Ampliar',
