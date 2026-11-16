@@ -150,7 +150,8 @@
 }
 
 .jogo__palco .jogo__reiniciar,
-.jogo__palco .jogo__expandir {
+.jogo__palco .jogo__expandir,
+.jogo__palco .jogo__pausar {
     pointer-events: auto;
 }
 
@@ -209,8 +210,10 @@
     transform: translate(-50%, -50%);
 }
 
+.jogo__mapa:fullscreen .jogo__pausar,
 .jogo__mapa:fullscreen .jogo__reiniciar,
 .jogo__mapa:fullscreen .jogo__expandir,
+.jogo__mapa--cheio .jogo__pausar,
 .jogo__mapa--cheio .jogo__reiniciar,
 .jogo__mapa--cheio .jogo__expandir {
     z-index: 3;
@@ -297,3 +300,186 @@
     }
 }
 
+.jogo__pausar {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    background: transparent;
+    color: #fff;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+}   
+
+.jogo__pausar:hover {
+    opacity: 0.7;
+}
+
+.jogo__pausar:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 3px;
+}
+
+.jogo__pausa-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgb(20 25 45 / 65%);
+    backdrop-filter: blur(5px);
+    pointer-events: auto;
+}
+
+.jogo__pausa-painel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    width: min(100%, 340px);
+    padding: 20px 24px;
+    border: 1px solid var(--pokerotaBorda);
+    border-radius: 20px;
+    background: var(--pokerotaSuperficie);
+    color: var(--pokerotaTexto);
+    box-shadow: 0 16px 50px rgb(0 0 0 / 30%);
+    text-align: center;
+    animation: aparecer-painel 0.2s ease-out;
+}
+
+.jogo__pausa-cabecalho {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.jogo__pausa-icone {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 64px;
+    height: 64px;
+    border-radius: 20px;
+    background: var(--pokerotaAcaoHover);
+    color: var(--pokerotaBorda);
+}
+
+.jogo__pausa-cabecalho h2 {
+    margin: 0;
+    font-size: 1.8rem;
+    font-weight: 750;
+}
+
+.jogo__pausa-cabecalho p {
+    margin: 0;
+    color: var(--pokerotaTextoSuave);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.jogo__pausa-acoes {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+
+.jogo__pausa-botao {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+    min-height: 48px;
+    padding: 12px 16px;
+    border: 1px solid var(--pokerotaBorda);
+    border-radius: 12px;
+    background: var(--pokerotaAcaoSuperficie);
+    color: var(--pokerotaTexto);
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.jogo__pausa-botao:hover:not(:disabled) {
+    border-color: var(--pokerotaBorda);
+    background: var(--pokerotaAcaoHover);
+    transform: translateY(-1px);
+}
+
+.jogo__pausa-botao--principal {
+    justify-content: center;
+    min-height: 52px;
+    border-color: var(--pokerotaBorda);
+    background: var(--pokerotaBorda);
+    color: var(--pokerotaSuperficie);
+}
+
+.jogo__pausa-botao--principal:hover:not(:disabled) {
+    border-color: var(--pokerotaDestaque);
+    background: var(--pokerotaDestaque);
+}
+
+.jogo__pausa-sair {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 8px 12px;
+    border: none;
+    background: transparent;
+    color: var(--pokerotaPerigoTexto);
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.jogo__pausa-sair:hover {
+    color: var(--pokerotaPerigo);
+}
+
+.jogo__pausa-botao:focus-visible,
+.jogo__pausa-sair:focus-visible {
+    outline: 3px solid #06bbcc;
+    outline-offset: 3px;
+}
+
+@keyframes aparecer-painel {
+    from {
+        opacity: 0;
+        transform: scale(0.96);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@media (max-width: 480px) {
+    .jogo__pausa-painel {
+        gap: 20px;
+        padding: 24px 20px;
+        border-radius: 20px;
+    }
+
+    .jogo__pausa-cabecalho h2 {
+        font-size: 1.5rem;
+    }
+}

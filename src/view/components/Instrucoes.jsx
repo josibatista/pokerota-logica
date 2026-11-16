@@ -1,5 +1,13 @@
 import { useEffect, useRef } from 'react';
 import './Instrucoes.css';
+import {
+    Pause, 
+    Play,
+    RotateCcw,
+    LogOut, 
+    Maximize2,
+    Minimize2
+} from 'lucide-react'
 
 export const ID_INSTRUCOES = 'instrucoes-jogo';
 
@@ -15,6 +23,40 @@ const BOTOES = [
     { nome: 'Botão para trás', movimento: 'mover para trás', rotacao: 270 },
     { nome: 'Botão para a esquerda', movimento: 'mover para a esquerda', rotacao: 0 },
     { nome: 'Botão para a direita', movimento: 'mover para a direita', rotacao: 180 },
+];
+
+const CONTROLES_PARTIDA = [
+    {
+        nome: 'Pausar',
+        atalho: 'Tecla P ou botão de pausa',
+        descricao: 'Interrompe temporariamente a partida e abre o painel de pausa.',
+        Icone: Pause,
+    },
+    {
+        nome: 'Continuar',
+        descricao: 'Fecha o painel de pausa e retoma a partida.',
+        Icone: Play,
+    },
+    {
+        nome: 'Reiniciar',
+        descricao: 'Retorna o personagem ao ponto inicial da fase.',
+        Icone: RotateCcw,
+    },
+    {
+        nome: 'Sair',
+        descricao: 'Sai da fase e retorna à tela correspondente.',
+        Icone: LogOut,
+    },
+    {
+        nome: 'Ampliar',
+        descricao: 'Expande o mapa para ocupar a tela inteira.',
+        Icone: Maximize2,
+    },
+    {
+        nome: 'Reduzir',
+        descricao: 'Retorna o mapa ao tamanho normal.',
+        Icone: Minimize2,
+    },
 ];
 
 function Seta({ rotacao }) {
@@ -51,6 +93,37 @@ function ListaComandos({ comandos }) {
                     </span>
                 </li>
             ))}
+        </ul>
+    );
+}
+
+function ListaControles() {
+    return (
+        <ul className="instrucoes__lista">
+            {CONTROLES_PARTIDA.map((controle) => {
+                const Icone = controle.Icone;
+
+                return (
+                    <li key={controle.nome} className="instrucoes__item">
+                        <span className="instrucoes__simbolo">
+                            <Icone
+                                size={22}
+                                aria-hidden="true"
+                            />
+                        </span>
+
+                        <span>
+                            <strong>{controle.nome}:</strong>{' '}
+                            {controle.descricao}
+                            {controle.atalho && (
+                                <>
+                                    {' '}({controle.atalho}).
+                                </>
+                            )}
+                        </span>
+                    </li>
+                );
+            })}
         </ul>
     );
 }
@@ -106,6 +179,24 @@ function Instrucoes({ aberta = false, onFechar }) {
                 <p className="instrucoes__texto">
                     O personagem se move enquanto você segura a seta ou o botão. Quando solta, ele para.
                 </p>
+            </section>
+
+            <section
+                className="instrucoes__grupo"
+                aria-labelledby="instrucoes-controles"
+            >
+                <h3
+                    id="instrucoes-controles"
+                    className="instrucoes__subtitulo"
+                >
+                    Controles da partida
+                </h3>
+
+                <p className="instrucoes__texto">
+                    Durante a partida, você também pode utilizar os seguintes controles:
+                </p>
+
+                <ListaControles />
             </section>
 
             <section className="instrucoes__grupo" aria-labelledby="instrucoes-limites">
