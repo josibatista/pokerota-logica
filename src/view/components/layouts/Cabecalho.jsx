@@ -8,11 +8,13 @@ function Icone({ children }) {
     );
 }
 
-function BotaoCabecalho({ rotulo, onClick, children }) {
+function BotaoCabecalho({ rotulo, dica = rotulo, onClick, children }) {
     return (
-        <button type="button" className="botao botao--icone cabecalhoBotao" aria-label={rotulo} onClick={onClick} disabled={typeof onClick !== 'function'}>
-            {children}
-        </button>
+        <span className="cabecalhoDica" data-dica={dica}>
+            <button type="button" className="botao botao--icone cabecalhoBotao" aria-label={rotulo} onClick={onClick} disabled={typeof onClick !== 'function'}>
+                {children}
+            </button>
+        </span>
     );
 }
 
@@ -67,7 +69,7 @@ function Cabecalho({
                     </BotaoCabecalho>
                 ) : null}
                 {showInstructions ? (
-                    <BotaoCabecalho rotulo="Instruções" onClick={onInstructions}>
+                    <BotaoCabecalho rotulo="Instruções" dica="Instruções do jogo" onClick={onInstructions}>
                         <Icone>
                             <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" strokeWidth="2" />
                             <path
