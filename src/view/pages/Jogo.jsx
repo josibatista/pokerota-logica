@@ -21,6 +21,7 @@ import './Jogo.css';
 
 const PERSONAGEM_PADRAO = 'pikachu';
 const TECLAS_DIRECIONAIS = ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'];
+const DIRECOES_BOTOES = ['cima', 'baixo', 'esquerda', 'direita'];
 
 function Jogo({ usuario = null }) {
     const location = useLocation();
@@ -65,10 +66,20 @@ function Jogo({ usuario = null }) {
 
     const [faseFinalizada, setFaseFinalizada] = useState(null);
     const [proximaDisponivel, setProximaDisponivel] = useState(false);
+    const [pausado, setPausado] = useState(false);
+
+    const sairDaFase = useCallback(() => {
+        navegar(visitante ? '/' : '/niveis');
+    }, [navegar, visitante]);
+
+    const alternarPausa = useCallback(() => {
+        setPausado((valor) => !valor);
+    }, []);
 
     useEffect(() => {
         setFaseFinalizada(null);
         setProximaDisponivel(false);
+        setPausado(false);
     }, [fase]);
 
     //salva a fase concluída, sem regredir um progresso já existente
@@ -115,12 +126,12 @@ function Jogo({ usuario = null }) {
     }, [visitante]);
 
     const pressionarBotao = useCallback((comando) => {
-        if (!estado) {
+        if (!estado || pausado) {
             return;
         }
 
         pressionarComando(estado, comando, 'botao');
-    }, [estado]);
+    }, [estado, pausado]);
 
     const soltarBotao = useCallback((comando) => {
         if (!estado) {
@@ -156,6 +167,7 @@ function Jogo({ usuario = null }) {
 
     const reiniciarEstado = useCallback(() => {
         const configuracao = configuracoesMapas[fase];
+        setPausado(false);
 
         if (!estado || !configuracao) {
             return;
@@ -176,6 +188,10 @@ function Jogo({ usuario = null }) {
         function liberarTeclado() {
             TECLAS_DIRECIONAIS.forEach((tecla) => {
                 soltarComando(estado, tecla, 'teclado');
+            });
+
+            DIRECOES_BOTOES.forEach((direcao) => {
+                soltarComando(estado, direcao, 'botao');
             });
         }
 
@@ -201,11 +217,20 @@ function Jogo({ usuario = null }) {
         }
 
         function aoPressionarTecla(evento) {
+            if (evento.key.toLowerCase() === 'p') {
+                if (evento.repeat || entradaBloqueada()) {
+                    return;
+                }
+                evento.preventDefault();
+                alternarPausa();
+                return;
+            }
+
             if (!TECLAS_DIRECIONAIS.includes(evento.key)) {
                 return;
             }
 
-            if (entradaBloqueada()) {
+            if (pausado || entradaBloqueada()) {
                 liberarTeclado();
                 return;
             }
@@ -240,7 +265,7 @@ function Jogo({ usuario = null }) {
             document.removeEventListener('toggle', aoAlternarDialogo, true);
             liberarTeclado();
         };
-    }, [estado, faseFinalizada]);
+    }, [estado, faseFinalizada, pausado, alternarPausa]);
 
     if (!fase) {
         return (
@@ -296,7 +321,10 @@ function Jogo({ usuario = null }) {
                         estado={estado}
                         reinicio={reinicio}
                         onReiniciarEstado={reiniciarEstado}
+                        onSair={sairDaFase}
                         podeExpandirMapa={Boolean(usuario)}
+                        pausado={pausado}
+                        onAlternarPausa={alternarPausa}
                     >
                         <div className="acoes jogo__acoes">
                             <BotoesDirecionais

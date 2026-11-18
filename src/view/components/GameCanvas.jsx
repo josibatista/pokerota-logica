@@ -1,10 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
-import { Maximize2, Minimize2, RotateCcw } from 'lucide-react';
+import { Maximize2, Minimize2, Pause, RotateCcw } from 'lucide-react';
 import p5 from 'p5';
 import { atualizarMovimentacao, definirPosicao } from '../../controller/movimentacaoController';
 import configuracoesPersonagens from '../../model/configuracoesPersonagens';
 import configuracoesMapas from '../../model/configuracoesMapas';
 import AvisoHall from './AvisoHall';
+import PainelPausa from './PainelPausa';
 import pokeparadaImagem from '../assets/objetos/pokeparada.png';
 import mapaNivel1 from '../assets/mapas/nivel1.png';
 import mapaNivel2 from '../assets/mapas/nivel2.png';
@@ -30,7 +31,10 @@ function GameCanvas({
     estado = null,
     reinicio = 0,
     onReiniciarEstado,
+    onSair,
     podeExpandirMapa = false,
+    pausado = false,
+    onAlternarPausa,
     children,
 }) {
     const canvasRef = useRef(null);
@@ -41,6 +45,8 @@ function GameCanvas({
     const telaCheiaDisponivel = document.fullscreenEnabled === true
         && typeof HTMLElement.prototype.requestFullscreen === 'function';
     const podeExpandir = Boolean(podeExpandirMapa) && telaCheiaDisponivel;
+    const pausadoRef = useRef(pausado);
+    pausadoRef.current = pausado;
 
     abrirAvisoHallRef.current = () => setAvisoHallAberto(true);
 
@@ -500,20 +506,24 @@ function GameCanvas({
                     return;
                 }
 
-                //verifica a transição antes de atualizar o movimento do personagem
-                verificarTransicao();
-                aplicarMovimento();
-                
-                //checagem do mapa nível 4 
-                verificarTransicaoNivel4();
+                if (!pausadoRef.current) {
+                    //verifica a transição antes de atualizar o movimento do personagem
+                    verificarTransicao();
+                    aplicarMovimento();
+                    
+                    //checagem do mapa nível 4 
+                    verificarTransicaoNivel4();
+                }
 
                 //recalcula as dimensões porque o mapa pode mudar após a transição
                 const larguraMapa = mapa.width * escalaMapa;
                 const alturaMapa = mapa.height * escalaMapa;
 
-                //verifica se o personagem chegou à Poképarada ou à máquina de registro
-                verificarPokeparada();
-                verificarObjetivoHall();
+                //verifica os objetivos somente quando não estiver pausado
+                if (!pausadoRef.current) {
+                    verificarPokeparada();
+                    verificarObjetivoHall();
+                }
 
                 atualizarCamera(larguraMapa, alturaMapa);
 
@@ -553,6 +563,15 @@ function GameCanvas({
             <div className="jogo__palco">
                 <button
                     type="button"
+                    className="jogo__pausar"
+                    onClick={onAlternarPausa}
+                    aria-label="Pausar jogo"
+                    title="Pausar jogo"
+                >
+                    <Pause size={24} strokeWidth={3} />
+                </button>
+                <button
+                    type="button"
                     className="jogo__reiniciar"
                     onClick={() => onReiniciarEstado?.()}
                     aria-label="Reiniciar fase"
@@ -575,6 +594,16 @@ function GameCanvas({
                         ? <Minimize2 size={24} strokeWidth={3} />
                         : <Maximize2 size={24} strokeWidth={3} />}
                 </button>
+                {pausado && (
+                    <PainelPausa
+                        onReiniciar={onReiniciarEstado}
+                        onSair={onSair}
+                        onContinuar={onAlternarPausa}
+                        onAmpliar={alternarMapaCheio}
+                        podeExpandir={podeExpandir}
+                        mapaCheio={mapaCheio}
+                    />
+                )}
             </div>
             </div>
             {children}

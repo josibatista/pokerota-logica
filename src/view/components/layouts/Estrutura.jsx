@@ -1,10 +1,11 @@
 import { useLocation, useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Cabecalho from './Cabecalho';
 import Logo from './Logo';
 import Painel from './Painel';
 import Instrucoes from '../Instrucoes';
 import { obterFaseDaRota } from '../../faseDaRota';
+import { useEscalaTelaCheia } from './escalaTelaCheia';
 import './estrutura.css';
 
 // A aparência do menu é definida aqui; as ações de conta vêm da integração.
@@ -27,6 +28,8 @@ function Estrutura({
     const [saindo, setSaindo] = useState(false);
     const [erroSaida, setErroSaida] = useState('');
     const [instrucoesAbertas, setInstrucoesAbertas] = useState(false);
+    const estruturaRef = useRef(null);
+    const conteudoRef = useRef(null);
     const location = useLocation();
     const navigate = useNavigate();
     const caminho = location.pathname.replace(/\/+$/, '') || '/';
@@ -41,6 +44,8 @@ function Estrutura({
     const origem = location.state?.origem;
     const retornoConfiguracoes = typeof origem === 'string' && origem.startsWith('/')
         && origem !== '/configuracoes' ? origem : '/';
+
+    useEscalaTelaCheia(estruturaRef, conteudoRef);
 
     useEffect(() => {
         setInstrucoesAbertas(false);
@@ -80,9 +85,9 @@ function Estrutura({
     }
 
     return (
-        <div className={`estrutura ${temaClasse}`}>
-            <div className="estruturaConteudo">
-                {!tela.movimento && <Logo tamanho="pequeno" />}
+        <div className={`estrutura ${temaClasse}`} ref={estruturaRef}>
+            <div className="estruturaConteudo" ref={conteudoRef}>
+                {<Logo tamanho="pequeno" />}
 
                 <Painel>
                     <Cabecalho
