@@ -169,6 +169,9 @@
   }
 }
 
+/* Tela cheia da aplicação: o layout do modo normal inteiro (logo, painel, conteúdo
+   e diálogos) é ampliado na mesma proporção. A escala vem de escalaTelaCheia.js e
+   só existe quando o documento inteiro está em tela cheia; fora disso vale 1. */
 html:fullscreen,
 html:fullscreen body,
 html:fullscreen #root {
@@ -179,28 +182,13 @@ html:fullscreen #root {
 html:fullscreen .estrutura {
   height: 100%;
   min-height: 100%;
-  justify-content: flex-start;
   overflow: auto;
+  zoom: var(--escala-tela-cheia, 1);
 }
 
-html:fullscreen .estruturaConteudo {
-  flex: 1 1 auto;
-  min-height: 0;
-}
-
-html:fullscreen .painel {
-  flex: 1 1 auto;
-  height: auto;
-  min-height: 0;
-}
-
-html:fullscreen .painelConteudo {
-  display: flex;
-  flex-direction: column;
-}
-
-html:fullscreen .jogo {
-  flex: 1 1 auto;
-  height: auto;
-  min-height: 0;
+/* svh não acompanha o zoom: os diálogos nativos (instruções, aviso do Hall e
+   confirmação de exclusão) dividem o limite de altura pela escala para continuar
+   cabendo na tela, com a mesma margem proporcional do modo normal. */
+html:fullscreen .estrutura dialog {
+  max-height: calc(100svh / var(--escala-tela-cheia, 1) - 32px);
 }
