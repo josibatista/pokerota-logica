@@ -93,14 +93,10 @@
     padding: 0;
     border: none;
     border-radius: 50%;
-    background: transparent;
+    background: rgb(110 110 110 / 60%);
     color: #fff;
     cursor: pointer;
     transition: background-color 0.2s ease;
-}
-
-.jogo__reiniciar:hover {
-    background-color: rgb(255 255 255 / 15%);
 }
 
 .jogo__reiniciar:focus-visible {
@@ -121,14 +117,10 @@
     padding: 0;
     border: none;
     border-radius: 50%;
-    background: transparent;
+    background: rgb(110 110 110 / 60%);
     color: #fff;
     cursor: pointer;
     transition: background-color 0.2s ease;
-}
-
-.jogo__expandir:hover:not(:disabled) {
-    background-color: rgb(255 255 255 / 15%);
 }
 
 .jogo__expandir:focus-visible {
@@ -313,14 +305,16 @@
     padding: 0;
     border: none;
     border-radius: 50%;
-    background: transparent;
+    background: rgb(110 110 110 / 60%);
     color: #fff;
     cursor: pointer;
     transition: opacity 0.2s ease;
 }   
 
+.jogo__reiniciar:hover,
+.jogo__expandir:hover:not(:disabled),
 .jogo__pausar:hover {
-    opacity: 0.7;
+    background-color: rgb(110 110 110 / 85%);
 }
 
 .jogo__pausar:focus-visible {

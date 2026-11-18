@@ -34,6 +34,7 @@ const CONTROLES_PARTIDA = [
     },
     {
         nome: 'Continuar',
+        atalho: 'Tecla P ou botão de continuar',
         descricao: 'Fecha o painel de pausa e retoma a partida.',
         Icone: Play,
     },
