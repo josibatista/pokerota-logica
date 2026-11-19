@@ -106,7 +106,7 @@ test.describe('Interface — menu e configurações', () => {
         })).toBeEnabled();
 
         await expect(page.getByRole('button', {
-            name: 'Apagar conta',
+            name: 'Apagar minha conta',
             exact: true,
         })).toBeEnabled();
     });
