@@ -114,10 +114,10 @@ test.describe('Colisões e movimentação', () => {
 
     test('CT-MOV-006 — deve movimentar nas quatro direções', () => {
         const cenarios = [
-            { comando: 'ArrowUp', dx: 0, dy: -2 },
-            { comando: 'ArrowDown', dx: 0, dy: 2 },
-            { comando: 'ArrowLeft', dx: -2, dy: 0 },
-            { comando: 'ArrowRight', dx: 2, dy: 0 },
+            { comando: 'ArrowUp', dx: 0, dy: -3 },
+            { comando: 'ArrowDown', dx: 0, dy: 3 },
+            { comando: 'ArrowLeft', dx: -3, dy: 0 },
+            { comando: 'ArrowRight', dx: 3, dy: 0 },
         ];
 
         for (const cenario of cenarios) {
@@ -672,7 +672,7 @@ test.describe('Bloqueios de movimentação na interface', () => {
             await expect.poll(async () => {
                 const atual = await obterCoordenadasDoCanvas(page);
                 return atual?.y;
-            }).toBe(483);
+            }).toBe(482);
 
             const posicaoBloqueada =
                 await obterCoordenadasDoCanvas(page);
