@@ -1,9 +1,7 @@
 .botoes-direcionais {
     display: grid;
-    grid-template-columns: repeat(3, 44px);
-    grid-template-areas:
-        ". cima ."
-        "esquerda baixo direita";
+    grid-template-columns: 44px;
+    grid-template-rows: repeat(4, 44px);
     gap: 6px;
     touch-action: none;
     user-select: none;
@@ -14,20 +12,13 @@
     touch-action: none;
 }
 
-.botoes-direcionais__botao--cima {
-    grid-area: cima;
+.botoes-direcionais .botoes-direcionais__botao {
+    border-radius: 10px;
 }
 
-.botoes-direcionais__botao--esquerda {
-    grid-area: esquerda;
-}
-
-.botoes-direcionais__botao--baixo {
-    grid-area: baixo;
-}
-
-.botoes-direcionais__botao--direita {
-    grid-area: direita;
+.botoes-direcionais .botoes-direcionais__icone {
+    width: 24px;
+    height: 24px;
 }
 
 .botoes-direcionais__botao--ativo {

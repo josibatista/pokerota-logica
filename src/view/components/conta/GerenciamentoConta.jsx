@@ -13,6 +13,14 @@ function GerenciamentoConta({ usuario = null, carregandoSessao = false, onEncerr
     const ocupado = carregandoSessao || acao !== null;
     const podeSair = Boolean(usuario) && typeof onEncerrarSessao === 'function';
     const podeExcluir = Boolean(usuario) && typeof onExcluirConta === 'function';
+    const aviso = mensagem
+        || (carregandoSessao
+            ? 'Só um momento…'
+            : !usuario
+                ? 'Entre na sua conta para usar estes botões.'
+                : (!podeSair || !podeExcluir)
+                    ? 'Alguns botões ainda não podem ser usados.'
+                    : '');
 
     async function encerrarSessao() {
         if (ocupado || !podeSair) return;
@@ -72,25 +80,28 @@ function GerenciamentoConta({ usuario = null, carregandoSessao = false, onEncerr
     }
 
     return (
-        <section className="gerenciamento-conta" aria-label="Gerenciamento da conta" aria-busy={ocupado}>
-            <div className="acoes gerenciamento-conta__acoes">
-                <button type="button" className="botao botao--secundario botao--perigo-contorno gerenciamento-conta__botao" disabled={ocupado || !podeExcluir} onClick={abrirConfirmacao}>
-                    Apagar minha conta
-                </button>
-                <button type="button" className="botao botao--secundario gerenciamento-conta__botao" disabled={ocupado || !podeSair} onClick={encerrarSessao}>
+        <section className="gerenciamento-conta" aria-labelledby="titulo-conta" aria-busy={ocupado}>
+            <h2 id="titulo-conta" className="gerenciamento-conta__titulo">Conta</h2>
+            <div className="gerenciamento-conta__linha">
+                <div className="gerenciamento-conta__texto">
+                    <span className="gerenciamento-conta__rotulo">Sair da conta</span>
+                    <span className="gerenciamento-conta__descricao">Seu progresso fica salvo para quando você voltar.</span>
+                </div>
+                <button type="button" className="botao botao--secundario gerenciamento-conta__botao" disabled={ocupado || !podeSair} aria-describedby={aviso ? 'gerenciamento-conta-aviso' : undefined} onClick={encerrarSessao}>
                     {acao === 'sair' ? 'Saindo…' : 'Sair da minha conta'}
                 </button>
             </div>
-            <p className="gerenciamento-conta__mensagem" role="status" aria-live="polite">
-                {mensagem || (
-                    carregandoSessao
-                        ? 'Só um momento…'
-                        : !usuario
-                            ? 'Entre na sua conta para usar estes botões.'
-                            : !podeSair || !podeExcluir
-                                ? 'Alguns botões ainda não podem ser usados.'
-                                : ''
-                )}
+            <div className="gerenciamento-conta__linha gerenciamento-conta__linha--perigo">
+                <div className="gerenciamento-conta__texto">
+                    <span className="gerenciamento-conta__rotulo gerenciamento-conta__rotulo--perigo">Apagar minha conta</span>
+                    <span id="conta-apagar-descricao" className="gerenciamento-conta__descricao">Remove sua conta e todo o progresso. Não dá para desfazer.</span>
+                </div>
+                <button type="button" className="botao botao--secundario botao--perigo-contorno gerenciamento-conta__botao" disabled={ocupado || !podeExcluir} aria-describedby={aviso ? 'conta-apagar-descricao gerenciamento-conta-aviso' : 'conta-apagar-descricao'} onClick={abrirConfirmacao}>
+                    Apagar conta
+                </button>
+            </div>
+            <p id="gerenciamento-conta-aviso" className="gerenciamento-conta__mensagem" role="status" aria-live="polite">
+                {aviso}
             </p>
             <ConfirmacaoExclusao
                 aberta={confirmacaoAberta && Boolean(usuario)}

@@ -1,9 +1,11 @@
 import { useLocation, useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Cabecalho from './Cabecalho';
 import Logo from './Logo';
 import Painel from './Painel';
+import Instrucoes from '../Instrucoes';
 import { obterFaseDaRota } from '../../faseDaRota';
+import { useEscalaTelaCheia } from './escalaTelaCheia';
 import './estrutura.css';
 
 // A aparência do menu é definida aqui; as ações de conta vêm da integração.
@@ -12,7 +14,7 @@ const telas = {
     '/niveis': { saudacao: true, sair: true, instrucoes: true, configuracoes: true },
     '/personagem': { voltar: '/niveis', instrucoes: true, configuracoes: true },
     '/jogo': { movimento: true, instrucoes: true, configuracoes: true },
-    '/configuracoes': { retornar: true },
+    '/configuracoes': { retornar: true, titulo: 'Configurações' },
 };
 
 function Estrutura({
@@ -25,6 +27,9 @@ function Estrutura({
 }) {
     const [saindo, setSaindo] = useState(false);
     const [erroSaida, setErroSaida] = useState('');
+    const [instrucoesAbertas, setInstrucoesAbertas] = useState(false);
+    const estruturaRef = useRef(null);
+    const conteudoRef = useRef(null);
     const location = useLocation();
     const navigate = useNavigate();
     const caminho = location.pathname.replace(/\/+$/, '') || '/';
@@ -33,12 +38,23 @@ function Estrutura({
     const temaClasse = tema === 'escuro' ? 'temaEscuro' : 'temaClaro';
     const nome = usuario?.nome?.trim();
     const faseCarregada = caminho === '/jogo' ? obterFaseDaRota(location) : null;
-    const saudacao = tela.saudacao
+    const saudacao = tela.titulo || (tela.saudacao
         ? (nome ? `Olá, ${nome}!` : 'Olá!')
-        : (faseCarregada ? `Fase ${faseCarregada}` : undefined);
+        : (faseCarregada ? `Fase ${faseCarregada}` : undefined));
     const origem = location.state?.origem;
     const retornoConfiguracoes = typeof origem === 'string' && origem.startsWith('/')
         && origem !== '/configuracoes' ? origem : '/';
+
+    useEscalaTelaCheia(estruturaRef, conteudoRef);
+
+    useEffect(() => {
+        setInstrucoesAbertas(false);
+    }, [caminho]);
+
+    function abrirInstrucoes() {
+        setInstrucoesAbertas(true);
+        if (typeof onInstructions === 'function') onInstructions();
+    }
 
     function voltar() {
         if (tela.retornar) {
@@ -69,9 +85,9 @@ function Estrutura({
     }
 
     return (
-        <div className={`estrutura ${temaClasse}`}>
-            <div className="estruturaConteudo">
-                {!tela.movimento && <Logo tamanho="pequeno" />}
+        <div className={`estrutura ${temaClasse}`} ref={estruturaRef}>
+            <div className="estruturaConteudo" ref={conteudoRef}>
+                {<Logo tamanho="pequeno" />}
 
                 <Painel>
                     <Cabecalho
@@ -82,7 +98,7 @@ function Estrutura({
                         saudacao={saudacao}
                         onBack={voltar}
                         onLogout={usuario && !saindo && typeof onEncerrarSessao === 'function' ? sair : undefined}
-                        onInstructions={onInstructions}
+                        onInstructions={tela.instrucoes ? abrirInstrucoes : undefined}
                         onSettings={() => navigate('/configuracoes', { state: { origem: caminho } })}
                     />
 
@@ -98,6 +114,10 @@ function Estrutura({
                     </div>
                 )}
             </div>
+            <Instrucoes
+                aberta={instrucoesAbertas}
+                onFechar={() => setInstrucoesAbertas(false)}
+            />
         </div>
     );
 }

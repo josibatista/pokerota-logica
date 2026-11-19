@@ -32,9 +32,21 @@ function SelecaoPersonagem() {
 
         setPersonagemSelecionado(escolha);
 
-        navegar('/jogo', {
-            state: { fase },
-        });
+            navegar('/jogo', {
+                state: { fase },
+            });
+    }
+
+    function selecionarPersonagem(id) {
+        if (escolha === id) {
+            setPersonagemSelecionado(id);
+
+            navegar('/jogo', {
+                state: { fase },
+            });
+            return;
+        }
+        setEscolha(id);        
     }
 
     return (
@@ -57,7 +69,7 @@ function SelecaoPersonagem() {
                             key={personagem.id}
                             personagem={personagem}
                             selecionado={escolha === personagem.id}
-                            onSelecionar={setEscolha}
+                            onSelecionar={selecionarPersonagem}
                         />
                     ))}
                 </div>
