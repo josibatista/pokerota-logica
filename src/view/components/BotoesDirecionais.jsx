@@ -1,33 +1,13 @@
 import './BotoesDirecionais.css';
 import { useEffect, useRef, useState } from 'react';
+import SetaTeclado from './SetaTeclado';
 
 const DIRECOES = [
-    { comando: 'cima', rotulo: 'Mover para frente', rotacao: 90 },
-    { comando: 'baixo', rotulo: 'Mover para trás', rotacao: 270 },
-    { comando: 'esquerda', rotulo: 'Mover para a esquerda', rotacao: 0 },
-    { comando: 'direita', rotulo: 'Mover para a direita', rotacao: 180 },
+    { comando: 'cima', rotulo: 'Mover para frente' },
+    { comando: 'baixo', rotulo: 'Mover para trás' },
+    { comando: 'esquerda', rotulo: 'Mover para a esquerda' },
+    { comando: 'direita', rotulo: 'Mover para a direita' },
 ];
-
-function Seta({ rotacao }) {
-    return (
-        <svg
-            viewBox="0 0 24 24"
-            className="icone-controle botoes-direcionais__icone"
-            aria-hidden="true"
-            focusable="false"
-            style={{ transform: `rotate(${rotacao}deg)` }}
-        >
-            <path
-                d="M15 5 8 12l7 7"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2.4"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-            />
-        </svg>
-    );
-}
 
 function BotoesDirecionais({ onPressionar, onSoltar }) {
     const [ativos, setAtivos] = useState(() => new Set());
@@ -163,7 +143,10 @@ function BotoesDirecionais({ onPressionar, onSoltar }) {
                     onKeyUp={(evento) => aoTeclaSoltar(evento, direcao.comando)}
                     onContextMenu={(evento) => evento.preventDefault()}
                 >
-                    <Seta rotacao={direcao.rotacao} />
+                    <SetaTeclado
+                        direcao={direcao.comando}
+                        className="icone-controle botoes-direcionais__icone"
+                    />
                 </button>
             ))}
         </div>

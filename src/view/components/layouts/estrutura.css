@@ -169,9 +169,7 @@
   }
 }
 
-/* Tela cheia da aplicação: o layout do modo normal inteiro (logo, painel, conteúdo
-   e diálogos) é ampliado na mesma proporção. A escala vem de escalaTelaCheia.js e
-   só existe quando o documento inteiro está em tela cheia; fora disso vale 1. */
+/* Tela cheia */
 html:fullscreen,
 html:fullscreen body,
 html:fullscreen #root {
@@ -186,9 +184,6 @@ html:fullscreen .estrutura {
   zoom: var(--escala-tela-cheia, 1);
 }
 
-/* svh não acompanha o zoom: os diálogos nativos (instruções, aviso do Hall e
-   confirmação de exclusão) dividem o limite de altura pela escala para continuar
-   cabendo na tela, com a mesma margem proporcional do modo normal. */
 html:fullscreen .estrutura dialog {
   max-height: calc(100svh / var(--escala-tela-cheia, 1) - 32px);
 }

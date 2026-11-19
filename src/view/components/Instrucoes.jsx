@@ -8,21 +8,15 @@ import {
     Maximize2,
     Minimize2
 } from 'lucide-react'
+import SetaTeclado from './SetaTeclado';
 
 export const ID_INSTRUCOES = 'instrucoes-jogo';
 
-const SETAS = [
-    { nome: 'Seta para cima', movimento: 'mover para frente', rotacao: 90 },
-    { nome: 'Seta para baixo', movimento: 'mover para trás', rotacao: 270 },
-    { nome: 'Seta para a esquerda', movimento: 'mover para a esquerda', rotacao: 0 },
-    { nome: 'Seta para a direita', movimento: 'mover para a direita', rotacao: 180 },
-];
-
-const BOTOES = [
-    { nome: 'Botão para frente', movimento: 'mover para frente', rotacao: 90 },
-    { nome: 'Botão para trás', movimento: 'mover para trás', rotacao: 270 },
-    { nome: 'Botão para a esquerda', movimento: 'mover para a esquerda', rotacao: 0 },
-    { nome: 'Botão para a direita', movimento: 'mover para a direita', rotacao: 180 },
+const MOVIMENTOS = [
+    { nome: 'Seta para cima', movimento: 'mover para frente', direcao: 'cima' },
+    { nome: 'Seta para baixo', movimento: 'mover para trás', direcao: 'baixo' },
+    { nome: 'Seta para a esquerda', movimento: 'mover para a esquerda', direcao: 'esquerda' },
+    { nome: 'Seta para a direita', movimento: 'mover para a direita', direcao: 'direita' },
 ];
 
 const CONTROLES_PARTIDA = [
@@ -60,34 +54,13 @@ const CONTROLES_PARTIDA = [
     },
 ];
 
-function Seta({ rotacao }) {
-    return (
-        <svg
-            viewBox="0 0 24 24"
-            className="icone-controle"
-            aria-hidden="true"
-            focusable="false"
-            style={{ transform: `rotate(${rotacao}deg)` }}
-        >
-            <path
-                d="M15 5 8 12l7 7"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2.4"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-            />
-        </svg>
-    );
-}
-
 function ListaComandos({ comandos }) {
     return (
         <ul className="instrucoes__lista">
             {comandos.map((comando) => (
                 <li key={comando.nome} className="instrucoes__item">
-                    <span className="instrucoes__simbolo">
-                        <Seta rotacao={comando.rotacao} />
+                    <span className="instrucoes__simbolo instrucoes__simbolo--tecla">
+                        <SetaTeclado direcao={comando.direcao} />
                     </span>
                     <span>
                         <strong>{comando.nome}:</strong> {comando.movimento}.
@@ -163,22 +136,14 @@ function Instrucoes({ aberta = false, onFechar }) {
         >
             <h2 id="instrucoes-titulo" className="instrucoes__titulo">Instruções</h2>
             <p id="instrucoes-descricao" className="instrucoes__intro">
-                Use as setas do teclado ou os botões da tela para mover o personagem.
+                Use as setas para mover o personagem. Elas funcionam do mesmo jeito no teclado e na tela.
             </p>
 
-            <section className="instrucoes__grupo" aria-labelledby="instrucoes-teclado">
-                <h3 id="instrucoes-teclado" className="instrucoes__subtitulo">Setas do teclado</h3>
-                <ListaComandos comandos={SETAS} />
-            </section>
-
-            <section className="instrucoes__grupo" aria-labelledby="instrucoes-botoes">
-                <h3 id="instrucoes-botoes" className="instrucoes__subtitulo">Botões na tela</h3>
+            <section className="instrucoes__grupo" aria-labelledby="instrucoes-movimentacao">
+                <h3 id="instrucoes-movimentacao" className="instrucoes__subtitulo">Movimentação</h3>
+                <ListaComandos comandos={MOVIMENTOS} />
                 <p className="instrucoes__texto">
-                    Os botões com setas fazem os mesmos movimentos.
-                </p>
-                <ListaComandos comandos={BOTOES} />
-                <p className="instrucoes__texto">
-                    O personagem se move enquanto você segura a seta ou o botão. Quando solta, ele para.
+                    O personagem se move enquanto você segura a seta. Quando solta, ele para.
                 </p>
             </section>
 

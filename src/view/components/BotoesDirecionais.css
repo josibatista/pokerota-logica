@@ -12,6 +12,15 @@
     touch-action: none;
 }
 
+.botoes-direcionais .botoes-direcionais__botao {
+    border-radius: 10px;
+}
+
+.botoes-direcionais .botoes-direcionais__icone {
+    width: 24px;
+    height: 24px;
+}
+
 .botoes-direcionais__botao--ativo {
     filter: brightness(0.95);
 }
