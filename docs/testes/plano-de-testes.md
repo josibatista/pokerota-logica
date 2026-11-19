@@ -87,10 +87,12 @@ Para executar separadamente os conjuntos de testes:
 
 ```bash
 npx playwright test tests/autenticacao.spec.js
-npx playwright test tests/smoke.spec.js
+npx playwright test tests/interface.spec.js
+npx playwright test tests/movimentacao.spec.js
 npx playwright test tests/fases.spec.js
 npx playwright test tests/personagem.spec.js
 npx playwright test tests/progresso.spec.js
+npx playwright test tests/smoke.spec.js
 ```
 
 ### Investigar falhas
@@ -111,17 +113,27 @@ Os resultados gerados em `test-results/` e `playwright-report/`, assim como os l
 
 ### Cobertura atual
 
-A suíte contempla 26 testes automatizados, distribuídos em cinco arquivos:
+A suíte possui automações implementadas para os **33 casos de teste funcionais planejados**, distribuídos entre autenticação, interface, movimentação, fases e persistência.
 
-- `tests/smoke.spec.js`: 1 teste de carregamento inicial da Home e opções de acesso.
-- `tests/autenticacao.spec.js`: 9 testes, abrangendo CT-AUT-001 a CT-AUT-006 e verificações complementares de proteção das rotas privadas e cancelamento da exclusão.
-- `tests/fases.spec.js`: 4 testes, abrangendo CT-FAS-001, CT-FAS-002, CT-FAS-005 e uma verificação complementar de navegação.
-- `tests/personagem.spec.js`: 5 testes, abrangendo CT-MOV-002 e verificações complementares de exibição, seleção, troca, manutenção da escolha e bloqueio da confirmação sem fase definida.
+Considerando os cenários complementares e parametrizados, existem **58 testes declarados em sete arquivos**:
+
+- `tests/smoke.spec.js`: 1 teste de carregamento inicial da Home.
+- `tests/autenticacao.spec.js`: 9 testes, abrangendo CT-AUT-001 a CT-AUT-006 e verificações complementares.
+- `tests/interface.spec.js`: 7 testes, abrangendo CT-INT-001 a CT-INT-007.
+- `tests/movimentacao.spec.js`: 23 testes, abrangendo CT-MOV-001 a CT-MOV-008 e verificações complementares de colisões.
+- `tests/fases.spec.js`: 6 testes, abrangendo CT-FAS-001, CT-FAS-002, CT-FAS-005, CT-FAS-006, CT-FAS-007 e uma verificação complementar.
+- `tests/personagem.spec.js`: 5 testes, abrangendo CT-MOV-002 e verificações complementares da seleção de personagem.
 - `tests/progresso.spec.js`: 7 testes, abrangendo CT-PRO-001 a CT-PRO-005, CT-FAS-003 e CT-FAS-004.
 
 As funções compartilhadas de autenticação e preparação, consulta e verificação do progresso estão organizadas em `tests/utils/`.
 
-A quantidade de testes executáveis não representa percentual de cobertura de código. A mensuração desse indicador exige instrumentação específica.
+A implementação dos testes não significa que todos tenham sido executados ou aprovados. Os resultados devem ser registrados após a execução completa da suíte.
+
+A quantidade de testes executáveis e o percentual de casos funcionais automatizados não representam percentual de cobertura de código. A mensuração desse indicador exige instrumentação específica.
+
+O CT-INT-005 depende da disponibilidade da API Fullscreen no navegador utilizado. Quando o recurso não estiver disponível, o teste será ignorado (`skipped`), exigindo execução posterior em ambiente compatível.
+
+O CT-INT-004 verifica funcionalmente a alteração de tema claro/escuro, mas não substitui uma avaliação abrangente de acessibilidade.
 
 ### Particularidades e limites
 
