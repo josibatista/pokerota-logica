@@ -6,15 +6,18 @@
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JAVASCRIPT-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+![React](https://img.shields.io/badge/REACT-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![Vite](https://img.shields.io/badge/VITE-646CFF?style=for-the-badge&logo=vite&logoColor=white)
 ![p5.js](https://img.shields.io/badge/P5.JS-ED225D?style=for-the-badge&logo=p5dotjs&logoColor=white)
 ![Firebase](https://img.shields.io/badge/FIREBASE-FFCA28?style=for-the-badge&logo=firebase&logoColor=black)
 ![Cloud Firestore](https://img.shields.io/badge/FIRESTORE-039BE5?style=for-the-badge&logo=firebase&logoColor=white)
 ![Playwright](https://img.shields.io/badge/PLAYWRIGHT-2EAD33?style=for-the-badge&logo=playwright&logoColor=white)
+![GitHub Actions](https://img.shields.io/badge/GITHUB_ACTIONS-2088FF?style=for-the-badge&logo=githubactions&logoColor=white)
 
 
 ## 📖 Sobre o projeto
 
-**PokéRota Lógica** é um jogo educativo em desenvolvimento para crianças do Ensino Fundamental I, com temática inspirada no universo Pokémon. Em mapas de dificuldade crescente, o usuário escolhe comandos para movimentar um personagem até o destino e observa o resultado de cada decisão. O projeto busca trabalhar sequências de comandos, planejamento de rotas e noções de lógica de forma visual e interativa. O progresso nas fases será associado à conta Google do jogador.
+**PokéRota Lógica** é um jogo educativo desenvolvido para crianças do Ensino Fundamental I, com temática inspirada no universo Pokémon. Em 5 mapas de dificuldade crescente, o usuário escolhe comandos para movimentar um personagem até o destino e observa o resultado de cada decisão. O projeto busca trabalhar sequências de comandos, planejamento de rotas e noções de lógica de forma visual e interativa. O progresso nas fases é associado à conta Google do jogador.
 
 > ⚠️ **Nota sobre propriedade intelectual:** Utilizou-se a temática inspirada no universo Pokémon, dando os devidos créditos à Nintendo, Game Freak e The Pokémon Company, detentoras dos direitos sobre a marca. Não há qualquer objetivo de obtenção de benefícios comerciais, monetários ou similares com este projeto, visto que se trata de trabalho acadêmico destinado à avaliação da disciplina de Oficina de Integração do curso de Engenharia de Software da UTFPR-CP.
 
@@ -22,6 +25,13 @@
 
 Crianças do Ensino Fundamental I (aproximadamente 6 a 10 anos) em fase de desenvolvimento do pensamento lógico. O jogo busca estimular a compreensão de sequências de comandos e suas consequências, auxiliando o usuário a associar uma ação executada (movimentação do personagem) à resposta correspondente do sistema — fortalecendo noções básicas de causa e efeito e planejamento de rotas.
 
+## 🌐 Acesso à aplicação
+
+O PokéRota Lógica está disponível online por meio do Firebase Hosting, podendo ser acessado diretamente pelo navegador, sem necessidade de instalação.
+
+🎮 [Acessar o PokéRota Lógica](https://pokerota-logica.web.app/)
+
+<br>
 
 ## 🧩 Requisitos
 
@@ -32,17 +42,13 @@ Os requisitos funcionais e não funcionais estão descritos em [docs/requisitos.
 O sistema utiliza a arquitetura *cliente-servidor*, com o Firebase atuando como Backend as a Service (BaaS), responsável pela autenticação dos usuários e pelo armazenamento dos dados no Cloud Firestore. Internamente, o cliente é organizado segundo o padrão MVC (Model-View-Controller), separando a interface, o controle das interações e a lógica do jogo. Essa estrutura facilita a organização, a manutenção e a evolução do sistema, enquanto os serviços realizam a comunicação entre a aplicação e o Firebase.
 
 ### Diagrama de arquitetura
-O diagrama apresenta a organização proposta em *MVC*: a View reúne a interface em React, HTML e CSS e a representação do jogo com p5.js/Canvas; o Controller coordena as ações do usuário; e o Model concentra os dados, o estado e as regras do jogo. Serviços fazem a integração com Firebase Authentication e Cloud Firestore.
+O diagrama apresenta a organização proposta em *MVC*: a View reúne a interface em React, HTML e CSS e a representação do jogo com p5.js/Canvas; o Controller coordena as ações do usuário; e o Model concentra os dados, o estado e as regras do jogo. Serviços fazem a integração com Firebase Authentication e Cloud Firestore. Visualize em: [docs/diagramas/diagrama-arquitetura.png](docs/diagramas/diagrama-arquitetura.png).
 
-![Diagrama de Arquitetura](docs/diagrama-arquitetura.png)
+### Diagrama de classes
 
-### 📐 Diagrama de classes
+O diagrama modela, com *programação orientada a objetos (POO)*, as entidades e responsabilidades previstas para o jogo, como Jogo, Fase, Jogador, Mapa, Usuário e Configuração, além das classes ligadas à autenticação e ao armazenamento do progresso.  Visualize em: [docs/diagramas/diagrama-classes.png](docs/diagramas/diagrama-classes.png). 
 
-O diagrama modela, com *programação orientada a objetos (POO)*, as entidades e responsabilidades previstas para o jogo, como Jogo, Fase, Jogador, Mapa, Usuário e Configuração, além das classes ligadas à autenticação e ao armazenamento do progresso.
-
-![Diagrama de classes](docs/diagrama-classes.png)
-
-## 🛠️ Tecnologias de desenvolvimento
+## 🛠️ Tecnologias Empregadas
 
 | Tecnologia | Aplicação |
 |---|---|
@@ -52,8 +58,15 @@ O diagrama modela, com *programação orientada a objetos (POO)*, as entidades e
 | 📄 HTML | Linguagem de marcação utilizada para estruturar a página, servindo como base para o elemento `<canvas>` e para os demais componentes da interface. |
 | 🎯 CSS | Linguagem utilizada para a estilização da página e dos componentes da interface, definindo aspectos como posicionamento, dimensões, fontes e apresentação visual. |
 | ⚛️ React | Biblioteca para estruturar a interface em componentes e gerenciar o estado das telas. |
+| ⚡ Vite | Ferramenta utilizada para execução do ambiente de desenvolvimento e geração do build da aplicação. |
 | 🔑 Firebase Authentication | Serviço de autenticação utilizado para gerenciar o cadastro e o login dos usuários por conta Google, evitando a necessidade de implementar manualmente um servidor de autenticação. |
 | 🗄️ Cloud Firestore | Banco de dados NoSQL utilizado em conjunto com o Firebase Authentication para armazenar informações associadas aos usuários, como o progresso no jogo e o histórico de ações realizadas. |
+| 🧪 Playwright | Framework utilizado para implementação e execução dos testes automatizados da aplicação. |
+| 🔥 Firebase Emulator Suite | Conjunto de emuladores utilizado para testar autenticação e persistência de dados em ambiente local, sem utilizar os serviços de produção. |
+| 🌐 Firebase Hosting | Serviço utilizado para hospedagem e disponibilização da aplicação na web. |
+| 🔄 GitHub Actions | Ferramenta utilizada para automatizar a geração do build e a publicação da aplicação no Firebase Hosting. |
+
+<br>
 
 ## 📦 Configuração do ambiente e execução
 
@@ -69,6 +82,11 @@ O diagrama modela, com *programação orientada a objetos (POO)*, as entidades e
 - `vite.config.js`: configura o Vite utilizado com React.
 - `.gitignore`: impede o versionamento de dependências instaladas e configurações locais.
 - `.env.example`: apresenta os nomes das variáveis necessárias para conectar a aplicação ao Firebase.
+- `firebase.json`: define as configurações dos emuladores, do Firestore e da hospedagem da aplicação.
+- `.firebaserc`: identifica o projeto Firebase associado à aplicação.
+- `firestore.rules`: define as regras de acesso aos dados do Cloud Firestore.
+- `playwright.config.js`: define as configurações de execução dos testes automatizados.
+- `.github/workflows/`: contém os fluxos de automação do deploy da aplicação.
 
 ### Executar localmente
 
@@ -90,22 +108,50 @@ O diagrama modela, com *programação orientada a objetos (POO)*, as entidades e
 
 O arquivo `.env` contém as configurações locais de cada integrante e não deve ser versionado.
 
+## 🚀 Deploy
+
+A aplicação é hospedada no Firebase Hosting, com o processo de publicação automatizado por meio do GitHub Actions.
+
+A cada atualização na branch `main`, o workflow realiza a validação das variáveis de ambiente, a instalação das dependências, a geração do build e a publicação da aplicação.
+
+Os fluxos de automação estão disponíveis em [.github/workflows/](.github/workflows/), e o histórico das execuções pode ser consultado na [aba Actions](https://github.com/josibatista/pokerota-logica/actions).
+
 ## 🧪 Estratégia de Testes
 
 Os testes são realizados manualmente durante o desenvolvimento e automatizados com Playwright conforme a implementação de cada funcionalidade.
 
 A automação de autenticação utiliza o Firebase Authentication Emulator, com contas fictícias no projeto local `demo-pokerota`. Ela verifica login, cancelamento, persistência da sessão, exclusão da conta, logout e novo cadastro após exclusão, além do bloqueio das rotas privadas.
 
-O login com o serviço real do Google é verificado manualmente.
+O login com o serviço real do Google é verificado manualmente. E para garantir o isolamento dos dados de teste, são utilizados o *Firebase Authentication Emulator* e o *Firestore Emulator*, associados ao projeto fictício `demo-pokerota`, sem utilização dos serviços de produção.
 
-- [Plano e instruções de execução](docs/testes/plano-de-testes.md)
-- [Casos funcionais](docs/testes/casos-funcionais/)
-- [Matriz de rastreabilidade](docs/testes/matriz-rastreabilidade.md)
+### Documentação de testes
 
+- [Plano de testes e instruções de execução](docs/testes/plano-de-testes.md)
+- [Casos de teste funcionais](docs/testes/casos-funcionais/)
+- [Matriz de rastreabilidade e resultados dos testes](docs/testes/matriz-rastreabilidade.md)
+- [Código dos testes automatizados](tests/)
+- [Relatório da execução final dos testes](docs/testes/evidencias/relatorio-playwright-2026-11-23.pdf)
+
+
+### Resumo da automação
+
+| Indicador | Quantidade |
+|---|---:|
+| Requisitos funcionais mapeados | 23 |
+| Casos de teste funcionais planejados | 33 |
+| Casos de teste com automação implementada | 33 |
+| Testes automatizados declarados | 58 |
+| Arquivos de testes automatizados | 7 |
+
+Para detalhes dos cenários e procedimentos de execução, consulte o [Plano de Testes](docs/testes/plano-de-testes.md).
+
+<br>
 
 ## 📋 Organização do desenvolvimento
 
-O projeto seguirá uma metodologia ágil de desenvolvimento com o framework **Kanban**. As atividades e seu andamento podem ser consultados no [quadro do Trello](https://trello.com/invite/b/6aab1fd703672fb13252768a/ATTI43945ab325f7dfb3f6d6d008de6c03001E358F51/pokerota-logica).
+O projeto foi desenvolvido utilizando a abordagem ágil Kanban, com organização, distribuição e acompanhamento das atividades por meio do Trello.
+
+As atividades realizadas e seu andamento podem ser consultados no [quadro do Trello](https://trello.com/invite/b/6aab1fd703672fb13252768a/ATTI43945ab325f7dfb3f6d6d008de6c03001E358F51/pokerota-logica).
 
 ## 🗓️ Cronograma de Implementação
 
